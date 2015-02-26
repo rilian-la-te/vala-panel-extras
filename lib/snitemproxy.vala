@@ -41,7 +41,7 @@ namespace StatusNotifier
         string description;
     }
     [DBus (name = "org.kde.StatusNotifierItem")]
-    public class ItemExporter : Object
+    public abstract class ItemExporter : Object
     {
         /* Base properties */
         public Category category {get; protected set;}

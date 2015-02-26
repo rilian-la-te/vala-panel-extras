@@ -10,8 +10,10 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/vapi
     --target-glib=2.40
-    --gresources=${CMAKE_CURRENT_SOURCE_DIR}/libvalapanel.gresource.xml
+    --gresources=${CMAKE_CURRENT_SOURCE_DIR}/internal.gresource.xml
     --thread
+GENERATE_VAPI
+    internal
 )
 
 #add_definitions(-DG_SETTINGS_ENABLE_BACKEND)
