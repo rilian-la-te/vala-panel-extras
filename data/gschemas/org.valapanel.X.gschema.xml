@@ -1,0 +1,83 @@
+<schemalist>
+<!--
+  <schema id="org.simple.panel.toplevel.xkb">
+    <key name="layout-per-window" type="b">
+      <default>false</default>
+    </key>
+    <key name="keep-system-layouts" type="b">
+      <default>true</default>
+    </key>
+    <key name="use-existing-options" type="b">
+      <default>true</default>
+    </key>
+    <key name="image-size" type="i">
+      <default>2</default>
+    </key>
+    <key name="display-type" enum="org.simple.panel.DispType">
+      <default>'text'</default>
+    </key>
+    <key name="keyboard-model" type="s">
+      <default>'pc105'</default>
+    </key>
+    <key name="keyboard-layouts" type="s">
+      <default>'us,ru'</default>
+    </key>
+    <key name="keyboard-layout-variants" type="s">
+      <default>','</default>
+    </key>
+    <key name="layout-changing-options" type="s">
+      <default>'grp:shift_caps_toggle'</default>
+    </key>
+    <key name="advanced-options" type="s">
+      <default>''</default>
+    </key>
+  </schema>
+-->
+  <enum id="org.valapanel.WcCommand">
+    <value nick="none" value="0"/>
+    <value nick="iconify" value="1"/>
+    <value nick="shade" value="2"/>
+  </enum>
+  <schema id="org.valapanel.toplevel.wincmd">
+    <key name="left-button-command" enum="org.valapanel.WcCommand">
+      <default>'iconify'</default>
+    </key>
+    <key name="middle-button-command" enum="org.valapanel.WcCommand">
+      <default>'shade'</default>
+    </key>
+    <key name="toggle-iconify-and-shade" type="b">
+      <default>false</default>
+    </key>
+    <key name="icon" type="s">
+      <default>'preferences-desktop-wallpaper-symbolic'</default>
+    </key>
+  </schema>
+  <schema id="org.valapanel.toplevel.deskno">
+    <key name="bold-font" type="b">
+      <default>false</default>
+    </key>
+    <key name="wm-labels" type="b">
+      <default>true</default>
+    </key>
+  </schema>
+  <schema id="org.valapanel.toplevel.tasklist">
+    <key name="all-desktops" type="b">
+      <default>true</default>
+    </key>
+    <key name="grouped-tasks" type="b">
+      <default>false</default>
+    </key>
+    <key name="grouping-limit" type="i">
+      <default>5</default>
+    </key>
+    <key name="middle-click-close" type="b">
+      <default>false</default>
+    </key>
+    <key name="switch-workspace-on-unminimize" type="b">
+      <default>false</default>
+    </key>
+    <key name="unexpanded-limit" type="i">
+      <default>600</default>
+    </key>
+  </schema>
+</schemalist>
