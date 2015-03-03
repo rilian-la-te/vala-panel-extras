@@ -1,9 +1,10 @@
-set(PLUGIN_NAME volume)
+set(PLUGIN_NAME vala-panel-extras-volume)
 vala_precompile(VALA_C ${PLUGIN_NAME}
     ${PLUGIN_NAME}.vala
 PACKAGES
     ${CORE_PACKAGES}
     internal
+    alsa
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/lib
@@ -17,7 +18,7 @@ OPTIONS
 #####
 
 # Build library for plugin
-set (LIBS ${CORE_LIBRARIES} -lm)
+set (LIBS ${CORE_LIBRARIES} ${ALSA_LIBRARIES} -lm)
 set (LIB_PATHS ${CORE_LIBRARY_DIRS})
 link_directories (${LIB_PATHS})
 

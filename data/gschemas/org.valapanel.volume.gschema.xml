@@ -1,0 +1,13 @@
+<schemalist>
+  <schema id="org.valapanel.volume" path="/org/valapanel/extras/volume/">
+    <key name="card-id" type="s">
+      <default>'default'</default>
+    </key>
+    <key name="channel-id" type="s">
+      <default>'Master'</default>
+    </key>
+    <key name="mixer" type="s">
+      <default>'gnome-alsamixer'</default>
+    </key>
+  </schema>
+</schemalist>

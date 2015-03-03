@@ -12,54 +12,57 @@ namespace DBusMenu
     }
     public class ServerItem: Object
     {
-        internal int id
+        public int id
         {get; set;}
         internal int parent_id
         {get; set;}
-        internal Variant properties
-        {get; private set;}
+        private HashTable<string,Variant?> properties;
         internal List<unowned ServerItem> children;
         public signal void property_changed(string name, Variant? val);
         public ServerItem()
         {
-
+            children = new List<unowned ServerItem>();
+            properties = new HashTable<string,Variant?>(str_hash,str_equal);
+            properties.insert("type",new Variant.string("normal"));
+            properties.insert("label",new Variant.string("MenuItem"));
         }
         public void set_variant_property(string name, Variant? val)
         {
-            var dict = new VariantDict(properties);
-            var old_value = dict.lookup_value(name,VariantType.ANY);
-            dict.insert_value(name, val);
-            var new_value = dict.lookup_value(name,VariantType.ANY);
+            var old_value = properties.lookup(name);
+            properties.insert(name, val);
+            var new_value = properties.lookup(name);
             if ((old_value ?? new_value) == null)
                 return;
             if (new_value != null && old_value == null
                 || old_value == null && new_value != null
                 || !old_value.equal(new_value))
             {
-                properties = dict.end();
-                this.property_changed(name,new_value);
+                this.property_changed(name,val);
             }
         }
         public Variant? get_variant_property(string name)
         {
-            var dict = new VariantDict(properties);
-            return dict.lookup_value(name,VariantType.ANY);
-        }
-        public void set_all_properties(Variant properties)
-        {
-            this.properties = properties;
+            return properties.lookup(name);
         }
         public Variant serialize ()
         {
             var builder = new VariantBuilder(new VariantType("(ia{sv}av)"));
             builder.add("i",this.id);
-            builder.add_value(this.properties);
+            builder.add_value(serialize_properties());
             Variant[] serialized_children = {};
             foreach (var ch in children)
                 serialized_children += new Variant.variant(ch.serialize());
             var array = new Variant.array(VariantType.VARIANT,serialized_children);
             builder.add_value(array);
             return builder.end();
+        }
+        public Variant serialize_properties()
+        {
+            var dict = new VariantDict();
+            properties.foreach((k,v)=>{
+                dict.insert_value(k,v);
+            });
+            return dict.end();
         }
         public signal void activated();
         public signal void value_changed(double new_value);
@@ -99,7 +102,7 @@ namespace DBusMenu
                 var item = all_items.lookup(id);
                 var builder = new VariantBuilder(new VariantType("(ia{sv})"));
                 builder.add("i",item.id);
-                builder.add_value(item.properties);
+                builder.add_value(item.serialize_properties());
                 items += builder.end();
             }
             properties = new Variant.array(new VariantType("(ia{sv})"),items);
@@ -114,9 +117,8 @@ namespace DBusMenu
             /* FIXME: Close/Open handler */
             if (event_id == "clicked")
                 all_items.lookup(id).activated();
-            else if (event_id == "value-changed")
-                all_items.lookup(id).value_changed(data.get_variant().get_double());
-
+            else if (event_id == "value-changed" && data != null)
+                all_items.lookup(id).value_changed(data.get_double());
         }
         /* events signature is a(isvu) */
         public void event_group([DBus (signature = "a(isvu)")] Variant events,
@@ -179,19 +181,27 @@ namespace DBusMenu
             all_items = new HashTable<int,ServerItem>(direct_hash,direct_equal);
             var item = new ServerItem();
             item.set_variant_property("children-display",new Variant.string("submenu"));
-            item.set_variant_property("type",new Variant.string("normal"));
             item.parent_id = -1;
             item.id = 0;
             all_items.insert(item.id,item);
         }
         [DBus (visible="false")]
-        public void add_item (ServerItem item, int parent_id = 0)
+        public void append_item (ServerItem item, int parent_id = 0)
         {
+            last_id++;
             item.id = last_id;
             item.parent_id = parent_id;
             all_items.insert(last_id,item);
             all_items.lookup(parent_id).children.append(item);
+        }
+        [DBus (visible="false")]
+        public void prepend_item (ServerItem item, int parent_id = 0)
+        {
             last_id++;
+            item.id = last_id;
+            item.parent_id = parent_id;
+            all_items.insert(last_id,item);
+            all_items.lookup(parent_id).children.prepend(item);
         }
         [DBus (visible="false")]
         public void remove_item(int id)
@@ -203,36 +213,5 @@ namespace DBusMenu
         }
         private HashTable<int,ServerItem> all_items;
         private uint layout_revision;
-    }
-    public class Proxy: Object
-    {
-        public Serializer menu
-        {get; private set;}
-        uint owned_name;
-        string bus_name;
-        public Proxy(string bus_name)
-        {
-            this.bus_name = bus_name;
-            create_menu();
-        }
-        private void on_bus_aquired(DBusConnection conn)
-        {
-            try {
-                menu = new Serializer();
-                conn.register_object ("/MenuBar", menu);
-            } catch (IOError e) {
-                stderr.printf ("Could not register service. Menu will not be available\n");
-            }
-        }
-        private void create_menu()
-        {
-            owned_name = Bus.own_name (BusType.SESSION, bus_name, BusNameOwnerFlags.NONE,
-                on_bus_aquired,
-                null,null);
-        }
-        ~Proxy()
-        {
-            Bus.unown_name(owned_name);
-        }
     }
 }

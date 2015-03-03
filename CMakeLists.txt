@@ -5,10 +5,9 @@ enable_testing ()
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share/vala-panel")
 set (PKGDATADIR "${DATADIR}")
+set (VERSION "0.0.99")
 set (GETTEXT_PACKAGE "vala-panel-extras")
 set (RELEASE_NAME "Vala Panel extra items")
-set (VERSION "0.0.99")
-set (VERSION_INFO "Development")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
 set (DOLLAR "$")
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -52,8 +51,7 @@ set(CORE_PACKAGES
   glib-2.0
   gio-2.0
   gio-unix-2.0
-  gmodule-2.0
-  gio-addons-2.0)
+  gmodule-2.0)
 
 set(PACKGAGE_CFLAGS ${CORE_CFLAGS})
 set(PACKAGE_LINK_DIRS ${CORE_LIBRARY_DIRS})

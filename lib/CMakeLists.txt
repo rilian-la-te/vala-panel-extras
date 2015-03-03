@@ -3,9 +3,12 @@ vala_precompile(VALA_C internal
     watcheriface.vala
     snitemproxy.vala
     menuserializer.vala
+    application.vala
+    configurator.vala
     ${CMAKE_BINARY_DIR}/vapi/config.vala
 PACKAGES
     ${CORE_PACKAGES}
+    gio-addons-2.0
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/vapi
@@ -16,11 +19,7 @@ GENERATE_VAPI
     internal
 )
 
-#add_definitions(-DG_SETTINGS_ENABLE_BACKEND)
-#glib_compile_resources(GLIB_RESOURCES_LIB
-#	source
-#    	libvalapanel.gresource.xml
-#)
+add_definitions(-DG_SETTINGS_ENABLE_BACKEND)
 
 #####
 # Core Library
