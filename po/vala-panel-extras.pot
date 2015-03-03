@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-03 22:32+0600\n"
+"POT-Creation-Date: 2015-03-04 00:44+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,18 @@ msgstr ""
 msgid "Replace this string by your names, one name per line."
 msgstr ""
 
+#: ../lib/snitemproxy.vala:119
+msgid "_Preferences..."
+msgstr ""
+
+#: ../lib/snitemproxy.vala:123
+msgid "_About..."
+msgstr ""
+
+#: ../lib/snitemproxy.vala:127
+msgid "_Quit"
+msgstr ""
+
 #: ../applets/volume/vala-panel-extras-volume.vala:64
 msgid "ALSA (or pulseaudio) had a problem."
 msgstr ""
@@ -74,44 +86,44 @@ msgstr ""
 msgid " Please check the volume-applet logs."
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:222
+#: ../applets/volume/vala-panel-extras-volume.vala:223
 msgid "ALSA is not connected"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:361
-#: ../applets/volume/vala-panel-extras-volume.vala:413
+#: ../applets/volume/vala-panel-extras-volume.vala:362
+#: ../applets/volume/vala-panel-extras-volume.vala:419
 msgid "Vala Panel Volume Applet"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:363
+#: ../applets/volume/vala-panel-extras-volume.vala:364
 msgid "ALSA Card"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:364
+#: ../applets/volume/vala-panel-extras-volume.vala:365
 msgid "ALSA Channel"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:365
+#: ../applets/volume/vala-panel-extras-volume.vala:366
 msgid "Mixer launch command"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:372
+#: ../applets/volume/vala-panel-extras-volume.vala:373
 msgid "Volume Applet"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:379
-msgid "Volume Control..."
+#: ../applets/volume/vala-panel-extras-volume.vala:380
+msgid "Volume _Control..."
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:389
+#: ../applets/volume/vala-panel-extras-volume.vala:390
 msgid "_Mute"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:399
+#: ../applets/volume/vala-panel-extras-volume.vala:400
 msgid "Volume Scale"
 msgstr ""
 
-#: ../applets/volume/vala-panel-extras-volume.vala:414
+#: ../applets/volume/vala-panel-extras-volume.vala:420
 msgid "Simple ALSA playback volume indicator."
 msgstr ""
 

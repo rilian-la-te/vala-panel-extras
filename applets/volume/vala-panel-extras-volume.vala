@@ -377,7 +377,7 @@ public class VolumeIconExporter : ItemExporter
         sep.set_variant_property("type",new Variant.string("separator"));
         dbusmenu.prepend_item(sep);
         mixer_item = new ServerItem();
-        mixer_item.set_variant_property("label",new Variant.string(_("Volume Control...")));
+        mixer_item.set_variant_property("label",new Variant.string(_("Volume _Control...")));
         mixer_item.set_variant_property("icon-name",new Variant.string("multimedia-volume-control"));
         mixer_item.activated.connect(()=>{
             launch_mixer_command();
