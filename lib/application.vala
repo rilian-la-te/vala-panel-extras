@@ -51,6 +51,7 @@ namespace StatusNotifier
             GLib.Intl.bind_textdomain_codeset(Config.GETTEXT_PACKAGE,"UTF-8");
             GLib.Intl.textdomain(Config.GETTEXT_PACKAGE);
             add_action_entries(app_entries,this);
+            this.hold();
             try
             {
                 watcher = Bus.get_proxy_sync(BusType.SESSION,"org.kde.StatusNotifierWatcher","/StatusNotifierWatcher");
@@ -59,10 +60,9 @@ namespace StatusNotifier
                                                     () => {
                                                             try {
                                                                 watcher.register_status_notifier_item(this.application_id);
-                                                                this.hold();
                                                             } catch (Error e){}
                                                         },
-                                                    () => {this.release();}
+                                                    () => {}
                                                     );
         }
         protected override bool dbus_register (DBusConnection connection, string object_path) throws Error

@@ -1,8 +1,7 @@
 include(Translations)
-add_translations_directory("vala-panel")
-add_translations_catalog("vala-panel"
+add_translations_directory("vala-panel-extras")
+add_translations_catalog("vala-panel-extras"
     ../lib
-    ../app
     ../data/ui
     ../applets
 )

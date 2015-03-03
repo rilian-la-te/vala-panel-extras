@@ -210,7 +210,8 @@ public class VolumeIconExporter : ItemExporter
             volume_scale.set_value(asound_get_volume());
             var level = volume_scale.get_value();
             update_current_icon((long)level);
-            update_current_menu((long)level);
+            if (update_menu)
+                update_current_menu((long)level);
         }
     }
     void set_invalid_icon()
@@ -284,7 +285,6 @@ public class VolumeIconExporter : ItemExporter
             set_invalid_icon();
             alsa_is_init = false;
         }
-
     }
     void alsa_reset()
     {
@@ -327,7 +327,8 @@ public class VolumeIconExporter : ItemExporter
             var level = volume_scale.get_value();
             asound_set_volume((long)level);
             update_current_icon((long)level);
-            update_current_menu((long)level);
+            if (update_menu)
+                update_current_menu((long)level);
         });
         volume_scale.scroll_event.connect((evt)=>{
             /* Get the state of the vertical scale. */
@@ -405,6 +406,11 @@ public class VolumeIconExporter : ItemExporter
         scale_item.set_variant_property("x-valapanel-page-increment",new Variant.double(5));
         scale_item.set_variant_property("x-valapanel-draw-value",new Variant.boolean(true));
         scale_item.set_variant_property("x-valapanel-format-value",new Variant.string("%3.0lf%%"));
+        scale_item.value_changed.connect((val)=>{
+            update_menu = false;
+            volume_scale.set_value(val);
+            update_menu = true;
+        });
         dbusmenu.prepend_item(scale_item);
         dbusmenu.layout_updated(layout_revision++,0);
         this.notify["app"].connect(()=>{
@@ -500,6 +506,7 @@ public class VolumeIconExporter : ItemExporter
     string mixer_command;
     bool alsa_is_init;
     bool mute;
+    bool update_menu = true;
     Gtk.Scale volume_scale;
     Gtk.Window activate_window;
     ServerItem mute_item;
