@@ -116,15 +116,15 @@ namespace StatusNotifier
                     x_ayatana_new_label(this.x_ayatana_label,this.x_ayatana_label_guide);
             });
             preferences = new DBusMenu.ServerItem();
-            preferences.set_variant_property("label",new Variant.string("_Preferences..."));
+            preferences.set_variant_property("label",new Variant.string(_("_Preferences...")));
             preferences.set_variant_property("icon-name","preferences-system");
             preferences.activated.connect(()=>{app.activate_action("preferences",null);});
             about = new DBusMenu.ServerItem();
-            about.set_variant_property("label",new Variant.string("_About..."));
+            about.set_variant_property("label",new Variant.string(_("_About...")));
             about.set_variant_property("icon-name","help-about");
             about.activated.connect(()=>{app.activate_action("about",null);});
             quit = new DBusMenu.ServerItem();
-            quit.set_variant_property("label",new Variant.string("_Quit"));
+            quit.set_variant_property("label",new Variant.string(_("_Quit")));
             quit.set_variant_property("icon-name","application-exit");
             quit.activated.connect(()=>{app.activate_action("quit",null);});
             dbusmenu.append_item(preferences);
