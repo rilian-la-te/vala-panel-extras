@@ -4,16 +4,10 @@ using GLib;
 
 namespace StatusNotifier
 {
-    public class App: Gtk.Application
+    public class App: GLib.Application
     {
         private static const string NAME = "options";
         private static const string PATH = "/org/vala-panel/";
-        private static const GLib.ActionEntry[] app_entries =
-        {
-            {"preferences", activate_preferences, null, null, null},
-            {"about", activate_about, null, null, null},
-            {"quit", activate_exit, null, null, null},
-        };
         public ItemExporter icon
         {get; construct;}
         public Gtk.Dialog? preferences
@@ -50,7 +44,6 @@ namespace StatusNotifier
             GLib.Intl.bindtextdomain(Config.GETTEXT_PACKAGE,Config.LOCALE_DIR);
             GLib.Intl.bind_textdomain_codeset(Config.GETTEXT_PACKAGE,"UTF-8");
             GLib.Intl.textdomain(Config.GETTEXT_PACKAGE);
-            add_action_entries(app_entries,this);
             this.hold();
             try
             {
@@ -79,7 +72,7 @@ namespace StatusNotifier
             Bus.unwatch_name(watched_name);
             base.shutdown();
         }
-        protected void activate_preferences(SimpleAction action, Variant? param)
+        internal void show_preferences()
         {
             if (preferences != null && !preferences.visible)
             {
@@ -88,7 +81,7 @@ namespace StatusNotifier
                 preferences.present();
             }
         }
-        protected void activate_about(SimpleAction action, Variant? param)
+        internal void show_about()
         {
             if (about != null && !about.visible)
             {
@@ -96,10 +89,6 @@ namespace StatusNotifier
                 about.response.connect((id)=>{about.hide();});
                 about.present();
             }
-        }
-        protected void activate_exit(SimpleAction action, Variant? param)
-        {
-            this.quit();
         }
         protected override int handle_local_options(VariantDict opts)
         {

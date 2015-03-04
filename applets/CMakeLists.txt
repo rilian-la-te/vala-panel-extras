@@ -10,3 +10,5 @@ endif()
 if (ENABLE_ALSA)
     add_subdirectory(volume)
 endif()
+
+add_subdirectory(batt)

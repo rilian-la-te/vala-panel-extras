@@ -112,21 +112,19 @@ namespace StatusNotifier
                     new_attention_icon();
                 if (pspec.name == "overlay-icon-name")
                     new_overlay_icon();
-                if (pspec.name == "x-ayatana-label" || pspec.name == "x-ayatana-label-guide")
-                    x_ayatana_new_label(this.x_ayatana_label,this.x_ayatana_label_guide);
             });
             preferences = new DBusMenu.ServerItem();
             preferences.set_variant_property("label",new Variant.string(_("_Preferences...")));
             preferences.set_variant_property("icon-name","preferences-system");
-            preferences.activated.connect(()=>{app.activate_action("preferences",null);});
+            preferences.activated.connect(()=>{app.show_preferences();});
             about = new DBusMenu.ServerItem();
             about.set_variant_property("label",new Variant.string(_("_About...")));
             about.set_variant_property("icon-name","help-about");
-            about.activated.connect(()=>{app.activate_action("about",null);});
+            about.activated.connect(()=>{app.show_about();});
             quit = new DBusMenu.ServerItem();
             quit.set_variant_property("label",new Variant.string(_("_Quit")));
             quit.set_variant_property("icon-name","application-exit");
-            quit.activated.connect(()=>{app.activate_action("quit",null);});
+            quit.activated.connect(()=>{app.quit();});
             dbusmenu.append_item(preferences);
             dbusmenu.append_item(about);
             dbusmenu.append_item(quit);

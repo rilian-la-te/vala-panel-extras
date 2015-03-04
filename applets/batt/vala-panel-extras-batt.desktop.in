@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Battery Indicator
+TryExec=vala-panel-extras-batt
+Icon=battery

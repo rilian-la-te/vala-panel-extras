@@ -24,7 +24,6 @@ namespace DBusMenu
             children = new List<unowned ServerItem>();
             properties = new HashTable<string,Variant?>(str_hash,str_equal);
             properties.insert("type",new Variant.string("normal"));
-            properties.insert("label",new Variant.string("MenuItem"));
         }
         public void set_variant_property(string name, Variant? val)
         {

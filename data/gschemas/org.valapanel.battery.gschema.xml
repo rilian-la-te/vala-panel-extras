@@ -1,0 +1,16 @@
+<schemalist>
+  <schema id="org.valapanel.battery" path="/org/valapanel/extras/battery/">
+    <key name="pm-command" type="s">
+      <default>'gnome-control-center power'</default>
+    </key>
+    <key name="show-percentage" type="b">
+      <default>false</default>
+    </key>
+    <key name="show-time-remaining" type="b">
+      <default>false</default>
+    </key>
+    <key name="use-notifications" type="b">
+      <default>true</default>
+    </key>
+  </schema>
+</schemalist>
