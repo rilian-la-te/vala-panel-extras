@@ -1,6 +1,5 @@
 using StatusNotifier;
 using GLib;
-using Alsa;
 
 public static int main(string[] args)
 {
