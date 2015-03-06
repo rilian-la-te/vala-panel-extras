@@ -212,6 +212,11 @@ public class VolumeIconExporter : ItemExporter
             update_current_icon((long)level);
             if (update_menu)
                 update_current_menu((long)level);
+            notification.val = (int) level;
+            notification.app_icon = lookup_current_icon((long) level);
+            notification.title = tool_tip.title;
+            notification.sound_name = "audio-volume-change";
+            notification.send();
         }
     }
     void set_invalid_icon()
@@ -414,6 +419,7 @@ public class VolumeIconExporter : ItemExporter
         dbusmenu.prepend_item(scale_item);
         dbusmenu.layout_updated(layout_revision++,0);
         this.notify["app"].connect(()=>{
+            notification = new Notifier.Notification.with_app_id("vol",app.application_id);
             app.about.logo_icon_name = "multimedia-volume-control";
             app.about.icon_name = "multimedia-volume-control";
             app.about.program_name = _("Vala Panel Volume Applet");
@@ -512,4 +518,5 @@ public class VolumeIconExporter : ItemExporter
     ServerItem mute_item;
     ServerItem scale_item;
     ServerItem mixer_item;
+    Notifier.Notification notification;
 }

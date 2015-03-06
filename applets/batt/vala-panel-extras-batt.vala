@@ -29,34 +29,7 @@ public class BatteryIconExporter : ItemExporter
         var tooltip = ToolTip();
         this.icon_name = icon_name;
         tooltip.icon_name = icon_name;
-        var not_icon = new ThemedIcon.with_default_fallbacks(icon_name);
         var label = "";
-        if (prev_level != display_device.warning_level)
-        {
-            prev_level = display_device.warning_level;
-            if (use_notifications && app.is_registered)
-            {
-                var not = new Notification(_("Battery applet"));
-                not.set_icon(not_icon);
-                switch (display_device.warning_level)
-                {
-                    case UPower.DeviceWarningLevel.LOW:
-                        not.set_body(_("Battery is low!"));
-                        app.send_notification("batt-level",not);
-                        break;
-                    case UPower.DeviceWarningLevel.CRITICAL:
-                        not.set_body(_("Battery is very low!"));
-                        not.set_priority(NotificationPriority.HIGH);
-                        app.send_notification("batt-level",not);
-                        break;
-                    case UPower.DeviceWarningLevel.ACTION:
-                        not.set_body(_("Battery is critical!"));
-                        not.set_priority(NotificationPriority.URGENT);
-                        app.send_notification("batt-level",not);
-                        break;
-                }
-            }
-        }
         var hours_empty = display_device.time_to_empty/3600;
         var minutes_empty = display_device.time_to_empty/60 - hours_empty * 60;
         var hours_full = display_device.time_to_full/3600;
@@ -95,33 +68,54 @@ public class BatteryIconExporter : ItemExporter
             prev_state = display_device.state;
             if (use_notifications && app.is_registered)
             {
-                var not = new Notification(_("Battery applet"));
-                not.set_icon(not_icon);
+                not.app_icon = icon_name;
                 switch (display_device.state)
                 {
                     case UPower.DeviceState.DISCHARGING:
                         new_status(Status.ACTIVE);
-                        not.set_title(_("Battery is discharging. %3.0lf%% remaining.").printf(display_device.percentage));
-                        not.set_body(_("%02lli:%02lli remaining to empty.").printf(hours_empty,minutes_empty));
-                        app.send_notification("batt-level",not);
+                        not.title = _("Battery is discharging. %3.0lf%% remaining.").printf(display_device.percentage);
+                        not.body = _("%02lli:%02lli remaining to empty.").printf(hours_empty,minutes_empty);
                         break;
                     case UPower.DeviceState.CHARGING:
                         new_status(Status.ACTIVE);
-                        not.set_title(_("Battery is charging. %3.0lf%% charged.").printf(display_device.percentage));
-                        not.set_body(_("%02lli:%02lli remaining to full.").printf(hours_full,minutes_full));
-                        app.send_notification("batt-level",not);
+                        not.title = _("Battery is charging. %3.0lf%% charged.").printf(display_device.percentage);
+                        not.body = _("%02lli:%02lli remaining to full.").printf(hours_full,minutes_full);
                         break;
                     case UPower.DeviceState.CHARGED:
-                        not.set_title(_("Battery is charged. Capacity is %3.0lf%%.").printf(display_device.percentage));
+                        not.title = _("Battery is charged.");
+                        not.body = _("Battery percentage: %3.0lf%%.").printf(display_device.percentage);
                         new_status(Status.PASSIVE);
-                        app.send_notification("batt-level",not);
                         break;
                     default:
                         new_status(Status.ACTIVE);
-                        not.set_title(_("Battery percentage: %3.0lf%%.").printf(display_device.percentage));
-                        app.send_notification("batt-level",not);
+                        not.title = _("Battery percentage: %3.0lf%%.").printf(display_device.percentage);
+                        not.body = "";
                         break;
                 }
+                not.send();
+            }
+        }
+        if (prev_level != display_device.warning_level)
+        {
+            prev_level = display_device.warning_level;
+            if (use_notifications && app.is_registered)
+            {
+                not.app_icon = icon_name;
+                switch (display_device.warning_level)
+                {
+                    case UPower.DeviceWarningLevel.LOW:
+                        not.body = _("Battery is low!");
+                        break;
+                    case UPower.DeviceWarningLevel.CRITICAL:
+                        not.body = _("Battery is very low!");
+                        not.priority = Notifier.Priority.HIGH;
+                        break;
+                    case UPower.DeviceWarningLevel.ACTION:
+                        not.body = _("Battery is critical!");
+                        not.priority = Notifier.Priority.URGENT;
+                        break;
+                }
+                not.send();
             }
         }
         this.tool_tip = tooltip;
@@ -149,6 +143,7 @@ public class BatteryIconExporter : ItemExporter
         this.title = _("Battery Applet");
         this.category = Category.HARDWARE;
         this.notify["app"].connect(()=>{
+            not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
             app.about.logo_icon_name = "battery";
             app.about.icon_name = "battery";
             app.about.program_name = _("Vala Panel Battery Applet");
@@ -186,6 +181,7 @@ public class BatteryIconExporter : ItemExporter
             info.launch(null,Gdk.Display.get_default().get_app_launch_context());
         } catch (GLib.Error e){stderr.printf("%s\n",e.message);}
     }
+    private Notifier.Notification not;
     private UPower.Device display_device;
     private UPower.DeviceWarningLevel prev_level;
     private UPower.DeviceState prev_state;

@@ -5,6 +5,7 @@ vala_precompile(VALA_C internal
     menuserializer.vala
     application.vala
     configurator.vala
+    notifications.vala
     ${CMAKE_BINARY_DIR}/vapi/config.vala
 PACKAGES
     ${CORE_PACKAGES}
