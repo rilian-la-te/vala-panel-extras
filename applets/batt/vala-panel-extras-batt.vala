@@ -53,8 +53,8 @@ public class BatteryIconExporter : ItemExporter
                     label += " %02lli:%02lli".printf(hours_full,minutes_full);
                 break;
             case UPower.DeviceState.CHARGED:
-                tooltip.title = _("Battery is charged. Capacity is %3.0lf%%.").printf(display_device.percentage);
-                tooltip.description = "";
+                tooltip.title = _("Battery is charged.");
+                tooltip.description = _("Battery percentage: %3.0lf%%.").printf(display_device.percentage);
                 new_status(Status.PASSIVE);
                 break;
             default:
