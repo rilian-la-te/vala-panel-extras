@@ -52,7 +52,7 @@ namespace StatusNotifier
             watched_name = Bus.watch_name(BusType.SESSION,"org.kde.StatusNotifierWatcher",GLib.BusNameWatcherFlags.NONE,
                                                     () => {
                                                             try {
-                                                                watcher.register_status_notifier_item(this.application_id);
+                                                                watcher.register_status_notifier_item("/StatusNotifierItem");
                                                             } catch (Error e){}
                                                         },
                                                     () => {}
