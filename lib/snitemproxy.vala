@@ -61,6 +61,7 @@ namespace StatusNotifier
         public ObjectPath menu {get; protected set;}
         public bool items_in_menu {get; protected set;}
         /* Icon properties */
+        public string icon_theme_path {get; protected set; default = "";}
         public string icon_name {get; protected set; default = "";}
         public string icon_accessible_desc {get; protected set; default = "";}
         public string overlay_icon_name {get; protected set; default = "";}

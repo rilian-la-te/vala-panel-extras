@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Keyboard Layout Indicator
+TryExec=vala-panel-extras-xkb
+Icon=input-keyboard

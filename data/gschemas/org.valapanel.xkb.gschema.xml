@@ -1,16 +1,10 @@
 <schemalist>
-  <schema id="org.valapanel.xkb">
-    <key name="layout-per-window" type="b">
+  <schema id="org.valapanel.xkb" path="/org/valapanel/extras/xkb/">
+    <key name="layout-group-per-window" type="b">
       <default>false</default>
     </key>
-    <key name="keep-system-layouts" type="b">
+    <key name="use-system-layouts" type="b">
       <default>true</default>
-    </key>
-    <key name="use-existing-options" type="b">
-      <default>true</default>
-    </key>
-    <key name="image-size" type="i">
-      <default>2</default>
     </key>
     <key name="show-flag" type="b">
       <default>false</default>
@@ -18,19 +12,19 @@
     <key name="show-text" type="b">
       <default>true</default>
     </key>
-    <key name="keyboard-model" type="s">
+    <key name="model" type="s">
       <default>'pc105'</default>
     </key>
-    <key name="keyboard-layouts" type="s">
+    <key name="layout" type="s">
       <default>'us,ru'</default>
     </key>
-    <key name="keyboard-layout-variants" type="s">
+    <key name="variant" type="s">
       <default>','</default>
     </key>
-    <key name="layout-changing-options" type="s">
+    <key name="options" type="s">
       <default>'grp:alt_shift_toggle'</default>
     </key>
-    <key name="advanced-options" type="s">
+    <key name="rules" type="s">
       <default>''</default>
     </key>
   </schema>

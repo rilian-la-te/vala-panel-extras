@@ -228,8 +228,6 @@ public class VolumeIconExporter : ItemExporter
         tooltip.title = _("ALSA is not connected");
         tooltip.description = "";
         this.tool_tip = tooltip;
-        this.new_tool_tip();
-
     }
     /* Do a full redraw of the display. */
     void update_current_icon(long level)
@@ -240,7 +238,6 @@ public class VolumeIconExporter : ItemExporter
         tooltip.title = "%s: %li".printf(channel,level);
         tooltip.description = "";
         this.tool_tip = tooltip;
-        this.new_tool_tip();
     }
     void update_current_menu(long level)
     {

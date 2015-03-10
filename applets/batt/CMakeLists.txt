@@ -1,5 +1,5 @@
-set(PLUGIN_NAME vala-panel-extras-batt)
-vala_precompile(VALA_C ${PLUGIN_NAME}
+set(PLUGIN_NAME battery)
+vala_precompile(VALA_C vala-panel-extras-${PLUGIN_NAME}
     ${PLUGIN_NAME}.vala
     upower-iface.vala
 PACKAGES
@@ -22,13 +22,13 @@ set (LIBS ${CORE_LIBRARIES} -lm)
 set (LIB_PATHS ${CORE_LIBRARY_DIRS})
 link_directories (${LIB_PATHS})
 
-add_executable (${PLUGIN_NAME}
+add_executable (vala-panel-extras-${PLUGIN_NAME}
     ${VALA_C}
     ${RESOURCES}
 )
 
-target_link_libraries (${PLUGIN_NAME} ${LIBS} internal)
+target_link_libraries (vala-panel-extras-${PLUGIN_NAME} ${LIBS} internal)
 
 # Install plugin stuffs
-install(TARGETS ${PLUGIN_NAME} RUNTIME DESTINATION bin)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PLUGIN_NAME}.desktop DESTINATION share/applications)
+install(TARGETS vala-panel-extras-${PLUGIN_NAME} RUNTIME DESTINATION bin)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.valapanel.${PLUGIN_NAME}.desktop DESTINATION share/applications)

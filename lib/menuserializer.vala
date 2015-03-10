@@ -149,7 +149,7 @@ namespace DBusMenu
         public signal void items_properties_updated(
                                 [DBus (signature = "a(ia{sv})")] Variant updated_props,
                                 [DBus (signature="a(ias)")] Variant removed_props);
-        public signal void layout_updated(uint revision, int parent);
+        public signal void layout_updated(uint revision, int parent = 0);
         public signal void item_activation_requested(int id, uint timestamp);
         public signal void x_valapanel_item_value_changed(int id, uint timestamp);
         private string request_text_direction()
