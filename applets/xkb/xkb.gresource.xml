@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
   <gresource prefix="/org/vala-panel/xkb">
+    <file compressed="true" preprocess="xml-stripblanks">config.ui</file>
   </gresource>
 </gresources>

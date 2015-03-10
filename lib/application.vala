@@ -6,26 +6,20 @@ namespace StatusNotifier
 {
     public class App: GLib.Application
     {
+        [CCode (has_target = true)]
+        public delegate Gtk.Dialog CreatePreferencesDialog();
         private static const string NAME = "options";
         private static const string PATH = "/org/vala-panel/";
         public ItemExporter icon
         {get; construct;}
-        public Gtk.Dialog? preferences
-        {get; set construct;}
+        public unowned CreatePreferencesDialog preferences
+        {get; set;}
         public Gtk.AboutDialog? about
         {get; private set;}
         public string profile
         {get; internal set construct; default = "default";}
         WatcherIface watcher;
         uint watched_name;
-        public App.with_preferences(string name, ItemExporter icon, Gtk.Dialog preferences)
-        {
-            Object(application_id: "org.valapanel."+name,
-                    flags: GLib.ApplicationFlags.IS_SERVICE | GLib.ApplicationFlags.HANDLES_COMMAND_LINE,
-                    icon: icon,
-                    preferences: preferences,
-                    resource_base_path: "/org/vala-panel/"+name);
-        }
         public App(string name, ItemExporter icon)
         {
             Object(application_id: "org.valapanel."+name,
@@ -74,11 +68,10 @@ namespace StatusNotifier
         }
         internal void show_preferences()
         {
-            if (preferences != null && !preferences.visible)
+            if (preferences != null)
             {
-                preferences.window_position = Gtk.WindowPosition.CENTER;
-                preferences.response.connect((id)=>{preferences.hide();});
-                preferences.present();
+                var prefs_dialog = preferences();
+                prefs_dialog.present();
             }
         }
         internal void show_about()

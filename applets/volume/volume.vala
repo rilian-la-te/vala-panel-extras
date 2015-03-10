@@ -422,7 +422,7 @@ public class VolumeIconExporter : ItemExporter
             app.about.program_name = _("Vala Panel Volume Applet");
             app.about.comments = _("Simple ALSA playback volume indicator.");
             this.settings = new GLib.Settings(app.application_id);
-            app.preferences = create_preferences_dialog();
+            app.preferences = create_preferences_dialog;
             settings.changed.connect((k)=>{
                 channel = settings.get_string(KEY_CHANNEL);
                 card_id = settings.get_string(KEY_CARD_ID);

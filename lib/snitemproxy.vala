@@ -50,7 +50,7 @@ namespace StatusNotifier
         {get; set;}
         [DBus (visible = false)]
         public Settings settings
-        {get; set;}
+        {get; internal set;}
         /* Base properties */
         public Category category {get; protected set;}
         public string id {get; protected set;}

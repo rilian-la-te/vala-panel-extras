@@ -153,7 +153,7 @@ public class BatteryIconExporter : ItemExporter
             this.settings.bind(PERCENT, this, PERCENT, SettingsBindFlags.GET);
             this.settings.bind(TIME, this, TIME, SettingsBindFlags.GET);
             this.settings.bind(COMMAND, this, COMMAND, SettingsBindFlags.GET);
-            app.preferences = create_preferences_dialog();
+            app.preferences = create_preferences_dialog;
             try {
                 UPower.Base bas = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,UPOWER_PATH);
                 ObjectPath display_device_path;

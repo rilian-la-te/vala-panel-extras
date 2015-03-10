@@ -64,7 +64,7 @@ namespace XkbPlugin
                 settings.bind(RULES, backend, RULES, SettingsBindFlags.GET);
                 settings.bind(KEEP_SYSTEM, backend, KEEP_SYSTEM, SettingsBindFlags.GET);
                 settings.bind(PER_WINDOW, backend, PER_WINDOW, SettingsBindFlags.GET);
-                app.preferences = create_preferences_dialog();
+                app.preferences = create_preferences_dialog;
                 settings.changed.connect((key)=>{
                     backend.set_keymap();
                     update_display();
