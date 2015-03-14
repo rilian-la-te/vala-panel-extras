@@ -1191,7 +1191,7 @@ namespace Xcb
          *
          */
         [CCode (cname = "xcb_change_property", instance_pos = 2.2)]
-        public VoidCookie change_property (Xcb.Connection connection, PropMode mode, Atom property, Atom type, uint8 format, [CCode (array_length_pos = 5.6)]void[]? data);
+        public VoidCookie change_property (Xcb.Connection connection, PropMode mode, Atom property, Atom type, uint8 format, [CCode (array_length_pos = 5.6)]uint8[]? data);
         /**
          * Changes a window property
          *
@@ -1215,7 +1215,7 @@ namespace Xcb
          *
          */
         [CCode (cname = "xcb_change_property_checked", instance_pos = 2.2)]
-        public VoidCookie change_property_checked (Xcb.Connection connection, PropMode mode, Atom property, Atom type, uint8 format, [CCode (array_length_pos = 5.6)]void[]? data);
+        public VoidCookie change_property_checked (Xcb.Connection connection, PropMode mode, Atom property, Atom type, uint8 format, [CCode (array_length_pos = 5.6)]uint8[]? data);
         [CCode (cname = "xcb_delete_property", instance_pos = 1.1)]
         public VoidCookie delete_property (Xcb.Connection connection, Atom property);
         [CCode (cname = "xcb_delete_property_checked", instance_pos = 1.1)]

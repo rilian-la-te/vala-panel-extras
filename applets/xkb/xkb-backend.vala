@@ -28,6 +28,7 @@ namespace XkbPlugin
         public bool layout_group_per_window {get; set;}
         public string[] layout_names {get; private set;}
         public string[] layout_short_names {get; private set;}
+        public string[] layout_variants {get; private set;}
         public string layout_name {
             get {
                 return layout_names[layout_number];
@@ -36,6 +37,11 @@ namespace XkbPlugin
         public string layout_short_name {
             get {
                 return layout_short_names[layout_number];
+            }
+        }
+        public string layout_variant {
+            get {
+                return layout_variants[layout_number];
             }
         }
         public uint32 layout_number {
@@ -80,7 +86,9 @@ namespace XkbPlugin
             use_system_layouts = true;
             layout_names = new string[4];
             layout_short_names = new string[4];
+            layout_variants = new string[4];
             keymap_rule_names = Xkb.RuleNames();
+            state = null;
             ctx = new Xkb.Context();
             var disp = Gdk.Display.get_default() as Gdk.X11.Display;
             conn = (Xcb.xkb.Connection)((X.xcb.Display)disp.get_xdisplay()).connection;
@@ -89,13 +97,18 @@ namespace XkbPlugin
                                                             Xkb.X11.ExtensionFlags.NO_FLAGS,
                                                             null,null, out first_event);
             core_keyboard = Xkb.X11.get_core_keyboard_device_id(conn);
-            var keymap = Xkb.X11.keymap_new_from_device(ctx,conn,(int32)core_keyboard);
-            state = Xkb.X11.state_new_from_device(keymap,conn,(int32)core_keyboard);
-            if (!started || ctx == null || conn == null || state == null)
+            if (!started || ctx == null || conn == null)
             {
                 stderr.printf("%s\n",_("XKB extension error. Keyboard layout plugin will not work"));
             }
-            layout_per_window = new HashTable <Xcb.Window, Xkb.LayoutIndex?>(direct_hash,direct_equal);
+            if (layout_group_per_window)
+                layout_per_window = new HashTable <Xcb.Window, Xkb.LayoutIndex?>(direct_hash,direct_equal);
+            this.notify["layout-group-per-window"].connect(()=>{
+                if (layout_group_per_window)
+                    layout_per_window = new HashTable <Xcb.Window, Xkb.LayoutIndex?>(direct_hash,direct_equal);
+                else
+                    layout_per_window = null;
+            });
             var xkb_cookie = conn.intern_atom(false,(char[])XKB_NAMES_ATOM.data);
             var active_cookie = conn.intern_atom(false,(char[])ACTIVE_WINDOW_ATOM.data);
             find_root_window().change_attributes(conn,Xcb.Cw.EVENT_MASK,{Xcb.EventMask.PROPERTY_CHANGE});
@@ -127,16 +140,18 @@ namespace XkbPlugin
         }
         private void update_state()
         {
-            var old_keymap = state.keymap.get_as_string();
-            var old_layout_index = layout_number;
+            var old_keymap = (state != null) ? state.keymap.get_as_string() : null;
+            var old_layout_index = (state != null) ? layout_number : -1;
             var keymap = Xkb.X11.keymap_new_from_device(ctx,conn,(int32)core_keyboard);
             state = Xkb.X11.state_new_from_device(keymap,conn,(int32)core_keyboard);
-            for (LayoutIndex i = 0; i < state.keymap.num_layouts(); i++)
-                layout_names[i] = state.keymap.layout_get_name(i);
-            find_short_names_from_keymap();
             enter_locale_by_process();
             if (old_keymap != state.keymap.get_as_string())
+            {
+                for (LayoutIndex i = 0; i < state.keymap.num_layouts(); i++)
+                    layout_names[i] = state.keymap.layout_get_name(i);
+                find_short_names_from_keymap();
                 keymap_changed();
+            }
             if (old_layout_index != layout_number)
                 layout_changed();
         }
@@ -204,6 +219,24 @@ namespace XkbPlugin
         {
             if (use_system_layouts)
                 return;
+            try {
+                var options = keymap_rule_names.options.split(",");
+                var setxkbmapb = new StringBuilder("setxkbmap -option -option ");
+                setxkbmapb.append(string.joinv(" -option ",options));
+                setxkbmapb.append(" -model ");
+                setxkbmapb.append(keymap_rule_names.model);
+                setxkbmapb.append(" -layout ");
+                setxkbmapb.append(keymap_rule_names.layout);
+                setxkbmapb.append(" -variant ");
+                setxkbmapb.append(keymap_rule_names.variant);
+                Process.spawn_command_line_async(setxkbmapb.str);
+            } catch (Error e) {
+                stderr.printf("%s\n",e.message);
+            }
+            /* FIXME: Direct xcb usage not working: xcb_xkb_get_kbd_by_name is broken.
+            var new_keymap = new Xkb.Keymap.from_names(ctx,keymap_rule_names);
+            if (new_keymap == null)
+                return;
             int len = 0;
             len += keymap_rule_names.rules.length;
             len += keymap_rule_names.model.length;
@@ -214,23 +247,32 @@ namespace XkbPlugin
                 return;
             len += 5;
             Array<uint8> rules_char = new Array<uint8>.sized(false,true,1,len);
-            rules_char.append_vals((keymap_rule_names.rules + "\0").data,keymap_rule_names.rules.length + 1);
-            rules_char.append_vals((keymap_rule_names.model + "\0").data,keymap_rule_names.model.length + 1);
-            rules_char.append_vals((keymap_rule_names.layout + "\0").data,keymap_rule_names.layout.length + 1);
-            rules_char.append_vals((keymap_rule_names.variant + "\0").data,keymap_rule_names.variant.length + 1);
-            rules_char.append_vals((keymap_rule_names.options + "\0").data,keymap_rule_names.options.length + 1);
-            find_root_window().change_property(conn, Xcb.PropMode.REPLACE, xkb_names_atom, Xcb.AtomType.STRING, 8, (void[])rules_char.data);
+            uint8 zero = 0;
+            rules_char.append_vals(keymap_rule_names.rules.data,keymap_rule_names.rules.length);
+            rules_char.append_val(zero);
+            rules_char.append_vals(keymap_rule_names.model.data,keymap_rule_names.model.length);
+            rules_char.append_val(zero);
+            rules_char.append_vals(keymap_rule_names.layout.data,keymap_rule_names.layout.length);
+            rules_char.append_val(zero);
+            rules_char.append_vals(keymap_rule_names.variant.data,keymap_rule_names.variant.length);
+            rules_char.append_val(zero);
+            rules_char.append_vals(keymap_rule_names.options.data,keymap_rule_names.options.length);
+            rules_char.append_val(zero);
+            find_root_window().change_property_checked(conn, Xcb.PropMode.REPLACE, xkb_names_atom, Xcb.AtomType.STRING, 8, rules_char.data);
+            unowned XcbFixes.Connection fixes_conn = (XcbFixes.Connection)conn;
+            fixes_conn.get_kbd_by_name((Xcb.xkb.DeviceSpec)core_keyboard,Xcb.xkb.gbn_detail_all(),Xcb.xkb.gbn_detail_all(),true);
+            */
             update_state();
         }
         private Xcb.Window find_root_window()
         {
             var gwin = Gdk.Screen.get_default().get_root_window() as Gdk.X11.Window;
-            return (Xcb.Window)gwin.get_xid();
+            return (gwin != null) ? (Xcb.Window)gwin.get_xid() : Xcb.WindowType.NONE;
         }
         private Xcb.Window find_active_window()
         {
             var gwin = Gdk.Screen.get_default().get_active_window() as Gdk.X11.Window;
-            return (Xcb.Window)gwin.get_xid();
+            return (gwin != null) ? (Xcb.Window)gwin.get_xid() : Xcb.WindowType.NONE;
         }
         private void find_short_names_from_keymap()
         {
@@ -242,10 +284,13 @@ namespace XkbPlugin
                 var first_name_regex = new Regex("(_)([a-z][a-z]+)(_)");
                 first_name_regex.match(symbols_str,0,out info);
                 layout_short_names[0] = info.fetch(2);
-                var next_names_regex = new Regex("(_)([a-z][a-z]+)(_)([0-9])");
+                var next_names_regex = new Regex("(_)([a-z][a-z]+)((\\(.*\\))?)(_)([0-9])");
                 next_names_regex.match(symbols_str,0,out info);
                 for (var i = 1; info.matches(); info.next(), i++)
+                {
                     layout_short_names[i] = info.fetch(2);
+                    layout_variants[i] = info.fetch(3).length > 0 ? info.fetch(3)[1:info.fetch(3).length - 1] : info.fetch(3);
+                }
             } catch (Error e) {
                 stderr.printf("Layouts cannot be parsed: %s\n",e.message);
             }

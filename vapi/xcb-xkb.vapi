@@ -30,6 +30,9 @@ using Xcb;
 [CCode (cheader_filename="xcb/xcb.h,xcb/xkb.h")]
 namespace Xcb.xkb
 {
+    [CCode (cname = "xcb_xkb_id")]
+    public Xcb.Extension id;
+
     [Compact, CCode (cname = "xcb_connection_t", free_function = "xcb_disconnect")]
     public class Connection : Xcb.Connection {
         [CCode (cname = "xcb_connect")]
@@ -78,13 +81,15 @@ namespace Xcb.xkb
         [CCode (cname = "xcb_xkb_set_names", simple_generics = true)]
         public VoidCookie set_names<A> (DeviceSpec deviceSpec, Vmod virtualMods, NameDetail which, uint8 firstType, uint8 firstKTLevelt, uint8 nKTLevels, uint32 indicators, SetOfGroup groupNames, Keycode firstKey, uint16 totalKTLevelNames);
         [CCode (cname = "xcb_xkb_set_names_checked", simple_generics = true)]
-        public VoidCookie set_names_checked<A> (DeviceSpec deviceSpec, Vmod virtualMods, NameDetail which, uint8 firstType, uint8 firstKTLevelt, uint8 nKTLevels, uint32 indicators, SetOfGroup groupNames, Keycode firstKey, uint16 totalKTLevelNames, void* data);
+        public VoidCookie set_names_checked<A> (DeviceSpec deviceSpec, Vmod virtualMods, NameDetail which, uint8 firstType, uint8 firstKTLevelt, uint8 nKTLevels, uint32 indicators, SetOfGroup groupNames, Keycode firstKey, uint16 totalKTLevelNames);
         [CCode (cname = "xcb_xkb_per_client_flags")]
         public PerClientFlagsCookie per_client_flags (DeviceSpec deviceSpec, PerClientFlag change, PerClientFlag value, BoolCtrl ctrlsToChange, BoolCtrl autoCtrls, BoolCtrl autoCtrlsValues);
         [CCode (cname = "xcb_xkb_list_components")]
         public ListComponentsCookie list_components (DeviceSpec deviceSpec, uint16 maxNames);
         [CCode (cname = "xcb_xkb_get_kbd_by_name")]
         public GetKbdByNameCookie get_kbd_by_name (DeviceSpec deviceSpec, Gbndetail need, Gbndetail want, bool load);
+        [CCode (cname = "xcb_xkb_get_kbd_by_name_unchecked")]
+        public GetKbdByNameCookie get_kbd_by_name_unchecked (DeviceSpec deviceSpec, Gbndetail need, Gbndetail want, bool load);
         [CCode (cname = "xcb_xkb_get_device_info")]
         public GetDeviceInfoCookie get_device_info (DeviceSpec deviceSpec, XIFeature wanted, bool allButtons, uint8 firstButton, uint8 nButtons, LedClass ledClass, Idspec ledID);
         [CCode (cname = "xcb_xkb_set_device_info")]
@@ -587,7 +592,7 @@ namespace Xcb.xkb
         }
     }
 
-    [SimpleType, CCode (cname = "xcb_xkb_get_kbd_by_name_cookie_t")]
+    [SimpleType, CCode (cname = "xcb_xkb_get_kbd_by_name_cookie_t", has_construct_function = false)]
     public struct GetKbdByNameCookie : VoidCookie {
         [CCode (cname = "xcb_xkb_get_kbd_by_name_reply", instance_pos = 1.1)]
         public GetKbdByNameReply reply (Xcb.Connection connection, out Xcb.GenericError? error = null);
@@ -1101,7 +1106,7 @@ namespace Xcb.xkb
         RG_NAMES
     }
 
-    [Flags, CCode (cname = "xcb_xkb_gbn_detail_t", cprefix =  "XCB_XKB_GBNDETAIL_", has_type_id = false)]
+    [Flags, CCode (cname = "xcb_xkb_gbn_detail_t", cprefix =  "XCB_XKB_GBN_DETAIL_", has_type_id = false)]
     public enum Gbndetail {
         TYPES,
         COMPAT_MAP,
@@ -1110,9 +1115,12 @@ namespace Xcb.xkb
         INDICATOR_MAPS,
         KEY_NAMES,
         GEOMETRY,
-        OTHER_NAMES
+        OTHER_NAMES,
     }
-
+    public inline Gbndetail gbn_detail_all()
+    {
+        return (Gbndetail.TYPES | Gbndetail.COMPAT_MAP | Gbndetail.CLIENT_SYMBOLS | Gbndetail.SERVER_SYMBOLS | Gbndetail.INDICATOR_MAPS | Gbndetail.KEY_NAMES | Gbndetail.GEOMETRY | Gbndetail.OTHER_NAMES);
+    }
     [Flags, CCode (cname = "xcb_xkb_xi_feature_t", cprefix =  "XCB_XKB_XIFEATURE_", has_type_id = false)]
     public enum XIFeature {
         KEYBOARDS,

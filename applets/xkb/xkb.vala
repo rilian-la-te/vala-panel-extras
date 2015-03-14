@@ -44,7 +44,7 @@ namespace XkbPlugin
             this.title = _("Keyboard Layout Applet");
             this.category = Category.HARDWARE;
             this.status = StatusNotifier.Status.ACTIVE;
-            this.icon_theme_path = Config.INSTALL_PREFIX + "/share/vala-panel-extras-xkb/icons";
+            this.icon_theme_path = Config.INSTALL_PREFIX + "/share/vala-panel-extras/xkb/icons";
             dbusmenu.icon_theme_path = {this.icon_theme_path};
             var sep = new ServerItem();
             sep.set_variant_property("type",new Variant.string("separator"));
@@ -58,9 +58,9 @@ namespace XkbPlugin
                 settings.bind(SHOW_FLAG, this, SHOW_FLAG, SettingsBindFlags.GET);
                 settings.bind(SHOW_TEXT, this, SHOW_TEXT, SettingsBindFlags.GET);
                 settings.bind(MODEL, backend, MODEL, SettingsBindFlags.GET);
-                settings.bind(LAYOUT, backend, LAYOUT, SettingsBindFlags.GET);
-                settings.bind(VARIANT, backend, VARIANT, SettingsBindFlags.GET);
-                settings.bind(OPTIONS, backend, OPTIONS, SettingsBindFlags.GET);
+                settings.bind(LAYOUT, backend, LAYOUT, SettingsBindFlags.DEFAULT);
+                settings.bind(VARIANT, backend, VARIANT, SettingsBindFlags.DEFAULT);
+                settings.bind(OPTIONS, backend, OPTIONS, SettingsBindFlags.DEFAULT);
                 settings.bind(RULES, backend, RULES, SettingsBindFlags.GET);
                 settings.bind(KEEP_SYSTEM, backend, KEEP_SYSTEM, SettingsBindFlags.GET);
                 settings.bind(PER_WINDOW, backend, PER_WINDOW, SettingsBindFlags.GET);
@@ -79,13 +79,13 @@ namespace XkbPlugin
         {
             var tooltip = ToolTip();
             tooltip.icon_name = "flag-"+backend.layout_short_name;
-            tooltip.title = backend.layout_name;
+            tooltip.title = dgettext("xkeyboard-config",backend.layout_name);
             tooltip.description = "";
             this.tool_tip = tooltip;
             if (show_flag)
                 this.icon_name = tooltip.icon_name;
             else
-                this.icon_name = " ";
+                this.icon_name = "";
             if (show_text)
                 x_ayatana_new_label(backend.layout_short_name,backend.layout_short_name);
             else
@@ -101,7 +101,7 @@ namespace XkbPlugin
                 var num = backend.layouts_count - i - 1;
                 var item = new ServerItem();
                 item.set_variant_property("icon-name",new Variant.string("flag-"+backend.layout_short_names[num]));
-                item.set_variant_property("label", new Variant.string(backend.layout_names[num]));
+                item.set_variant_property("label", new Variant.string(dgettext("xkeyboard-config",backend.layout_names[num])));
                 item.set_variant_property("toggle-type",new Variant.string("radio"));
                 if (num == backend.layout_number)
                     item.set_variant_property("toggle-state", new Variant.int32(1));

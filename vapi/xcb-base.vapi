@@ -525,7 +525,7 @@ namespace Xcb
         public void discard_reply(uint sequence);
 
         [CCode (cname = "xcb_send_request", cheader_filename = "xcb/xcbext.h")]
-        public uint send_request(int flags, ref Posix.iovector vector, ProtocolRequest request);
+        public uint send_request(int flags, void* vector, ProtocolRequest request);
 
         public delegate void ReturnSocketFunc ();
         /**
@@ -666,6 +666,8 @@ namespace Xcb
     [Flags, CCode (cname = "xcb_send_request_flags_t", cprefix =  "XCB_REQUEST_", cheader_filename = "xcb/xcbext.h")]
     public enum RequestFlags
     {
+        [CCode (cname = "0")]
+        NONE,
         CHECKED,
         RAW,
         DISCARD_REPLY
