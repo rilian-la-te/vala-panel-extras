@@ -25,7 +25,7 @@ namespace XkbPlugin
         [GtkChild (name = "button-remove")]
         private Button remove_button;
         [GtkChild (name = "list-current")]
-        private ListStore list_current;
+        private Gtk.ListStore list_current;
         [GtkChild (name = "selection-current")]
         private TreeSelection selection_current;
         [GtkChild (name = "scroll-options")]
@@ -35,11 +35,11 @@ namespace XkbPlugin
         [GtkChild (name = "scroll-model")]
         private ScrolledWindow model_scroll;
         [GtkChild (name = "store-layouts")]
-        internal TreeStore layouts_store;
+        internal Gtk.TreeStore layouts_store;
         [GtkChild (name = "store-options")]
-        internal TreeStore options_store;
+        internal Gtk.TreeStore options_store;
         [GtkChild (name = "store-model")]
-        internal ListStore model_store;
+        internal Gtk.ListStore model_store;
         private XKeyboardConfigParser parser;
         internal XkbIconExporter plugin;
         public ConfigDialog (XkbIconExporter icon)
