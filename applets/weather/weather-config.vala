@@ -60,7 +60,6 @@ namespace Weather
                 location_list.remove(sel_iter);
                 location_settings_updated();
             }
-            remove_button.sensitive = plugin.locations.length > 1;
         }
 //~         [GtkCallback]
 //~         private void on_current_location_toggled(string path_str)
@@ -90,10 +89,12 @@ namespace Weather
         {
             if (entry.get_location() == null)
                 return;
+            foreach(var loc in plugin.locations)
+                if (loc.equal(entry.get_location()))
+                    return;
             TreeIter iter;
             location_list.append(out iter);
             location_list.set(iter,0,false,2,entry.get_location(),1,entry.get_location().get_name());
-            remove_button.sensitive = plugin.locations.length > 1;
             location_settings_updated();
         }
         private void location_settings_updated()
@@ -106,6 +107,7 @@ namespace Weather
                 return false;
             });
             var locations_v = new Variant.array(VariantType.VARIANT,locations);
+            remove_button.sensitive = locations_v.n_children() > 1;
             plugin.settings.set_value(WeatherIconExporter.LOCATIONS, locations_v);
         }
     }
