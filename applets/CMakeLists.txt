@@ -13,6 +13,18 @@ endif()
 
 add_subdirectory(batt)
 
+option(ENABLE_LIBXML "Enable weather applet" ON)
+if (ENABLE_LIBXML)
+    pkg_check_modules(LIBXML gweather-3.0)
+    if (NOT(LIBXML_FOUND))
+        set(ENABLE_LIBXML OFF)
+    endif()
+endif()
+
+if (ENABLE_LIBXML)
+    add_subdirectory(weather)
+endif()
+
 option(ENABLE_XKB "Enable xkb applet" ON)
 if (ENABLE_XKB)
     pkg_check_modules(XKB xkbcommon)

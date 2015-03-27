@@ -68,10 +68,15 @@ namespace StatusNotifier
         }
         internal void show_preferences()
         {
-            if (preferences != null)
-            {
-                var prefs_dialog = preferences();
+            if (prefs_dialog != null)
                 prefs_dialog.present();
+            else if (preferences != null)
+            {
+                prefs_dialog = preferences();
+                prefs_dialog.present();
+                prefs_dialog.destroy.connect(()=>{
+                    prefs_dialog = null;
+                });
             }
         }
         internal void show_about()
@@ -148,5 +153,6 @@ namespace StatusNotifier
             return about;
         }
         private bool started = false;
+        private Gtk.Dialog? prefs_dialog = null;
     }
 }

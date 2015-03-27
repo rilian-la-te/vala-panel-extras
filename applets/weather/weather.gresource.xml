@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/vala-panel/weather">
+    <file compressed="true" preprocess="xml-stripblanks">ui/config.ui</file>
+    <file compressed="true" preprocess="xml-stripblanks">ui/forecast.ui</file>
+  </gresource>
+</gresources>

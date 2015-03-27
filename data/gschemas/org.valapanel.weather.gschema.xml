@@ -1,0 +1,16 @@
+<schemalist>
+  <schema id="org.valapanel.weather" path="/org/valapanel/extras/weather/">
+    <key name="locations" type="av">
+      <default>[]</default>
+    </key>
+    <key name="current-location" type="u">
+      <default>0</default>
+    </key>
+    <key name="show-temperature" type="b">
+      <default>true</default>
+    </key>
+    <key name="update-interval" type="u">
+      <default>45</default>
+    </key>
+  </schema>
+</schemalist>

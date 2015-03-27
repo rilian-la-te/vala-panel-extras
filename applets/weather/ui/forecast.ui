@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
+<interface>
+  <requires lib="gtk+" version="3.0"/>
+  <!-- interface-local-resource-path ../media -->
+  <object class="GtkListStore" id="store-forecast">
+    <columns>
+      <!-- column-name Date -->
+      <column type="gchararray"/>
+      <!-- column-name Icon -->
+      <column type="gchararray"/>
+      <!-- column-name Conditions -->
+      <column type="gchararray"/>
+      <!-- column-name Temperature -->
+      <column type="gchararray"/>
+    </columns>
+  </object>
+  <template class="ForecastDialog" parent="GtkWindow">
+    <property name="can_focus">False</property>
+    <property name="border_width">12</property>
+    <property name="title" translatable="yes">Extended Forecast</property>
+    <property name="window_position">mouse</property>
+    <property name="default_height">400</property>
+    <signal name="unmap" handler="on_unmap" swapped="no"/>
+    <child>
+      <object class="GtkBox" id="mainvbox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="spacing">10</property>
+        <child>
+          <object class="GtkScrolledWindow" id="scrolledwindow1">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="hscrollbar_policy">never</property>
+            <property name="shadow_type">in</property>
+            <child>
+              <object class="GtkTreeView" id="view-forecast">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="model">store-forecast</property>
+                <property name="headers_clickable">False</property>
+                <property name="hover_selection">True</property>
+                <child internal-child="selection">
+                  <object class="GtkTreeSelection" id="treeview-selection1"/>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="column-date">
+                    <property name="title" translatable="yes">Date</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="renderer-date"/>
+                      <attributes>
+                        <attribute name="text">0</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="column-icon">
+                    <property name="title" translatable="yes">Icon</property>
+                    <child>
+                      <object class="GtkCellRendererPixbuf" id="renderer-icon">
+                        <property name="stock_size">4</property>
+                      </object>
+                      <attributes>
+                        <attribute name="icon-name">1</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="column-conditions">
+                    <property name="title" translatable="yes">Conditions</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="renderer-conditions"/>
+                      <attributes>
+                        <attribute name="text">2</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkTreeViewColumn" id="column-temp">
+                    <property name="title" translatable="yes">Temperature</property>
+                    <child>
+                      <object class="GtkCellRendererText" id="renderer-temperature"/>
+                      <attributes>
+                        <attribute name="text">3</attribute>
+                      </attributes>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButtonBox" id="buttonbox1">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
+            <property name="layout_style">start</property>
+            <child>
+              <object class="GtkButton" id="closebtn">
+                <property name="label">gtk-close</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_stock">True</property>
+                <signal name="clicked" handler="on_button_close" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
