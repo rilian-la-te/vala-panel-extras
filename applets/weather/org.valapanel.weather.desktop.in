@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
-Name=ALSA Volume Control Applet
-TryExec=vala-panel-extras-volume
-Icon=multimedia-volume-control
+Name=Weather Applet
+TryExec=vala-panel-extras-weather
+Icon=weather-clear

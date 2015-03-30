@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lxpanel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-04 00:44+0600\n"
-"PO-Revision-Date: 2015-03-04 00:49+0600\n"
+"POT-Creation-Date: 2015-03-30 17:44+0600\n"
+"PO-Revision-Date: 2015-03-30 17:55+0600\n"
 "Last-Translator: Andriy Grytsenko <andrej@rep.kiev.ua>\n"
 "Language-Team: Russian <hsh@runtu.org>\n"
 "Language: ru\n"
@@ -19,10 +19,30 @@ msgstr ""
 "X-Generator: Poedit 1.7.4\n"
 "X-POOTLE-MTIME: 1407841216.000000\n"
 
-#: ../lib/menuserializer.vala:168
+#: ../lib/menuserializer.vala:167
 msgctxt "default text direction"
 msgid "ltr"
 msgstr "ltr"
+
+#: ../lib/application.vala:95
+msgid "%s - Version %s\n"
+msgstr "%s - Версия %s\n"
+
+#: ../lib/application.vala:145
+msgid "Vala Panel Extras"
+msgstr "Расширения Vala Panel"
+
+#: ../lib/application.vala:146
+msgid "Status Notifier Items for Vala Panel"
+msgstr "Апплеты StatusNotifier для Vala Panel"
+
+#: ../lib/application.vala:148
+msgid "Vala Panel Website"
+msgstr "Сайт Vala Panel"
+
+#: ../lib/application.vala:150
+msgid "Replace this string by your names, one name per line."
+msgstr "Athor <ria.freelander@gmail.com>"
 
 #: ../lib/configurator.vala:23
 msgid "_Close"
@@ -48,94 +68,411 @@ msgstr "О_тмена"
 msgid "_OK"
 msgstr "_ОК"
 
-#: ../lib/application.vala:108
-msgid "%s - Version %s\n"
-msgstr "%s - Версия %s\n"
-
-#: ../lib/application.vala:158
-msgid "Vala Panel Extras"
-msgstr "Расширения Vala Panel"
-
-#: ../lib/application.vala:159
-msgid "Status Notifier Items for Vala Panel"
-msgstr "Апплеты StatusNotifier для Vala Panel"
-
-#: ../lib/application.vala:161
-msgid "Vala Panel Website"
-msgstr "Сайт Vala Panel"
-
-#: ../lib/application.vala:163
-msgid "Replace this string by your names, one name per line."
-msgstr "Athor <ria.freelander@gmail.com>"
-
-#: ../lib/snitemproxy.vala:119
+#: ../lib/snitemproxy.vala:118
 msgid "_Preferences..."
 msgstr "_Настройка..."
 
-#: ../lib/snitemproxy.vala:123
+#: ../lib/snitemproxy.vala:122
 msgid "_About..."
 msgstr "О _программе..."
 
-#: ../lib/snitemproxy.vala:127
+#: ../lib/snitemproxy.vala:126
 msgid "_Quit"
 msgstr "_Выход"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:64
+#: ../applets/volume/volume.vala:64
 msgid "ALSA (or pulseaudio) had a problem."
 msgstr "Проблема ALSA (или pulseaudio)."
 
-#: ../applets/volume/vala-panel-extras-volume.vala:65
+#: ../applets/volume/volume.vala:65
 msgid " Please check the volume-applet logs."
 msgstr "Проверьте файлы журнала апплета."
 
-#: ../applets/volume/vala-panel-extras-volume.vala:223
+#: ../applets/volume/volume.vala:228
 msgid "ALSA is not connected"
 msgstr "ALSA не активирована"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:362
-#: ../applets/volume/vala-panel-extras-volume.vala:419
+#: ../applets/volume/volume.vala:364 ../applets/volume/volume.vala:422
 msgid "Vala Panel Volume Applet"
 msgstr "Апплет громкости Vala Panel"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:364
+#: ../applets/volume/volume.vala:366
 msgid "ALSA Card"
 msgstr "Имя карты ALSA"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:365
+#: ../applets/volume/volume.vala:367
 msgid "ALSA Channel"
 msgstr "Имя канала ALSA"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:366
+#: ../applets/volume/volume.vala:368
 msgid "Mixer launch command"
 msgstr "Команда запуска микшера"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:373
+#: ../applets/volume/volume.vala:375
 msgid "Volume Applet"
 msgstr "Регулятор громкости"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:380
+#: ../applets/volume/volume.vala:382
 msgid "Volume _Control..."
 msgstr "Управление _громкостью..."
 
-#: ../applets/volume/vala-panel-extras-volume.vala:390
+#: ../applets/volume/volume.vala:392
 msgid "_Mute"
 msgstr "Выключить _звук"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:400
+#: ../applets/volume/volume.vala:402
 msgid "Volume Scale"
 msgstr "Апплет громкости"
 
-#: ../applets/volume/vala-panel-extras-volume.vala:420
+#: ../applets/volume/volume.vala:423
 msgid "Simple ALSA playback volume indicator."
 msgstr "Простой индикатор громкости проигрывания ALSA."
 
-#: ../applets/volume/vala-panel-extras-volume.desktop.in:4
+#: ../applets/batt/battery.vala:43 ../applets/batt/battery.vala:76
+msgid "Battery is discharging. %3.0lf%% remaining."
+msgstr "Батарея разряжается.Осталось %3.0lf%%."
+
+#: ../applets/batt/battery.vala:44 ../applets/batt/battery.vala:77
+msgid "%02lli:%02lli remaining to empty."
+msgstr "До полной разрядки осталось %02lli:%02lli."
+
+#: ../applets/batt/battery.vala:50 ../applets/batt/battery.vala:81
+msgid "Battery is charging. %3.0lf%% charged."
+msgstr "Battery is charging. %3.0lf%% charged."
+
+#: ../applets/batt/battery.vala:51 ../applets/batt/battery.vala:82
+msgid "%02lli:%02lli remaining to full."
+msgstr "До полной зарядки осталось %02lli:%02lli."
+
+#: ../applets/batt/battery.vala:56 ../applets/batt/battery.vala:85
+msgid "Battery is charged."
+msgstr "Батарея заряжена"
+
+#: ../applets/batt/battery.vala:57 ../applets/batt/battery.vala:62
+#: ../applets/batt/battery.vala:86 ../applets/batt/battery.vala:91
+msgid "Battery percentage: %3.0lf%%."
+msgstr "Батарея заряжена на %3.0lf%%."
+
+#: ../applets/batt/battery.vala:107
+msgid "Battery is low!"
+msgstr "Низкий заряд батареи!"
+
+#: ../applets/batt/battery.vala:110
+msgid "Battery is very low!"
+msgstr "Очень низкий заряд батареи!"
+
+#: ../applets/batt/battery.vala:114
+msgid "Battery is critical!"
+msgstr "Критически низкий заряд батареи!"
+
+#: ../applets/batt/battery.vala:131 ../applets/batt/battery.vala:149
+msgid "Vala Panel Battery Applet"
+msgstr "Апллет батареи Vala Panel"
+
+#: ../applets/batt/battery.vala:133
+msgid "Use notifications"
+msgstr "Использовать уведомления"
+
+#: ../applets/batt/battery.vala:134
+msgid "Show percentage"
+msgstr "Показывать процент"
+
+#: ../applets/batt/battery.vala:135
+msgid "Show time remaining"
+msgstr "Показывать оставшееся время"
+
+#: ../applets/batt/battery.vala:136
+msgid "Power manager command"
+msgstr "Команда запуска параметров электропитания"
+
+#: ../applets/batt/battery.vala:143
+msgid "Battery Applet"
+msgstr "Апплет батареи"
+
+#: ../applets/batt/battery.vala:150
+msgid "Simple UPower based battery indicator."
+msgstr "Простой апплет батареи, основанный на UPower."
+
+#: ../applets/xkb/xkb-backend.vala:102
+msgid "XKB extension error. Keyboard layout plugin will not work"
+msgstr "Ошибка XKB.Переключатель раскладки работать не будет."
+
+#: ../applets/xkb/xkb.vala:44
+msgid "Keyboard Layout Applet"
+msgstr "Апплет переключения раскладки клавиатуры"
+
+#: ../applets/xkb/xkb.vala:55
+msgid "Vala Panel Keyboard Layout Applet"
+msgstr "Апплет переключения раскладки клавиатуры Vala Panel"
+
+#: ../applets/xkb/xkb.vala:56
+msgid "Simple keyboard layout indicator."
+msgstr "Простой индикатор раскладки клавиатуры"
+
+#: ../applets/xkb/xkb-config.vala:57
+msgid "Cannot initialize xkeyboard-config!"
+msgstr "Ошибка инициализации xkeyboard-config!"
+
+#: ../applets/weather/weather.vala:42
+#: ../applets/weather/org.valapanel.weather.desktop.in:4
+msgid "Weather Applet"
+msgstr "Апплет погоды"
+
+#: ../applets/weather/weather.vala:50
+msgid "Vala Panel Weather Applet"
+msgstr "Апплет погоды Vala Panel"
+
+#: ../applets/weather/weather.vala:51
+msgid "Simple weather indicator."
+msgstr "Простой индикатор погоды"
+
+#: ../applets/weather/weather.vala:65
+msgid "Refresh"
+msgstr "Обновить"
+
+#: ../applets/weather/weather.vala:70
+msgid "Forecast..."
+msgstr "Прогноз..."
+
+#: ../applets/weather/weather.vala:110
+msgid "No network connection"
+msgstr "Нет соединения"
+
+#: ../applets/weather/weather.vala:111
+msgid "or no location."
+msgstr "или не задана местность"
+
+#: ../applets/weather/weather.vala:183
+msgid "Conditions: %s"
+msgstr "На улице: %s"
+
+#: ../applets/weather/weather.vala:184
+msgid "Temperature: %s"
+msgstr "Температура: %s"
+
+#: ../applets/weather/weather.vala:185
+msgid "Humidity: %s"
+msgstr "Влажность: %s"
+
+#: ../applets/weather/weather.vala:186
+msgid "Wind: %s"
+msgstr "Ветер: %s"
+
+#: ../applets/weather/weather.vala:187
+msgid "Sunrise: %s"
+msgstr "Восход: %s"
+
+#: ../applets/weather/weather.vala:188
+msgid "Sunset: %s"
+msgstr "Закат: %s"
+
+#: ../applets/weather/weather.vala:189
+msgid "Refresh... (%s)"
+msgstr "Обновить... (%s)"
+
+#: ../applets/weather/weather.vala:195
+msgid "Pressure:"
+msgstr "Давление:"
+
+#: ../applets/weather/weather.vala:196
+msgid "Wind:"
+msgstr "Ветер:"
+
+#: ../applets/weather/weather-forecast.vala:25
+msgid "Extended forecast for %s"
+msgstr "Расширенный прогноз для города %s"
+
+#: ../applets/xkb/config.ui:43
+msgid "Keyboard Layout Settings"
+msgstr "Настройки раскладки клавиатуры"
+
+#: ../applets/xkb/config.ui:86
+msgid "Select layout per one window"
+msgstr "Разная раскладка для каждого окна"
+
+#: ../applets/xkb/config.ui:101
+msgid "Show country flag"
+msgstr "Показывать флаг страны"
+
+#: ../applets/xkb/config.ui:116
+msgid "Show country code"
+msgstr "Показывать код страны"
+
+#: ../applets/xkb/config.ui:131
+msgid "Keep system layouts"
+msgstr "Использовать системную раскладку"
+
+#: ../applets/xkb/config.ui:150
+msgid "Indicator options"
+msgstr "Настройки индикатора"
+
+#: ../applets/xkb/config.ui:203 ../applets/xkb/config.ui:454
+msgid "Flag"
+msgstr "Флаг"
+
+#: ../applets/xkb/config.ui:217 ../applets/xkb/config.ui:468
+msgid "Layout Name"
+msgstr "Название раскладки"
+
+#: ../applets/xkb/config.ui:228 ../applets/xkb/config.ui:479
+msgid "Layout ID"
+msgstr "Код языка"
+
+#: ../applets/xkb/config.ui:239 ../applets/xkb/config.ui:490
+msgid "Variant ID"
+msgstr "Код варианта"
+
+#: ../applets/xkb/config.ui:332
+msgid "Layouts"
+msgstr "Раскладки"
+
+#: ../applets/xkb/config.ui:364
+msgid "Model"
+msgstr "Модель"
+
+#: ../applets/xkb/config.ui:396
+msgid "Options"
+msgstr "Настройки"
+
+#: ../applets/xkb/config.ui:530 ../applets/xkb/config.ui:589
+msgid "Use"
+msgstr "Использовать"
+
+#: ../applets/xkb/config.ui:544
+msgid "Model Name"
+msgstr "Модель"
+
+#: ../applets/xkb/config.ui:604
+msgid "Option Name"
+msgstr "Настройка"
+
+#: ../applets/weather/ui/config.ui:25
+msgid "Weather Indicator Preferences"
+msgstr "Настройки индикатора погоды"
+
+#: ../applets/weather/ui/config.ui:74
+msgid "<b>Appearance and Update</b>"
+msgstr "<b>Внешний вид и обновление</b>"
+
+#: ../applets/weather/ui/config.ui:85
+msgid "Show temperature near indicator"
+msgstr "Показывать температуру рядом со значком"
+
+#: ../applets/weather/ui/config.ui:109
+msgid "Update every"
+msgstr "Обновлять каждые"
+
+#: ../applets/weather/ui/config.ui:123
+msgid "1"
+msgstr "1"
+
+#: ../applets/weather/ui/config.ui:138
+msgid "minutes"
+msgstr "минут"
+
+#: ../applets/weather/ui/config.ui:159
+msgid "General"
+msgstr "Общие"
+
+#: ../applets/weather/ui/config.ui:182
+msgid "<b>Temperature Scale</b>"
+msgstr "<b>Шкала температур</b>"
+
+#: ../applets/weather/ui/config.ui:199
+msgid "Imperial (°F)"
+msgstr "Фаренгейта (°F)"
+
+#: ../applets/weather/ui/config.ui:216
+msgid "SI (metric, °C)"
+msgstr "СИ (метрическая, °C)"
+
+#: ../applets/weather/ui/config.ui:233
+msgid "Kelvin (K)"
+msgstr "Кельвины (K)"
+
+#: ../applets/weather/ui/config.ui:273
+msgid "<b>Wind Speed Unit</b>"
+msgstr "<b>Единица скорости ветра</b>"
+
+#: ../applets/weather/ui/config.ui:290
+msgid "Meters per second (m/s)"
+msgstr "Метр в секунду (m/s)"
+
+#: ../applets/weather/ui/config.ui:307
+msgid "Miles per hour (mph)"
+msgstr "Миля в секунду (mph)"
+
+#: ../applets/weather/ui/config.ui:324
+msgid "Kilometers per hour (km/h)"
+msgstr "Километр в час (km/h)"
+
+#: ../applets/weather/ui/config.ui:341
+msgid "Beaufort number"
+msgstr "Шкала Бофорта"
+
+#: ../applets/weather/ui/config.ui:358
+msgid "Knots"
+msgstr "Узлы"
+
+#: ../applets/weather/ui/config.ui:396
+msgid "Units"
+msgstr "Единицы измерения"
+
+#: ../applets/weather/ui/config.ui:429
+msgid "Location Name"
+msgstr "Название места"
+
+#: ../applets/weather/ui/config.ui:511
+msgid "Locations"
+msgstr "Места"
+
+#: ../applets/weather/ui/forecast.ui:21
+msgid "Extended Forecast"
+msgstr "Расширенный прогноз"
+
+#: ../applets/weather/ui/forecast.ui:51
+msgid "Date"
+msgstr "Дата"
+
+#: ../applets/weather/ui/forecast.ui:62
+msgid "Icon"
+msgstr "Значок"
+
+#: ../applets/weather/ui/forecast.ui:75
+msgid "Conditions"
+msgstr "На улице"
+
+#: ../applets/weather/ui/forecast.ui:86
+msgid "Temperature"
+msgstr "Температура"
+
+#: ../applets/volume/org.valapanel.volume.desktop.in:4
 msgid "ALSA Volume Control Applet"
 msgstr "Апплет управления громкостью ALSA"
 
-#: ../applets/volume/vala-panel-extras-volume.desktop.in:6
+#: ../applets/volume/org.valapanel.volume.desktop.in:6
 msgid "multimedia-volume-control"
 msgstr "multimedia-volume-control"
+
+#: ../applets/batt/org.valapanel.battery.desktop.in:4
+msgid "Battery Indicator"
+msgstr "Индикатор батареи"
+
+#: ../applets/batt/org.valapanel.battery.desktop.in:6
+msgid "battery"
+msgstr "battery"
+
+#: ../applets/xkb/org.valapanel.xkb.desktop.in:4
+msgid "Keyboard Layout Indicator"
+msgstr "Индикатор раскладки клавиатуры"
+
+#: ../applets/xkb/org.valapanel.xkb.desktop.in:6
+msgid "input-keyboard"
+msgstr "input-keyboard"
+
+#: ../applets/weather/org.valapanel.weather.desktop.in:6
+msgid "weather-clear"
+msgstr "weather-clear"
 
 #~ msgid "Volume Control..."
 #~ msgstr "Управление громкостью..."
@@ -238,9 +575,6 @@ msgstr "multimedia-volume-control"
 
 #~ msgid "Is Menubar"
 #~ msgstr "Является панелью меню."
-
-#~ msgid "Icon"
-#~ msgstr "Значок"
 
 #~ msgid "Caption (for button only)"
 #~ msgstr "Название (только для кнопки)"
@@ -787,9 +1121,6 @@ msgstr "multimedia-volume-control"
 #~ msgid "0%"
 #~ msgstr "0%"
 
-#~ msgid "General"
-#~ msgstr "Общие"
-
 #~ msgid "<b>Internet Protocol (IPv4)</b>"
 #~ msgstr "<b>Интернет-протокол (IPv4)</b>"
 
@@ -1006,9 +1337,6 @@ msgstr "multimedia-volume-control"
 
 #~ msgid "Add Keyboard Layout"
 #~ msgstr "Добавить раскладку клавиатуры"
-
-#~ msgid "Flag"
-#~ msgstr "Флаг"
 
 #~ msgid "Layout"
 #~ msgstr "Раскладка"
@@ -1689,9 +2017,6 @@ msgstr "multimedia-volume-control"
 #~ msgid "_Automatic, every"
 #~ msgstr "А_втоматическое, каждые"
 
-#~ msgid "minutes"
-#~ msgstr "минут"
-
 #~ msgid "Source:"
 #~ msgstr "Источник"
 
@@ -1716,14 +2041,8 @@ msgstr "multimedia-volume-control"
 #~ msgid "Humidity:"
 #~ msgstr "Влажность:"
 
-#~ msgid "Pressure:"
-#~ msgstr "Давление:"
-
 #~ msgid "Visibility:"
 #~ msgstr "Видимость:"
-
-#~ msgid "Wind:"
-#~ msgstr "Ветер:"
 
 #~ msgid "Sunrise:"
 #~ msgstr "Восход:"
@@ -1990,9 +2309,6 @@ msgstr "multimedia-volume-control"
 #, fuzzy
 #~ msgid "Preferences"
 #~ msgstr "Настройки панели"
-
-#~ msgid "Model"
-#~ msgstr "Модель"
 
 #~ msgid "WNCKPager"
 #~ msgstr "WNCKPager"
