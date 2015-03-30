@@ -4,13 +4,14 @@ _pkgname=vala-panel-extras
 pkgname=${_pkgname}-weather-git
 _cmakename=cmake-vala
 pkgver=0.1.0
-pkgrel=1
+pkgrel=3
 pkgdesc="Simple weather StatusNotifierItem"
 url="https://github.com/rilian-la-te/vala-panel-extras"
 arch=('i686' 'x86_64')
 license=('GPL3')
 depends=('gtk3' 'libgweather>=3.12.0')
 makedepends=('cmake' 'vala')
+provides=('vala-panel-extras-weather')
 optdepends=('xfce4-sntray-plugin: for showing in Xfce'
             'vala-panel: panel with builtin StatusNotifierItems support'
             'vala-panel-extras-translations: translations'
