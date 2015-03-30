@@ -11,17 +11,21 @@ if (ENABLE_ALSA)
     add_subdirectory(volume)
 endif()
 
-add_subdirectory(batt)
+option(ENABLE_BATTERY "Enable battery applet" ON)
 
-option(ENABLE_LIBXML "Enable weather applet" ON)
-if (ENABLE_LIBXML)
+if (ENABLE_BATTERY)
+    add_subdirectory(batt)
+endif()
+
+option(ENABLE_WEATHER "Enable weather applet" ON)
+if (ENABLE_WEATHER)
     pkg_check_modules(LIBXML gweather-3.0)
     if (NOT(LIBXML_FOUND))
-        set(ENABLE_LIBXML OFF)
+        set(ENABLE_WEATHER OFF)
     endif()
 endif()
 
-if (ENABLE_LIBXML)
+if (ENABLE_WEATHER)
     add_subdirectory(weather)
 endif()
 
