@@ -7,35 +7,36 @@ This is StatusNotifierItems for using in Vala Panel (but can be used any DE in l
  * KDE (native)
  * Gnome (via gnome-shell-extension-appindicator)
  * Unity (native)
+ * Enlightenment (native)
+
+*Done:*
+ * ALSA Volume Applet (will fully work only in Vala Panel or xfce4-sntray-plugin)
+ * XKB
+ * Weather
+ * UPower (battery status)
 
 *TODO:*
- * Sound applet (will fully work only in Vala Panel or xfce4-sntray-plugin)
  * Brightness applet (will fully work only in Vala Panel or xfce4-sntray-plugin)
- * XKB
- * Network status
- * Weather
+ * Network status (maybe Connman applet)
  * CPU temperature
  * CPU frequrency
-
 
 *Dependencies:*
 
 *All:*
  * GLib (>= 2.40.0)
- * valac
- 
-*Some:*
  * GTK+ (>= 3.12.0)
- * upower-glib (>= 0.9.20)
- * libwnck (>= 3.4.7)
+ * valac (>= 0.24.0)
+
+*Weather:*
  * libgweather (>= 3.12.0)
- * gee-0.8 (not gee-1.0!)
-
-
-
-
-Lastly, always set -DCMAKE_INSTALL_PREXIX=/usr when using cmake, otherwise you
-won't be able to start the panel on most distros
+*ALSA:*
+ * libasound 
+*XKB:*
+ * libxkbcommon (>=0.5.0)
+ * xkb-xcb
+ * setxkbmap (temporary)
+ * gdk-x11-3.0 (>= 3.12.0)
 
 Author
 ===
@@ -44,8 +45,3 @@ Author
 Special thanks:
 ===
  * Ikey Doherty <ikey@evolve-os.com> for sidebar widget and icontasklist
-
-Inspirations
-===
- * Budgie Desktop <https://github.com/evolve-os/budgie-desktop/>
- * LXPanel <https://github.com/lxde/lxpanel>
