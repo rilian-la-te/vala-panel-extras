@@ -29,6 +29,10 @@ namespace StatusNotifier
         }
         construct
         {
+            GLib.Intl.setlocale(LocaleCategory.CTYPE,"");
+            GLib.Intl.bindtextdomain(Config.GETTEXT_PACKAGE,Config.LOCALE_DIR);
+            GLib.Intl.bind_textdomain_codeset(Config.GETTEXT_PACKAGE,"UTF-8");
+            GLib.Intl.textdomain(Config.GETTEXT_PACKAGE);
             about = create_about_dialog();
         }
         protected override void startup()
