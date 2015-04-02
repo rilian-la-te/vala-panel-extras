@@ -8,6 +8,8 @@ namespace Weather
     {
         [GtkChild (name = "store-forecast")]
         Gtk.ListStore store_forecast;
+        [GtkChild (name = "label-attribution")]
+        Gtk.Label label_attribution;
         private ulong handler;
         public ForecastDialog(WeatherIconExporter plugin)
         {
@@ -24,6 +26,7 @@ namespace Weather
         {
             this.title = _("Extended forecast for %s").printf(location_info.get_location_name());
             store_forecast.clear();
+            label_attribution.label = location_info.get_attribution();
             foreach(var info in location_info.get_forecast_list())
             {
                 TreeIter iter;
@@ -43,11 +46,6 @@ namespace Weather
                     cond_str = info.get_weather_summary();
                 store_forecast.set(iter,0,dt.format("%a,%F,%R"),1,info.get_icon_name(),2,cond_str,3,info.get_temp());
             }
-        }
-        [GtkCallback]
-        private void on_button_close()
-        {
-            this.destroy();
         }
         [GtkCallback]
         private void on_unmap()

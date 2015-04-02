@@ -48,8 +48,17 @@ namespace Weather
             {
                 TreeIter iter;
                 location_list.append(out iter);
-                location_list.set(iter,0,location.equal(icon.locations[icon.current_location]),1,location.get_name(),2,location);
+                location_list.set(iter,0,location.equal(icon.locations[icon.current_location]),1,location.get_name(),2,location.serialize());
             }
+            plugin.notify[WeatherIconExporter.CURRENT_LOC].connect(()=>{
+                location_list.foreach((model,path,iter)=>{
+                    unowned Gtk.ListStore list = model as Gtk.ListStore;
+                    Variant location;
+                    list.get(iter,2,out location);
+                    list.set(iter,0,plugin.locations[plugin.current_location].serialize().equal(location));
+                    return false;
+                });
+            });
         }
         [GtkCallback]
         private void on_remove_location()
@@ -61,30 +70,30 @@ namespace Weather
                 location_settings_updated();
             }
         }
-//~         [GtkCallback]
-//~         private void on_current_location_toggled(string path_str)
-//~         {
-//~             TreeIter iter;
-//~             TreePath path = new TreePath.from_string(path_str);
-//~             location_list.get_iter(out iter, path);
-//~             bool active;
-//~             location_list.get(iter,0,out active);
-//~             if (active)
-//~                 return;
-//~             location_list.foreach((model,path,iter)=>{
-//~                 unowned Gtk.ListStore list = model as Gtk.ListStore;
-//~                 list.set(iter,0,false);
-//~                 return false;
-//~             });
-//~             GWeather.Location location;
-//~             location_list.set(iter,0,true);
-//~             location_list.get(iter,2,out location);
-//~             for(var i = 0; i < plugin.locations.length; i++)
-//~             {
-//~                 if (location.equal(plugin.locations[i]) && i != plugin.current_location)
-//~                     plugin.settings.set_uint(WeatherIconExporter.CURRENT_LOC,i);
-//~             }
-//~         }
+        [GtkCallback]
+        private void on_current_location_toggled(string path_str)
+        {
+            TreeIter iter;
+            TreePath path = new TreePath.from_string(path_str);
+            location_list.get_iter(out iter, path);
+            bool active;
+            location_list.get(iter,0,out active);
+            if (active)
+                return;
+            location_list.foreach((model,path,iter)=>{
+                unowned Gtk.ListStore list = model as Gtk.ListStore;
+                list.set(iter,0,false);
+                return false;
+            });
+            Variant location;
+            location_list.set(iter,0,true);
+            location_list.get(iter,2,out location);
+            for(var i = 0; i < plugin.locations.length; i++)
+            {
+                if (location.equal(plugin.locations[i].serialize()) && i != plugin.current_location)
+                    plugin.settings.set_uint(WeatherIconExporter.CURRENT_LOC,i);
+            }
+        }
         private void on_add_location()
         {
             if (entry.get_location() == null)
@@ -94,16 +103,16 @@ namespace Weather
                     return;
             TreeIter iter;
             location_list.append(out iter);
-            location_list.set(iter,0,false,2,entry.get_location(),1,entry.get_location().get_name());
+            location_list.set(iter,0,false,2,entry.get_location().serialize(),1,entry.get_location().get_name());
             location_settings_updated();
         }
         private void location_settings_updated()
         {
             Variant[] locations = {};
             location_list.foreach((model,path,iter)=>{
-                GWeather.Location location;
+                Variant location;
                 model.get(iter,2,out location);
-                locations += new Variant.variant(location.serialize());
+                locations += new Variant.variant(location);
                 return false;
             });
             var locations_v = new Variant.array(VariantType.VARIANT,locations);
