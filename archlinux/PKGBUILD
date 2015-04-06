@@ -4,7 +4,7 @@ _pkgbase=vala-panel-extras
 pkgbase=vala-panel-extras-git
 pkgname=('vala-panel-extras-battery-git' 'vala-panel-extras-volume-git' 'vala-panel-extras-xkb-git' 'vala-panel-extras-weather-git' 'vala-panel-extras-common-git' 'vala-panel-extras-xkb-flags-git')
 _cmakename=cmake-vala
-pkgver=0.1.0.r8.g021998e
+pkgver=0.1.1.1
 pkgrel=1
 pkgdesc="Simple StatusNotifierItems for Indicator plugins"
 url="https://github.com/rilian-la-te/vala-panel-extras"
@@ -50,11 +50,11 @@ package_vala-panel-extras-volume-git() {
   
   cd "${srcdir}/${_pkgbase}"
   make -C "applets/volume" DESTDIR="${pkgdir}" install
-  install -D -m644 data/gschemas/org.valapanel.battery.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.volume.gschema.xml"
+  install -D -m644 data/gschemas/org.valapanel.volume.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.volume.gschema.xml"
 }
 package_vala-panel-extras-xkb-git() {
   pkgdesc="Simple keyboard layout indicator/switcher"
-  depends=('gtk3' 'libxkbcommon>=0.5' 'libxcb>=1.10' 'libx11' 'vala-panel-extras-common-git')
+  depends=('gtk3' 'libxkbcommon-x11>=0.5' 'libxcb>=1.10' 'libx11' 'vala-panel-extras-common-git')
   optdepends=('xfce4-sntray-plugin: for showing in Xfce'
             'vala-panel: panel with builtin StatusNotifierItems support'
             'xfce4-snw-plugin: for showing in Xfce, alternate way'
@@ -66,7 +66,7 @@ package_vala-panel-extras-xkb-git() {
   
   cd "${srcdir}/${_pkgbase}"
   make -C "applets/xkb" DESTDIR="${pkgdir}" install
-  install -D -m644 data/gschemas/org.valapanel.battery.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.xkb.gschema.xml"
+  install -D -m644 data/gschemas/org.valapanel.xkb.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.xkb.gschema.xml"
   rm -fr "$pkgdir/usr/share/vala-panel-extras/"
 }
 package_vala-panel-extras-weather-git() {
@@ -83,9 +83,10 @@ package_vala-panel-extras-weather-git() {
   
   cd "${srcdir}/${_pkgbase}"
   make -C "applets/weather" DESTDIR="${pkgdir}" install
-  install -D -m644 data/gschemas/org.valapanel.battery.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.weather.gschema.xml"
+  install -D -m644 data/gschemas/org.valapanel.weather.gschema.xml "$pkgdir/usr/share/glib-2.0/schemas/org.valapanel.weather.gschema.xml"
 }
 package_vala-panel-extras-xkb-flags-git() {
+  arch=('any')
   pkgdesc="Flags for XKB plugin"
   depends=('vala-panel-extras-xkb-git')
   optdepends=('xfce4-sntray-plugin: for showing in Xfce'
@@ -120,6 +121,7 @@ package_vala-panel-extras-battery-git() {
 }
 
 package_vala-panel-extras-common-git() {
+  arch=('any')
   pkgdesc="Common files for vala-panel-extras"
   replaces=('vala-panel-extras-translations-git')
   
