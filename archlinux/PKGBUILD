@@ -5,7 +5,7 @@ pkgbase=vala-panel-extras-git
 pkgname=('vala-panel-extras-battery-git' 'vala-panel-extras-volume-git' 'vala-panel-extras-xkb-git' 'vala-panel-extras-weather-git' 'vala-panel-extras-common-git' 'vala-panel-extras-xkb-flags-git')
 _cmakename=cmake-vala
 pkgver=0.1.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Simple StatusNotifierItems for Indicator plugins"
 url="https://github.com/rilian-la-te/vala-panel-extras"
 arch=('i686' 'x86_64')
@@ -61,7 +61,8 @@ package_vala-panel-extras-xkb-git() {
             'enlightenment: for showing in E19'
             'indicator-application: for showing in Indicator Environment, like Pantheon or Unity'
             'plasma-desktop: for showing in KDE Frameworks'
-            'kdebase-plasma: for showing in KDE4')
+            'kdebase-plasma: for showing in KDE4'
+            'vala-panel-extras-xkb-flags: builtin flags')
   install=vala-panel-extras.install
   
   cd "${srcdir}/${_pkgbase}"
@@ -88,14 +89,7 @@ package_vala-panel-extras-weather-git() {
 package_vala-panel-extras-xkb-flags-git() {
   arch=('any')
   pkgdesc="Flags for XKB plugin"
-  depends=('vala-panel-extras-xkb-git')
-  optdepends=('xfce4-sntray-plugin: for showing in Xfce'
-            'vala-panel: panel with builtin StatusNotifierItems support'
-            'xfce4-snw-plugin: for showing in Xfce, alternate way'
-            'enlightenment: for showing in E19'
-            'indicator-application: for showing in Indicator Environment, like Pantheon or Unity'
-            'plasma-desktop: for showing in KDE Frameworks'
-            'kdebase-plasma: for showing in KDE4')
+  optdepends=('vala-panel-extras-xkb-git')
   install=vala-panel-extras.install
   
   cd "${srcdir}/${_pkgbase}"
