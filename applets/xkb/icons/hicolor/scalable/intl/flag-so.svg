@@ -1,15 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
-   <rect style="fill:#4189DD" id="background" width="900" height="600" />
-   <polygon id="star" transform="translate(450,310.5573) scale(110.5573)" fill="#FFFFFF" points="0,-1 
-   0.224513988289792686220972575898763393789606,-0.309016994374947424102293417182819058860155
-   0.951056516295153572116439333379382143405699,-0.309016994374947424102293417182819058860155
-   0.363271264002680442947733378740309374808046,0.118033988749894848204586834365638117720309
-   0.587785252292473129168705954639072768597652,0.809016994374947424102293417182819058860155
-   0,0.381966011250105151795413165634361882279691
-   -0.587785252292473129168705954639072768597652,0.809016994374947424102293417182819058860155
-   -0.363271264002680442947733378740309374808046,0.118033988749894848204586834365638117720309
-   -0.951056516295153572116439333379382143405699,-0.309016994374947424102293417182819058860155
-   -0.224513988289792686220972575898763393789606,-0.309016994374947424102293417182819058860155" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<svg id="svg378" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="512" width="512" version="1" y="0" x="0" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata3305">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs id="defs380">
+  <clipPath id="clipPath4480" clipPathUnits="userSpaceOnUse">
+   <rect id="rect4482" fill-opacity="0.67" height="708.66" width="708.66" y="-.0000033379" x="177.17"/>
+  </clipPath>
+ </defs>
+ <g id="flag" clip-path="url(#clipPath4480)" fill-rule="evenodd" transform="matrix(.72249 0 0 .72249 -128 .0000024116)">
+  <rect id="rect149" height="708.66" width="1063" y="0" x="0" stroke-width="1pt" fill="#40a6ff"/>
+  <path id="path205" d="m266.19 534.45-10.408-7.432-10.357 7.505 3.852-12.196-10.338-7.531 12.79-0.105 3.967-12.159 4.052 12.131 12.79 0.016-10.285 7.602 3.937 12.169z" transform="matrix(10.972 0 0 9.9591 -2277.7 -4795)" stroke-width=".11287" fill="#fff"/>
+ </g>
 </svg>

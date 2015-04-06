@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
-"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   version="1.0"
-   x="0.0000000"
-   y="0.0000000"
-   width="600.00000"
-   height="300.00000"
-   id="svg4639">
-  <defs
-     id="defs4641" />
-  <rect
-     width="525.00000"
-     height="262.50000"
-     x="125.00000"
-     y="414.86218"
-     transform="matrix(1.142857,0.000000,0.000000,1.142857,-142.8571,-474.1281)"
-     style="fill:#000000;fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-width:1.0000000pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
-     id="rect4648" />
-  <rect
-     width="525.00000"
-     height="87.500000"
-     x="125.00000"
-     y="502.36218"
-     transform="matrix(1.142857,0.000000,0.000000,1.142857,-142.8571,-474.1281)"
-     style="fill:#ffffff;fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-width:1.0000000pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
-     id="rect5270" />
-  <rect
-     width="525.00000"
-     height="87.500000"
-     x="125.00000"
-     y="589.86218"
-     transform="matrix(1.142857,0.000000,0.000000,1.142857,-142.8571,-474.1281)"
-     style="fill:#007a3d;fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-width:1.0000000pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
-     id="rect5892" />
-  <path
-     d="M 125.00000,414.86218 L 387.50000,546.11218 L 125.00000,677.36218 L 125.00000,414.86218 z "
-     transform="matrix(1.142857,0.000000,0.000000,1.142857,-142.8571,-474.1281)"
-     style="fill:#ce1126;fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-width:1.0000000pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
-     id="path7135" />
-  <path
-     d="M 162.50000,100.48718 L 140.80580,155.43878 L 84.316900,138.13818 L 113.75360,189.36118 L 65.007200,222.73928 L 123.40840,231.66168 L 119.11160,290.58408 L 162.50000,250.48718 L 205.88840,290.58408 L 201.59160,231.66168 L 259.99280,222.73928 L 211.24640,189.36118 L 240.68310,138.13818 L 184.19420,155.43878 L 162.50000,100.48718 z "
-     transform="matrix(0.214286,0.000000,0.000000,0.214286,57.87853,107.0385)"
-     style="fill:#ffffff;fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-width:1.0000000pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1.0000000"
-     id="path7757" />
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<!-- /Creative Commons Public Domain -->
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+    <dc:title>New Zealand, Australia, United Kingdom, United States, 
+Bosnia and Herzegovina, Azerbaijan, Armenia, Bahamas, Belgium, Benin, 
+Bulgaria, Estonia, Finland, Gabon, Gambia, Germany, Greece, Greenland, 
+Guinea, Honduras, Israel, Jamaica, Jordan, and Romania Flags</dc:title>
+    <dc:rights><Agent>
+       <dc:title>Daniel McRae</dc:title>
+    </Agent></dc:rights>
+    <license rdf:resource="http://web.resource.org/cc/PublicDomain" />
+</Work>
+
+<License rdf:about="http://web.resource.org/cc/PublicDomain">
+    <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+    <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+    <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+</License>
+</rdf:RDF>
+-->
+<svg id="svg548" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="512" width="512" version="1" y="0" x="0" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata4629">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs id="defs550">
+  <clipPath id="clipPath5782" clipPathUnits="userSpaceOnUse">
+   <rect id="rect5784" fill-opacity="0.67" height="493.5" width="493.5" y="-.000016819" x="113.56"/>
+  </clipPath>
+ </defs>
+ <g id="flag" clip-path="url(#clipPath5782)" transform="matrix(1.0375 0 0 1.0375 -117.82 .00001745)">
+  <g id="g558" fill-rule="evenodd" stroke-width="1pt" transform="scale(23.5)">
+   <rect id="rect551" height="7" width="42" y="0" x="0"/>
+   <rect id="rect552" height="7" width="42" y="7" x="0" fill="#fff"/>
+   <rect id="rect553" height="7" width="42" y="14" x="0" fill="#090"/>
+   <path id="path554" d="m0 21 21-10.5-21-10.5v21z" fill="#f00"/>
+   <polygon id="polygon557" points="7.0113 10.381 7.9518 10.834 6.9079 10.834 7.1402 11.852 6.4894 11.035 5.8385 11.852 6.0708 10.834 5.027 10.834 5.9674 10.381 5.3166 9.5648 6.2571 10.018 6.4894 9 6.4894 9 6.7216 10.018 7.6621 9.5648" fill="#fff"/>
+  </g>
+ </g>
 </svg>

@@ -1,32 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Notepad -->
-<!-- (PD) December 17, 2005 - _Zach Harden_  -->
-<svg
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   version="1.0"
-   width="500"
-   height="300"
-   id="Bulgaria Flag">
-  <rect
-     style="fill:#fff"
-     x="0"
-     y="0"
-     width="500"
-     height="100"
-     id="white stripe" />
-  <rect
-     style="fill:#00966E"
-     x="0"
-     y="100"
-     width="500"
-     height="100"
-     id="green Stripe" />
-  <rect
-     style="fill:#D62612"
-     x="0"
-     y="200"
-     width="500"
-     height="100"
-     id="red Stripe" />
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<svg id="svg626" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="512" width="512" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata3008">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="flag" fill-rule="evenodd" transform="scale(5.6889 8.5333)" stroke-width="1pt">
+  <rect id="rect629" height="20" width="90" y="40" x="0" fill="#de2110"/>
+  <rect id="rect631" height="20" width="90" y="0" x="0" fill="#fff"/>
+  <rect id="rect632" height="20" width="90" y="20" x="0" fill="#319400"/>
+ </g>
 </svg>

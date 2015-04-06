@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   version="1.0"
-   width="1200"
-   height="600"
-   viewBox="0 -300 1200 600"
-   id="svg2">
-  <defs
-     id="defs21" />
-  <rect
-     width="1200"
-     height="600"
-     x="0"
-     y="-300"
-     style="fill:#0092c7;fill-opacity:1"
-     id="blue_stripe" />
-  <rect
-     width="1200"
-     height="200"
-     x="0"
-     y="-100"
-     style="fill:#ea0437;fill-opacity:1"
-     id="red_stripe" />
-  <rect
-     width="1200"
-     height="200"
-     x="0"
-     y="100"
-     style="fill:#00ae68;fill-opacity:1"
-     id="green_stripe" />
-  <circle
-     cx="560"
-     cy="0"
-     r="84"
-     style="fill:#ffffff"
-     id="white_circle" />
-  <circle
-     cx="582"
-     cy="0"
-     r="70"
-     style="fill:#ea0437;fill-opacity:1"
-     id="red_circle" />
-  <path
-     d="M 70.255954,-339.97293 L 48.485805,-349.82516 L 40.104505,-327.4475 L 31.677263,-349.8079 L 9.9273944,-339.91098 L 19.779625,-361.68113 L -2.5980343,-370.06243 L 19.762365,-378.48967 L 9.8654446,-400.23954 L 31.635594,-390.38731 L 40.016894,-412.76497 L 48.444136,-390.40457 L 70.194004,-400.30149 L 60.341774,-378.53134 L 82.719433,-370.15004 L 60.359034,-361.7228 L 70.255954,-339.97293 z "
-     transform="matrix(1.0548817,1.8411178e-3,-1.8411178e-3,1.0548817,602.05929,390.34455)"
-     style="fill:#ffffff;fill-opacity:1"
-     id="path4162" />
+<!-- Created with Sodipodi ("http://www.sodipodi.com/") -->
+<!-- /Creative Commons Public Domain -->
+<!--
+<rdf:RDF xmlns="http://web.resource.org/cc/"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<Work rdf:about="">
+    <dc:title>New Zealand, Australia, United Kingdom, United States, 
+Bosnia and Herzegovina, Azerbaijan, Armenia, Bahamas, Belgium, Benin, 
+Bulgaria, Estonia, Finland, Gabon, Gambia, Germany, Greece, Greenland, 
+Guinea, Honduras, Israel, Jamaica, Jordan, and Romania Flags</dc:title>
+    <dc:rights><Agent>
+       <dc:title>Daniel McRae</dc:title>
+    </Agent></dc:rights>
+    <license rdf:resource="http://web.resource.org/cc/PublicDomain" />
+</Work>
+
+<License rdf:about="http://web.resource.org/cc/PublicDomain">
+    <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+    <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+    <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+</License>
+</rdf:RDF>
+-->
+<svg id="svg618" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="512" width="512" version="1.0" y="0" x="0" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata3211">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g id="flag" stroke-width="1pt">
+  <g id="g646" fill-rule="evenodd" transform="matrix(4.2667 0 0 8.5333 0 -.00002)">
+   <rect id="rect622" height="20" width="120" y="20" x="0" fill="#c33"/>
+   <rect id="rect621" height="20" width="120" y="0" x="0" fill="#09c"/>
+   <rect id="rect623" height="20" width="120" y="40" x="0" fill="#093"/>
+  </g>
+  <g id="g575" transform="matrix(8.3333 0 0 8.3333 -238.75 6.1292)">
+   <g id="g638">
+    <path id="path637" fill="#fff" d="m66 30c0.004 4.968-4.0248 9-8.9928 9-4.968 0.008-9.003-4.018-9.007-8.986-0.012-4.968 4.01-9.006 8.978-9.014 4.968-0.0158 9.0096 4.0033 9.0215 8.9713v0.0287z"/>
+    <path id="path636" fill="#c33" d="m66.5 30c0.0033 4.0848-3.3093 7.4-7.3941 7.4-4.0848 0.0065-7.4026-3.3034-7.4059-7.3882-0.0098-4.0848 3.2975-7.4053 7.3823-7.4118 4.0848-0.013 7.4079 3.2916 7.4177 7.3764v0.0236z"/>
+   </g>
+   <polygon id="polygon574" fill-rule="evenodd" points="63.464 33.536 64.69 30.957 62 30 64.69 29.043 63.464 26.464 66.043 27.69 67 25 67 25 67.957 27.69 70.536 26.464 69.31 29.043 72 30 69.31 30.957 70.536 33.536 67.957 32.31 67 35 66.043 32.31" fill="#fff"/>
+  </g>
+ </g>
 </svg>
