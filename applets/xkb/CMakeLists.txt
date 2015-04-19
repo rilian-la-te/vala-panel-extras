@@ -39,6 +39,6 @@ add_executable (vala-panel-extras-${PLUGIN_NAME}
 target_link_libraries (vala-panel-extras-${PLUGIN_NAME} ${LIBS} internal)
 
 # Install plugin stuffs
-install(TARGETS vala-panel-extras-${PLUGIN_NAME} RUNTIME DESTINATION bin)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.valapanel.${PLUGIN_NAME}.desktop DESTINATION share/applications)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/icons DESTINATION share/vala-panel-extras/${PLUGIN_NAME})
+install(TARGETS vala-panel-extras-${PLUGIN_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.valapanel.${PLUGIN_NAME}.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/icons DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/vala-panel-extras/${PLUGIN_NAME})
