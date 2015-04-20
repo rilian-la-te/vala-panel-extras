@@ -1,0 +1,10 @@
+<schemalist>
+  <schema id="org.valapanel.gtop" path="/org/valapanel/extras/gtop/">
+    <key name="network-interface" type="s">
+      <default>'all'</default>
+    </key>
+    <key name="reload" type="b">
+      <default>false</default>
+    </key>
+  </schema>
+</schemalist>

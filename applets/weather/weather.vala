@@ -137,7 +137,10 @@ namespace Weather
                     });
                     dbusmenu.prepend_item(location_items[i]);
                 }
-                info.location = locations[current_location];
+                if (location_items.length > 0)
+                    info.location = locations[current_location];
+                else
+                    info.location = GWeather.Location.get_world();
                 info.abort();
                 info.update();
                 dbusmenu.layout_updated(layout_revision++,0);
