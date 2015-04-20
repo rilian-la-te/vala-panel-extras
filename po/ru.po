@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lxpanel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-21 01:10+0600\n"
-"PO-Revision-Date: 2015-04-21 01:13+0600\n"
+"POT-Creation-Date: 2015-04-21 01:25+0600\n"
+"PO-Revision-Date: 2015-04-21 01:27+0600\n"
 "Last-Translator: Andriy Grytsenko <andrej@rep.kiev.ua>\n"
 "Language-Team: Russian <hsh@runtu.org>\n"
 "Language: ru\n"
@@ -294,7 +294,7 @@ msgstr ""
 "Отдача: %s\n"
 "Загрузка: %s"
 
-#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:236
+#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:261
 msgid "Vala Panel Netload Applet"
 msgstr "Апплет загрузки сети Vala Panel"
 
@@ -306,27 +306,95 @@ msgstr "Выбрать сетевой интерфейс"
 msgid "Reload network interfaces"
 msgstr "Перезагрузить сетевой интерфейс"
 
-#: ../applets/gtop/gtop.vala:200
+#: ../applets/gtop/gtop.vala:96
+msgid "b"
+msgstr "б"
+
+#: ../applets/gtop/gtop.vala:97 ../applets/gtop/gtop.vala:98
+msgid "B"
+msgstr "Б"
+
+#: ../applets/gtop/gtop.vala:103
+msgid "kb"
+msgstr "Кбит"
+
+#: ../applets/gtop/gtop.vala:104
+msgid "kB"
+msgstr "КБ"
+
+#: ../applets/gtop/gtop.vala:105
+msgid "KiB"
+msgstr "КиБ"
+
+#: ../applets/gtop/gtop.vala:110
+msgid "Mb"
+msgstr "Мбит"
+
+#: ../applets/gtop/gtop.vala:111
+msgid "MB"
+msgstr "МБ"
+
+#: ../applets/gtop/gtop.vala:112
+msgid "MiB"
+msgstr "МиБ"
+
+#: ../applets/gtop/gtop.vala:117
+msgid "Gb"
+msgstr "Гбит"
+
+#: ../applets/gtop/gtop.vala:118
+msgid "GB"
+msgstr "ГБ"
+
+#: ../applets/gtop/gtop.vala:119
+msgid "GiB"
+msgstr "ГиБ"
+
+#: ../applets/gtop/gtop.vala:124
+msgid "Tb"
+msgstr "Тбит"
+
+#: ../applets/gtop/gtop.vala:125
+msgid "TB"
+msgstr "ТБ"
+
+#: ../applets/gtop/gtop.vala:126
+msgid "TiB"
+msgstr "ТиБ"
+
+#: ../applets/gtop/gtop.vala:131
+msgid "Pb"
+msgstr "Пбит"
+
+#: ../applets/gtop/gtop.vala:132
+msgid "PB"
+msgstr "ПБ"
+
+#: ../applets/gtop/gtop.vala:133
+msgid "PiB"
+msgstr "ПиБ"
+
+#: ../applets/gtop/gtop.vala:225
 msgid "All"
 msgstr "Все"
 
-#: ../applets/gtop/gtop.vala:212
+#: ../applets/gtop/gtop.vala:237
 msgid "Netload Applet"
 msgstr "Апплет загрузки сети"
 
-#: ../applets/gtop/gtop.vala:219
+#: ../applets/gtop/gtop.vala:244
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
-#: ../applets/gtop/gtop.vala:226
+#: ../applets/gtop/gtop.vala:251
 msgid "Down"
 msgstr "Загрузка"
 
-#: ../applets/gtop/gtop.vala:230
+#: ../applets/gtop/gtop.vala:255
 msgid "Up"
 msgstr "Отдача"
 
-#: ../applets/gtop/gtop.vala:237
+#: ../applets/gtop/gtop.vala:262
 msgid "Simple LibGTop based network indicator."
 msgstr "Простой индикатор загрузки сети на libgtop."
 

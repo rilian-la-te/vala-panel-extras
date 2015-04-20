@@ -77,38 +77,63 @@ public class NetloadIconExporter : ItemExporter
         dlg.icon_name = "network-wired";
         return dlg;
     }
-    private string format_net_label(uint64 data, bool padding)
+    private string format_net_label(uint64 bytes, bool padding, bool less_kilo = true, int show_as = 0, string in_begin = "")
     {
-        string str;
-        /*if(data < 1000)
-        {
-            string = g_strdup_printf("%d B/s", data);
-        }
-        else*/ if(data < 1000000)  //should be < 1 MiB and not 1 MB, but this keeps width smaller
-            str = "%.1lf KiB/s".printf(data/1024.0);
-        else
-            str = "%.2lf MiB/s".printf(data/1048576.0);
-    //will someone have 1 gb/s ? maybe...
-//~         if(padding)
-//~         {
-//~             //render string and get its pixel width
-//~             int width = 0;
-//~             int maxWidth = 12;   //max width for label in pixels
-//~             //TODO: should be determined from current panel font type and size
-//~             int spaceWidth = 4;  //width of one space char in pixels,
-//~             Pango.Context context = this.get_pango_context();
-//~             Pango.Layout layout = new Pango.Layout(context);
-//~             layout.set_text(str);
-//~             layout.get_pixel_size(out width, null);
-//~             // frees the layout object, do not use after this point
-//~             //push max size up as needed
-//~             if (width > maxWidth) maxWidth = width + spaceWidth;
-//~             //fill up with spaces
-//~             str = "%*s%s".printf((int)((maxWidth-width)/spaceWidth), " ", str);
-//~         }
-        return str;
-    }
+        string format;
+        string unit;
+        uint64 kilo; /* no really a kilo : a kilo or kibi */
 
+        if (show_as == 2) { //Bits
+            bytes *= 8;
+            kilo = 1000;
+        } else if (show_as == 1) //Decimal
+            kilo = 1000;
+          else //Binary
+            kilo = 1024;
+
+        if (less_kilo && (bytes < kilo)) {
+            format = "%s%.0lf %s";
+                if (show_as == 2)      unit = _("b");
+                else if (show_as == 1) unit = _("B");
+                else                   unit = _("B");
+
+        } else if (bytes < (kilo * kilo)) {
+            format = (bytes < (100 * kilo)) ? "%s%.1f %s" : "%s%.0f %s";
+            bytes /= kilo;
+                if (show_as == 2)      unit = _("kb");
+                else if (show_as == 1) unit = _("kB");
+                else                   unit = _("KiB");
+
+        } else  if (bytes < (kilo * kilo * kilo)) {
+            format = "%s%.1lf %s";
+            bytes /= kilo * kilo;
+                if (show_as == 2)      unit = _("Mb");
+                else if (show_as == 1) unit = _("MB");
+                else                   unit = _("MiB");
+
+        } else  if (bytes < (kilo * kilo * kilo * kilo)) {
+            format = "%s%.3lf %s";
+            bytes /= kilo * kilo * kilo;
+                if (show_as == 2)      unit = _("Gb");
+                else if (show_as == 1) unit = _("GB");
+                else                   unit = _("GiB");
+
+        } else  if (bytes < (kilo * kilo * kilo * kilo * kilo)) {
+            format = "%s%.3lf %s";
+            bytes /= kilo * kilo * kilo * kilo;
+                if (show_as == 2)      unit = _("Tb");
+                else if (show_as == 1) unit = _("TB");
+                else                   unit = _("TiB");
+
+        } else {
+            format = "%s%.3f %s";
+            bytes /= kilo * kilo * kilo * kilo * kilo;
+                if (show_as == 2)      unit = _("Pb");
+                else if (show_as == 1) unit = _("PB");
+                else                   unit = _("PiB");
+        }
+        return  format.printf(in_begin, bytes, unit);
+    }
     private void get_net(ref uint64[] traffic)
     {
         glibtop_netload netload;
