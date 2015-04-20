@@ -28,6 +28,15 @@ public class NetloadIconExporter : ItemExporter
     private ServerItem down_item;
     private ServerItem all_item;
     private int period = 1;
+    private void set_invalid_icon()
+    {
+        this.icon_name = "dialog-error";
+        var tooltip = ToolTip();
+        tooltip.icon_name = "dialog-error";
+        tooltip.title = _("No network connection");
+        tooltip.description = _("or no location.");
+        this.tool_tip = tooltip;
+    }
     void update_display()
     {
         //get sum of up and down net traffic and separate values
@@ -63,7 +72,8 @@ public class NetloadIconExporter : ItemExporter
     {
         var dlg = Configurator.generic_config_dlg(_("Vala Panel Netload Applet"),
                                                     this.settings,
-                                                    _("Select network interface"), IFACE, GenericConfigType.STR);
+                                                    _("Select network interface"), IFACE, GenericConfigType.STR,
+                                                    _("Reload network interfaces"), "reload", GenericConfigType.BOOL);
         dlg.icon_name = "network-wired";
         return dlg;
     }
@@ -201,11 +211,13 @@ public class NetloadIconExporter : ItemExporter
         this.id = "vala-panel-extras-gtop";
         this.title = _("Netload Applet");
         this.category = Category.HARDWARE;
+        set_invalid_icon();
         var sep = new ServerItem();
         sep.set_variant_property("type",new Variant.string("separator"));
         dbusmenu.prepend_item(sep);
         ifaces_parent = new ServerItem();
         ifaces_parent.set_variant_property("label",new Variant.string(_("Interfaces")));
+        ifaces_parent.set_variant_property("children-display",new Variant.string("submenu"));
         dbusmenu.prepend_item(ifaces_parent);
         sep = new ServerItem();
         sep.set_variant_property("type",new Variant.string("separator"));
@@ -213,11 +225,11 @@ public class NetloadIconExporter : ItemExporter
         down_item = new ServerItem();
         down_item.set_variant_property("label",new Variant.string(_("Down")));
         down_item.set_variant_property("icon-name",new Variant.string("network-receive-symbolic"));
-        dbusmenu.append_item(down_item);
+        dbusmenu.prepend_item(down_item);
         up_item = new ServerItem();
         up_item.set_variant_property("label",new Variant.string(_("Up")));
         up_item.set_variant_property("icon-name",new Variant.string("network-transmit-symbolic"));
-        dbusmenu.append_item(up_item);
+        dbusmenu.prepend_item(up_item);
         this.notify["app"].connect(()=>{
             app.about.logo_icon_name = "network-wired";
             app.about.icon_name = "network-wired";
@@ -227,6 +239,7 @@ public class NetloadIconExporter : ItemExporter
             this.settings.bind(IFACE, this, IFACE, SettingsBindFlags.GET);
             app.preferences = create_preferences_dialog;
             add_netifs();
+            update_display();
             this.notify[IFACE].connect(()=>{
                 for(var i = 0; i< ifaces.length; i++)
                     ifaces[i].set_variant_property("toggle-state",new Variant.int32((int)(network_interface == interfaces[i])));
@@ -239,6 +252,10 @@ public class NetloadIconExporter : ItemExporter
                 if (reload)
                     add_netifs();
                 settings.set_boolean("reload",false);
+            });
+            Timeout.add_seconds(period,()=>{
+                update_display();
+                return Source.CONTINUE;
             });
         });
     }
