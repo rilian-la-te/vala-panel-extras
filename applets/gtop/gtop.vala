@@ -7,7 +7,7 @@ public static int main(string[] args)
 {
     Gtk.init(ref args);
     var icon = new NetloadIconExporter();
-    var app = new App("network-wired",icon);
+    var app = new App("gtop",icon);
     icon.app = app;
     return app.run(args);
 }
