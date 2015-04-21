@@ -1294,7 +1294,7 @@ namespace GTop {
     public static void glibtop_get_msg_limits (GTop.glibtop_msg_limits buf);
     [CCode (cheader_filename = "glibtop/netload.h", cname = "glibtop_get_netload")]
     public static void glibtop_get_netload (out GTop.glibtop_netload buf, string @interface);
-    [CCode (cheader_filename = "glibtop/netlist.h", cname = "glibtop_get_netlist", array_length = false)]
+    [CCode (cheader_filename = "glibtop/netlist.h", cname = "glibtop_get_netlist", array_length = false, array_null_terminated = true)]
     public static string[] glibtop_get_netlist (out GTop.glibtop_netlist buf);
     [CCode (cheader_filename = "glibtop.h", cname = "glibtop_get_ppp")]
     public static void glibtop_get_ppp (out GTop.glibtop_ppp buf, ushort device);

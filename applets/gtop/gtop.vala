@@ -209,21 +209,23 @@ public class NetloadIconExporter : ItemExporter
         var removed = new Variant.array(new VariantType("(ias)"),items);
         dbusmenu.items_properties_updated(properties,removed);
     }
-    private void if_signal_select(string name)
-    {
-        network_interface = name;
-    }
     private void update_ifaces()
     {
         /*Return all properties instead of requested*/
         Variant[] items = {};
         foreach(var item in ifaces)
         {
+            if (item == null)
+                continue;
             var builder = new VariantBuilder(new VariantType("(ia{sv})"));
             builder.add("i",item.id);
             builder.add_value(item.serialize_properties());
             items += builder.end();
         }
+        var builder = new VariantBuilder(new VariantType("(ia{sv})"));
+        builder.add("i",all_item.id);
+        builder.add_value(all_item.serialize_properties());
+        items += builder.end();
         var properties = new Variant.array(new VariantType("(ia{sv})"),items);
         items = {};
         var removed = new Variant.array(new VariantType("(ias)"),items);
@@ -236,17 +238,20 @@ public class NetloadIconExporter : ItemExporter
         interfaces = glibtop_get_netlist(out netlist);
         foreach(var item in ifaces)
             dbusmenu.remove_item(item.id);
+        if (all_item != null)
+            dbusmenu.remove_item(all_item.id);
         ifaces = new ServerItem[netlist.number];
         for(int i = 0; i < netlist.number; i++)
         {
-            if (strcmp("lo", interfaces[i]) == 0)
+            var interface_str = interfaces[i];
+            if ("lo" == interface_str)
                 continue;
             ifaces[i] = new ServerItem();
-            ifaces[i].set_variant_property("label",new Variant.string(interfaces[i]));
+            ifaces[i].set_variant_property("label",new Variant.string(interface_str));
             ifaces[i].set_variant_property("toggle-type","radio");
-            ifaces[i].set_variant_property("toggle-state",new Variant.int32((int)(interfaces[i] == network_interface)));
+            ifaces[i].set_variant_property("toggle-state",new Variant.int32((int)(interface_str == network_interface)));
             ifaces[i].activated.connect(()=>{
-                if_signal_select(interfaces[i]);
+                settings.set_string(IFACE,interface_str);
             });
             dbusmenu.append_item(ifaces[i],ifaces_parent.id);
         }
@@ -256,7 +261,7 @@ public class NetloadIconExporter : ItemExporter
         all_item.set_variant_property("toggle-state",new Variant.int32((int)("all" == network_interface)));
         dbusmenu.append_item(all_item,ifaces_parent.id);
         all_item.activated.connect(()=>{
-            if_signal_select("all");
+            settings.set_string(IFACE,"all");
         });
         dbusmenu.layout_updated(layout_revision++,0);
     }
@@ -296,7 +301,8 @@ public class NetloadIconExporter : ItemExporter
             update_display();
             this.notify[IFACE].connect(()=>{
                 for(var i = 0; i< ifaces.length; i++)
-                    ifaces[i].set_variant_property("toggle-state",new Variant.int32((int)(network_interface == interfaces[i])));
+                    if (ifaces[i] != null)
+                        ifaces[i].set_variant_property("toggle-state",new Variant.int32((int)(network_interface == interfaces[i])));
                 all_item.set_variant_property("toggle-state",new Variant.int32((int)(network_interface == "all")));
                 first_run = true;
                 update_display();
