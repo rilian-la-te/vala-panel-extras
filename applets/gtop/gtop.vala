@@ -77,62 +77,91 @@ public class NetloadIconExporter : ItemExporter
         dlg.icon_name = "network-wired";
         return dlg;
     }
-    private string format_net_label(uint64 bytes, bool padding, bool less_kilo = true, int show_as = 0, string in_begin = "")
+    private enum ShowUnit
     {
-        string format;
+        BITS = 2,
+        DECIMAL = 1,
+        BINARY = 0
+    }
+    private enum Format //Vala cannot work with string format directly
+    {
+        INTEGER = 0,
+        ONE = 1,
+        THREE = 3
+    }
+    private string format_net_label(uint64 bytes, bool padding, bool less_kilo = true, ShowUnit show_as = ShowUnit.BINARY, string in_begin = "")
+    {
+        Format format;
         string unit;
         uint64 kilo; /* no really a kilo : a kilo or kibi */
 
-        if (show_as == 2) { //Bits
+        if (show_as == ShowUnit.BITS)
+        { //Bits
             bytes *= 8;
             kilo = 1000;
-        } else if (show_as == 1) //Decimal
+        }
+        else if (show_as == ShowUnit.DECIMAL) //Decimal
             kilo = 1000;
-          else //Binary
+        else //Binary
             kilo = 1024;
 
-        if (less_kilo && (bytes < kilo)) {
-            format = "%s%.0lf %s";
+        if (less_kilo && (bytes < kilo))
+        {
+            format = Format.INTEGER;
                 if (show_as == 2)      unit = _("b");
                 else if (show_as == 1) unit = _("B");
                 else                   unit = _("B");
 
-        } else if (bytes < (kilo * kilo)) {
-            format = (bytes < (100 * kilo)) ? "%s%.1f %s" : "%s%.0f %s";
+        }
+        else if (bytes < (kilo * kilo))
+        {
+            format = (bytes < (100 * kilo)) ? Format.ONE : Format.INTEGER;
             bytes /= kilo;
                 if (show_as == 2)      unit = _("kb");
                 else if (show_as == 1) unit = _("kB");
                 else                   unit = _("KiB");
 
-        } else  if (bytes < (kilo * kilo * kilo)) {
-            format = "%s%.1lf %s";
+        }
+        else if (bytes < (kilo * kilo * kilo))
+        {
+            format = Format.ONE;
             bytes /= kilo * kilo;
                 if (show_as == 2)      unit = _("Mb");
                 else if (show_as == 1) unit = _("MB");
                 else                   unit = _("MiB");
 
-        } else  if (bytes < (kilo * kilo * kilo * kilo)) {
-            format = "%s%.3lf %s";
+        }
+        else if (bytes < (kilo * kilo * kilo * kilo))
+        {
+            format = Format.THREE;
             bytes /= kilo * kilo * kilo;
                 if (show_as == 2)      unit = _("Gb");
                 else if (show_as == 1) unit = _("GB");
                 else                   unit = _("GiB");
 
-        } else  if (bytes < (kilo * kilo * kilo * kilo * kilo)) {
-            format = "%s%.3lf %s";
+        }
+        else if (bytes < (kilo * kilo * kilo * kilo * kilo))
+        {
+            format = Format.THREE;
             bytes /= kilo * kilo * kilo * kilo;
                 if (show_as == 2)      unit = _("Tb");
                 else if (show_as == 1) unit = _("TB");
                 else                   unit = _("TiB");
 
-        } else {
-            format = "%s%.3f %s";
+        }
+        else
+        {
+            format = Format.THREE;
             bytes /= kilo * kilo * kilo * kilo * kilo;
                 if (show_as == 2)      unit = _("Pb");
                 else if (show_as == 1) unit = _("PB");
                 else                   unit = _("PiB");
         }
-        return  format.printf(in_begin, bytes, unit);
+        if (format == Format.INTEGER)
+            return "%s%.0lf %s".printf(in_begin, bytes, unit);
+        else if (format == Format.ONE)
+            return "%s%.1lf %s".printf(in_begin, bytes, unit);
+        return "%s%.3lf %s".printf(in_begin, bytes, unit);
     }
     private void get_net(ref uint64[] traffic)
     {
