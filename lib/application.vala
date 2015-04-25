@@ -6,7 +6,7 @@ namespace StatusNotifier
 {
     public class App: GLib.Application
     {
-        private static const OptionEntry[] options =
+        protected static const OptionEntry[] options =
         {
             { "version", 'v', 0, OptionArg.NONE, null, N_("Print version and exit"), null },
             { null }
@@ -39,6 +39,7 @@ namespace StatusNotifier
             GLib.Intl.bind_textdomain_codeset(Config.GETTEXT_PACKAGE,"UTF-8");
             GLib.Intl.textdomain(Config.GETTEXT_PACKAGE);
             about = create_about_dialog();
+            add_main_option_entries(options);
         }
         protected override void startup()
         {
