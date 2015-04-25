@@ -1,0 +1,26 @@
+diff --git a/data/gschemas/CMakeLists.txt b/data/gschemas/CMakeLists.txt
+index 185562c..1c15898 100644
+--- a/data/gschemas/CMakeLists.txt
++++ b/data/gschemas/CMakeLists.txt
+@@ -1,16 +1,6 @@
+ include(GSettings)
+-if (ENABLE_ALSA)
+-    add_schema("org.valapanel.volume.gschema.xml")
+-endif()
+-if (ENABLE_WEATHER)
+-    add_schema("org.valapanel.weather.gschema.xml")
+-endif()
+-if (ENABLE_XKB)
+-    add_schema("org.valapanel.xkb.gschema.xml")
+-endif()
+-if (ENABLE_BATTERY)
+-    add_schema("org.valapanel.battery.gschema.xml")
+-endif()
+-if (ENABLE_LIBGTOP)
+-    add_schema("org.valapanel.gtop.gschema.xml")
+-endif()
++add_schema("org.valapanel.volume.gschema.xml")
++add_schema("org.valapanel.weather.gschema.xml")
++add_schema("org.valapanel.xkb.gschema.xml")
++add_schema("org.valapanel.battery.gschema.xml")
++add_schema("org.valapanel.gtop.gschema.xml")

@@ -1,0 +1,3 @@
+usr/bin/vala-panel-extras-battery
+usr/share/applications/org.valapanel.battery.desktop
+usr/share/glib-2.0/schemas/org.valapanel.battery.gschema.xml

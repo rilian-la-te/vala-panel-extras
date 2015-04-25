@@ -1,0 +1,3 @@
+usr/bin/vala-panel-extras-weather
+usr/share/applications/org.valapanel.weather.desktop
+usr/share/glib-2.0/schemas/org.valapanel.weather.gschema.xml
