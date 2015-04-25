@@ -6,6 +6,11 @@ namespace StatusNotifier
 {
     public class App: GLib.Application
     {
+        private static const OptionEntry[] options =
+        {
+            { "version", 'v', 0, OptionArg.NONE, null, N_("Print version and exit"), null },
+            { null }
+        };
         [CCode (has_target = true)]
         public delegate Gtk.Dialog CreatePreferencesDialog();
         private static const string NAME = "options";
