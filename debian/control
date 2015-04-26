@@ -4,7 +4,6 @@ Priority: optional
 Maintainer: Konstantin P. <ria.freelander@gmail.com>
 Build-Depends: debhelper (>= 9), cmake (>= 2.8.0), libgtk-3-dev (>= 3.12.0), libasound2-dev, libgtop2-dev, libxkbcommon-x11-dev, libx11-xcb-dev, libxcb-xkb-dev, libgweather-3-dev
 Standards-Version: 3.9.6
-Enhances: vala-panel
 Homepage: https://github.com/rilian-la-te/vala-panel-extras
 Vcs-Git: https://github.com/rilian-la-te/vala-panel-extras.git
 Vcs-Browser: https://github.com/rilian-la-te/vala-panel-extras
@@ -12,15 +11,16 @@ Vcs-Browser: https://github.com/rilian-la-te/vala-panel-extras
 Package: vala-panel-extras-common
 Architecture: all
 Depends: ${misc:Depends}
-Description: Vala Panel Extras is StatusNotifierItems (AppIndicators). This is common files.
+Description: This is Vala Panel Extras common files.
  Vala Panel Extras is small programs that can be used with
  any StatusNotifierWatcher. It may not be useful in Ubuntu,
  but very good in other environments
 
 Package: vala-panel-extras-volume
 Architecture: any
+Enhances: vala-panel
 Depends: ${shlibs:Depends}, ${misc:Depends}, vala-panel-extras-common
-Description: Vala Panel Extras is StatusNotifierItems (AppIndicators). This is volume applet
+Description: This is Vala Panel Extras volume applet.
  Vala Panel Extras is small programs that can be used with
  any StatusNotifierWatcher. It may not be useful in Ubuntu,
  but very good in other environments
@@ -37,6 +37,7 @@ Description: This is debug information for Vala Panel Extras (volume applet)
 
 Package: vala-panel-extras-xkb
 Architecture: any
+Enhances: vala-panel
 Depends: ${shlibs:Depends}, ${misc:Depends}, vala-panel-extras-common
 Recommends: vala-panel-extras-xkb-flags
 Description: This is Vala Panel Extras keyboard layout applet.
@@ -64,8 +65,9 @@ Description: This is debug information for Vala Panel Extras (keyboard layout ap
 
 Package: vala-panel-extras-gtop
 Architecture: any
+Enhances: vala-panel
 Depends: ${shlibs:Depends}, ${misc:Depends}, vala-panel-extras-common
-Description: Vala Panel Extras is StatusNotifierItems (AppIndicators). This is netspeed applet
+Description: This is Vala Panel Extras gtop applet.
  Vala Panel Extras is small programs that can be used with
  any StatusNotifierWatcher. It may not be useful in Ubuntu,
  but very good in other environments
@@ -82,8 +84,9 @@ Description: This is debug information for Vala Panel Extras (netspeed applet)
 
 Package: vala-panel-extras-weather
 Architecture: any
+Enhances: vala-panel
 Depends: ${shlibs:Depends}, ${misc:Depends}, vala-panel-extras-common
-Description: Vala Panel Extras is StatusNotifierItems (AppIndicators). This is weather applet
+Description: This is Vala Panel Extras weather applet.
  Vala Panel Extras is small programs that can be used with
  any StatusNotifierWatcher. It may not be useful in Ubuntu,
  but very good in other environments
@@ -100,8 +103,9 @@ Description: This is debug information for Vala Panel Extras (volume applet)
 
 Package: vala-panel-extras-battery
 Architecture: any
+Enhances: vala-panel
 Depends: ${shlibs:Depends}, ${misc:Depends}, vala-panel-extras-common, upower
-Description: Vala Panel Extras is StatusNotifierItems (AppIndicators). This is battery applet
+Description: This is Vala Panel Extras battery applet.
  Vala Panel Extras is small programs that can be used with
  any StatusNotifierWatcher. It may not be useful in Ubuntu,
  but very good in other environments
