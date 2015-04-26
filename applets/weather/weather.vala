@@ -117,6 +117,8 @@ namespace Weather
             {
                 var loc = settings.get_value(LOCATIONS);
                 current_location = settings.get_uint(CURRENT_LOC);
+                if (loc.n_children() < 1)
+                    return;
                 locations = new GWeather.Location[(int)loc.n_children()];
                 foreach(var item in location_items)
                     dbusmenu.remove_item(item.id);
@@ -137,10 +139,7 @@ namespace Weather
                     });
                     dbusmenu.prepend_item(location_items[i]);
                 }
-                if (location_items.length > 0)
-                    info.location = locations[current_location];
-                else
-                    info.location = GWeather.Location.get_world();
+                info.location = locations[current_location];
                 info.abort();
                 info.update();
                 dbusmenu.layout_updated(layout_revision++,0);
