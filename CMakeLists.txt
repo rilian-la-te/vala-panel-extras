@@ -4,7 +4,6 @@ project (vala-panel-extras)
 enable_testing ()
 include(GNUInstallDirs)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share/vala-panel")
 set (PKGDATADIR "${DATADIR}")
 #

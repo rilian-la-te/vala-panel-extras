@@ -1,7 +1,7 @@
 <schemalist>
   <schema id="org.valapanel.weather" path="/org/valapanel/extras/weather/">
     <key name="locations" type="av">
-      <default>[]</default>
+      <default>[<(uint32 2, <('Omsk', 'UNOO', true, [(0.95934931799731404, 1.2793263417118435)], [(0.95993108859688125, 1.2810716709638379)])>)>]</default>
     </key>
     <key name="current-location" type="u">
       <default>0</default>
