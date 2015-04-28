@@ -1,4 +1,10 @@
-vala-panel-extras (0.1.3.1-1) unstable; urgency=low
+vala-panel-extras (0.1.3.1-1ubuntu1) vivid; urgency=medium
+
+  * Fixed valac builddep
+
+ -- Konstantin <ria.freelander@gmail.com>  Sun, 26 Apr 2015 20:24:48 +0600
+
+vala-panel-extras (0.1.3.1-1) vivid; urgency=low
 
   * Initial release
 
