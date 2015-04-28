@@ -6,5 +6,8 @@
     <key name="reload" type="b">
       <default>false</default>
     </key>
+    <key name="config-tool" type="s">
+      <default>'network-admin --configure %i'</default>
+    </key>
   </schema>
 </schemalist>
