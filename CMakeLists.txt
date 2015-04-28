@@ -1,24 +1,14 @@
 cmake_minimum_required (VERSION 2.8)
 cmake_policy (VERSION 2.8)
-project (vala-panel-extras)
+project (vala-panel-extras C)
 enable_testing ()
 include(GNUInstallDirs)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share/vala-panel")
 set (PKGDATADIR "${DATADIR}")
-#
-# Make a version containing the current version from git.
-#
-
-include(GetGitRevisionDescription)
-git_describe(VERSION_LONG --tags)
-
-#parse the version information into pieces.
-string(REGEX REPLACE "^v*([0-9]+)\\..*" "\\1" VERSION_MAJOR "${VERSION_LONG}")
-string(REGEX REPLACE "^v*[0-9]+\\.([0-9]+).*" "\\1" VERSION_MINOR "${VERSION_LONG}")
-string(REGEX REPLACE "^v*[0-9]+\\.[0-9]+\\.([0-9]+).*" "\\1" VERSION_PATCH "${VERSION_LONG}")
-string(REGEX REPLACE "^v*[0-9]+\\.[0-9]+\\.[0-9]+(.*)" "\\1" VERSION_SHA1 "${VERSION_LONG}")
-set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
+include(GitVersion)
+determine_fallback_version(${CMAKE_SOURCE_DIR}/cmake)
+include(FallbackVersion)
 set (GETTEXT_PACKAGE "vala-panel-extras")
 set (RELEASE_NAME "Vala Panel extra items")
 set (PREFIX ${CMAKE_INSTALL_PREFIX})
@@ -26,12 +16,22 @@ set (DOLLAR "$")
 
 # Add 'make dist' command for creating release tarball
 set (CPACK_PACKAGE_VERSION ${VERSION})
+set (CPACK_PACKAGE_VERSION_MAJOR "${VERSION_MAJOR}")
+set (CPACK_PACKAGE_VERSION_MINOR "${VERSION_MINOR}")
+set (CPACK_PACKAGE_VERSION_PATCH "${VERSION_PATCH}")
+set (CPACK_PACKAGE_RELEASE "1")
 set (CPACK_SOURCE_GENERATOR "TGZ")
 set (CPACK_SOURCE_PACKAGE_FILE_NAME "${CMAKE_PROJECT_NAME}-${CPACK_PACKAGE_VERSION}")
-set (CPACK_SOURCE_IGNORE_FILES "/build/;/.gitignore;~$;${CPACK_SOURCE_IGNORE_FILES}")
+set (CPACK_SOURCE_IGNORE_FILES "/build/;/.git;/.gitignore;/.gitmodules;~$;${CPACK_SOURCE_IGNORE_FILES}")
 
 include (CPack)
 add_custom_target (dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
+#Add RPM build support
+include (UseRPMTools)
+if (RPMTools_FOUND)
+   RPMTools_ADD_RPM_TARGETS(package ${CMAKE_SOURCE_DIR}/rpm/vala-panel-extras.spec.in)
+endif(RPMTools_FOUND)
 
 # Configuration
 configure_file (${CMAKE_SOURCE_DIR}/vapi/config.vala.in ${CMAKE_BINARY_DIR}/vapi/config.vala)

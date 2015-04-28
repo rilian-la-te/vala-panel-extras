@@ -1,0 +1,179 @@
+Name: @CMAKE_PROJECT_NAME@
+Version: @CPACK_PACKAGE_VERSION@
+Release: @CPACK_PACKAGE_RELEASE@%{?dist}
+Group: User Interface/Desktops
+%if %{defined suse_version}
+License: LGPL-3.0+
+%else
+License: LGPLv3.0+
+%endif
+URL: https://github.com/rilian-la-te/%{name}
+Source: @CPACK_SOURCE_PACKAGE_FILE_NAME@.tar.gz
+Summary: Vala Panel Extras is applets for StatusNotifierWatchers
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: cmake >= 2.8.0
+BuildRequires: gettext
+BuildRequires: vala >= 0.24.0
+BuildRequires: pkgconfig(gtk+-3.0) >= 3.12.0
+BuildRequires: pkgconfig(alsa)
+BuildRequires: pkgconfig(gweather-3.0)
+BuildRequires: pkgconfig(libgtop-2.0)
+BuildRequires: pkgconfig(xkbcommon-x11)
+BuildRequires: pkgconfig(xcb-xkb)
+BuildRequires: pkgconfig(x11-xcb)
+BuildRequires: pkgconfig(gdk-x11-3.0)
+
+%description
+ Vala Panel Extras is small programs that can be used with
+ any StatusNotifierWatcher. It may not be useful in Ubuntu,
+ but very good in other environments.
+ It contains applets than was stripped from Vala Panel,
+ and necessary to install, if you wants it.
+
+
+%prep
+%setup -q 
+
+%build
+cmake . -DGSETTINGS_COMPILE=OFF -DCMAKE_INSTALL_PREFIX=%{_prefix} -DCMAKE_INSTALL_INCLUDEDIR=%{_includedir} -DCMAKE_INSTALL_LIBDIR=%{_libdir} -DCMAKE_INSTALL_SYSCONFDIR=%{_sysconfdir} -DCMAKE_INSTALL_DATAROOTDIR=%{_datarootdir} -DCMAKE_INSTALL_DATADIR=%{_datadir}
+make %{?_smp_mflags}
+
+%install 
+make install DESTDIR=%{buildroot}
+%find_lang %{name}
+
+%clean
+rm -rf %{buildroot}
+
+%package lang
+Group: User Interface/Desktops
+Summary: Translations for %{name}
+BuildArch: noarch
+Requires: %{name} = %{version}
+%description lang
+This is a translation files for %{name} package.
+%files lang -f %{name}.lang
+%defattr(644,root,root,755)
+
+%package xkb-flags
+Group: User Interface/Desktops
+Summary: Flags for %{name}
+BuildArch: noarch
+Requires: %{name}-xkb = %{version}
+%description xkb-flags
+This is a language flags for %{name}-xkb package.
+%files
+%defattr(644,root,root,755)
+%dir %{_datadir}/vala-panel-extras
+%dir %{_datadir}/vala-panel-extras/xkb
+%{_datadir}/vala-panel-extras/xkb/icons
+
+%package volume
+Group: User Interface/Desktops
+Summary: %{name} - volume plugin.
+%description volume
+ This is alsa-based volume plugin for StatusNotifierWatcher
+%files volume
+%defattr(644,root,root,755)
+%{_datadir}/glib-2.0/schemas/org.valapanel.volume.gschema.xml
+%{_bindir}/%{name}-volume
+%{_datadir}/applications/org.valapanel.volume.desktop
+
+%postun volume
+set -o monitor
+if [ $1 -eq 0 ] ; then
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+fi
+
+%posttrans volume
+set -o monitor
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+    
+%package xkb
+Group: User Interface/Desktops
+Summary: %{name} - keyboard layout plugin.
+%description xkb
+ This is xcb-based keyboard layout plugin for StatusNotifierWatcher
+%files xkb
+%defattr(644,root,root,755)
+%{_datadir}/glib-2.0/schemas/org.valapanel.xkb.gschema.xml
+%{_bindir}/%{name}-xkb
+%{_datadir}/applications/org.valapanel.xkb.desktop
+
+%postun xkb
+set -o monitor
+if [ $1 -eq 0 ] ; then
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+fi
+
+%posttrans xkb
+set -o monitor
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+    
+%package gtop
+Group: User Interface/Desktops
+Summary: %{name} - network speed plugin.
+%description gtop
+ This is libgtop-based network speed plugin for StatusNotifierWatcher
+%files gtop
+%defattr(644,root,root,755)
+%{_datadir}/glib-2.0/schemas/org.valapanel.gtop.gschema.xml
+%{_bindir}/%{name}-gtop
+%{_datadir}/applications/org.valapanel.gtop.desktop
+
+%postun gtop
+set -o monitor
+if [ $1 -eq 0 ] ; then
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+fi
+
+%posttrans gtop
+set -o monitor
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+
+%package weather
+Group: User Interface/Desktops
+Summary: %{name} - weather plugin.
+%description weather
+ This is gweather-based weather plugin for StatusNotifierWatcher
+%files weather
+%defattr(644,root,root,755)
+%{_datadir}/glib-2.0/schemas/org.valapanel.weather.gschema.xml
+%{_bindir}/%{name}-weather
+%{_datadir}/applications/org.valapanel.weather.desktop
+
+%postun weather
+set -o monitor
+if [ $1 -eq 0 ] ; then
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+fi
+
+%posttrans weather
+set -o monitor
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+
+%package battery
+Group: User Interface/Desktops
+Summary: %{name} - battery plugin.
+Requires: upower
+%description battery
+ This is upower-based battery plugin for StatusNotifierWatcher
+%files battery
+%defattr(644,root,root,755)
+%{_datadir}/glib-2.0/schemas/org.valapanel.battery.gschema.xml
+%{_bindir}/%{name}-battery
+%{_datadir}/applications/org.valapanel.battery.desktop
+
+%postun battery
+set -o monitor
+if [ $1 -eq 0 ] ; then
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+fi
+
+%posttrans battery
+set -o monitor
+    /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
+
+%changelog
+* Mon Apr 27 2015 Konstantin <ria.freelander@gmail.com> - @CPACK_PACKAGE_VERSION@
+  Generated by CMake UseRPMTools macros
