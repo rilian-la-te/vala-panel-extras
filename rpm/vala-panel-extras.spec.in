@@ -49,7 +49,7 @@ rm -rf %{buildroot}
 Group: User Interface/Desktops
 Summary: Translations for %{name}
 BuildArch: noarch
-Requires: %{name} = %{version}
+Requires: %{name}-item
 %description lang
 This is a translation files for %{name} package.
 %files lang -f %{name}.lang
@@ -62,7 +62,7 @@ BuildArch: noarch
 Requires: %{name}-xkb = %{version}
 %description xkb-flags
 This is a language flags for %{name}-xkb package.
-%files
+%files xkb-flags
 %defattr(644,root,root,755)
 %dir %{_datadir}/vala-panel-extras
 %dir %{_datadir}/vala-panel-extras/xkb
@@ -70,13 +70,14 @@ This is a language flags for %{name}-xkb package.
 
 %package volume
 Group: User Interface/Desktops
-Summary: %{name} - volume plugin.
+Summary: Vala Panel Extras - volume plugin
+Provides: %{name}-item
 %description volume
  This is alsa-based volume plugin for StatusNotifierWatcher
 %files volume
 %defattr(644,root,root,755)
 %{_datadir}/glib-2.0/schemas/org.valapanel.volume.gschema.xml
-%{_bindir}/%{name}-volume
+%attr(755,root,root) %{_bindir}/%{name}-volume
 %{_datadir}/applications/org.valapanel.volume.desktop
 
 %postun volume
@@ -91,13 +92,14 @@ set -o monitor
     
 %package xkb
 Group: User Interface/Desktops
-Summary: %{name} - keyboard layout plugin.
+Summary: Vala Panel Extras - keyboard layout plugin
+Provides: %{name}-item
 %description xkb
  This is xcb-based keyboard layout plugin for StatusNotifierWatcher
 %files xkb
 %defattr(644,root,root,755)
 %{_datadir}/glib-2.0/schemas/org.valapanel.xkb.gschema.xml
-%{_bindir}/%{name}-xkb
+%attr(755,root,root) %{_bindir}/%{name}-xkb
 %{_datadir}/applications/org.valapanel.xkb.desktop
 
 %postun xkb
@@ -112,13 +114,14 @@ set -o monitor
     
 %package gtop
 Group: User Interface/Desktops
-Summary: %{name} - network speed plugin.
+Summary: Vala Panel Extras - network speed plugin
+Provides: %{name}-item
 %description gtop
  This is libgtop-based network speed plugin for StatusNotifierWatcher
 %files gtop
 %defattr(644,root,root,755)
 %{_datadir}/glib-2.0/schemas/org.valapanel.gtop.gschema.xml
-%{_bindir}/%{name}-gtop
+%attr(755,root,root) %{_bindir}/%{name}-gtop
 %{_datadir}/applications/org.valapanel.gtop.desktop
 
 %postun gtop
@@ -133,13 +136,14 @@ set -o monitor
 
 %package weather
 Group: User Interface/Desktops
-Summary: %{name} - weather plugin.
+Summary: Vala Panel Extras - weather plugin
+Provides: %{name}-item
 %description weather
  This is gweather-based weather plugin for StatusNotifierWatcher
 %files weather
 %defattr(644,root,root,755)
 %{_datadir}/glib-2.0/schemas/org.valapanel.weather.gschema.xml
-%{_bindir}/%{name}-weather
+%attr(755,root,root) %{_bindir}/%{name}-weather
 %{_datadir}/applications/org.valapanel.weather.desktop
 
 %postun weather
@@ -154,14 +158,15 @@ set -o monitor
 
 %package battery
 Group: User Interface/Desktops
-Summary: %{name} - battery plugin.
+Summary: Vala Panel Extras - battery plugin
 Requires: upower
+Provides: %{name}-item
 %description battery
  This is upower-based battery plugin for StatusNotifierWatcher
 %files battery
 %defattr(644,root,root,755)
 %{_datadir}/glib-2.0/schemas/org.valapanel.battery.gschema.xml
-%{_bindir}/%{name}-battery
+%attr(755,root,root) %{_bindir}/%{name}-battery
 %{_datadir}/applications/org.valapanel.battery.desktop
 
 %postun battery
