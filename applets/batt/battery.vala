@@ -17,8 +17,18 @@ private class DeviceData
     internal ServerItem item;
     internal UPower.DeviceState prev_state;
     internal UPower.DeviceWarningLevel prev_level;
-    public DeviceData(ServerItem item)
+    internal UPower.Device dev;
+    internal string path;
+    public DeviceData (string path)
     {
+        this.path = path;
+        try {
+            dev = Bus.get_proxy_sync(BusType.SYSTEM,BatteryIconExporter.UPOWER_NAME,path);
+        } catch (Error e){stderr.printf("%s\n",e.message);}
+    }
+    public DeviceData.full(string path,ServerItem item)
+    {
+        this(path);
         this.item = item;
     }
 }
@@ -27,7 +37,7 @@ private class DeviceData
 public class BatteryIconExporter : ItemExporter
 {
     private static const string UPOWER_PATH = "/org/freedesktop/UPower";
-    private static const string UPOWER_NAME = "org.freedesktop.UPower";
+    internal static const string UPOWER_NAME = "org.freedesktop.UPower";
     private static const string NOTIFY = "use-notifications";
     private static const string PERCENT = "show-percentage";
     private static const string TIME = "show-time-remaining";
@@ -135,22 +145,19 @@ public class BatteryIconExporter : ItemExporter
         else
             x_ayatana_new_label("","");
     }
-    private ServerItem? create_device_item(ObjectPath devs)
+    private ServerItem? create_device_item(DeviceData data)
     {
-        UPower.Device? dev = null;
-        try {
-            dev = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,devs);
-        } catch (Error e){return null;}
+        var dev = data.dev;
         if (dev.device_type == UPower.DeviceType.LINE_POWER)
             return null;
         var item = new ServerItem();
         item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
         item.set_variant_property("icon-name",new Variant.string(dev.icon_name));
         item.set_variant_property("toggle-type",new Variant.string("radio"));
-        if (devs == display_device_path)
+        if (data.path == display_device_path)
             item.set_variant_property("toogle-state",new Variant.int32(1));
         item.activated.connect(()=>{
-            settings.set(PATH,"o",devs);
+            settings.set(PATH,"o",data.path);
         });
         return item;
     }
@@ -161,10 +168,11 @@ public class BatteryIconExporter : ItemExporter
         dbusmenu.prepend_item(sep);
         foreach (var devs in devices)
         {
-            var item = create_device_item(devs);
+            var data = new DeviceData(devs);
+            var item = create_device_item(data);
+            data.item = item;
             if (item == null)
                 continue;
-            var data = new DeviceData(item);
             devices_table.insert(devs,(owned)data);
             dbusmenu.prepend_item(item);
         }
@@ -181,8 +189,9 @@ public class BatteryIconExporter : ItemExporter
     }
     private void device_added_cb(ObjectPath devs)
     {
-        var item = create_device_item(devs);
-        var data = new DeviceData(item);
+        var data = new DeviceData(devs);
+        var item = create_device_item(data);
+        data.item = item;
         devices_table.insert(devs,(owned)data);
         dbusmenu.prepend_item(item);
         dbusmenu.layout_updated(layout_revision++,0);
@@ -210,7 +219,8 @@ public class BatteryIconExporter : ItemExporter
         {
             try {
                 unowned ServerItem item = data.item;
-                UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,path);
+                unowned UPower.Device dev = data.dev;
+                dev.refresh();
                 if (dev.device_type == UPower.DeviceType.LINE_POWER)
                     continue;
                 item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
