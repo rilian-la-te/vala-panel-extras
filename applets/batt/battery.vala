@@ -211,6 +211,8 @@ public class BatteryIconExporter : ItemExporter
             try {
                 unowned ServerItem item = data.item;
                 UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,path);
+                if (dev.device_type == UPower.DeviceType.LINE_POWER)
+                    continue;
                 item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
                 item.set_variant_property("icon-name",new Variant.string(dev.icon_name));
                 item.set_variant_property("toggle-type",new Variant.string("radio"));
