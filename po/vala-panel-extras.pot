@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-21 01:25+0600\n"
+"POT-Creation-Date: 2015-05-24 20:14+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,23 +46,27 @@ msgstr ""
 msgid "_OK"
 msgstr ""
 
-#: ../lib/application.vala:99
+#: ../lib/application.vala:11
+msgid "Print version and exit"
+msgstr ""
+
+#: ../lib/application.vala:101
 msgid "%s - Version %s\n"
 msgstr ""
 
-#: ../lib/application.vala:149
+#: ../lib/application.vala:151
 msgid "Vala Panel Extras"
 msgstr ""
 
-#: ../lib/application.vala:150
+#: ../lib/application.vala:152
 msgid "Status Notifier Items for Vala Panel"
 msgstr ""
 
-#: ../lib/application.vala:152
+#: ../lib/application.vala:154
 msgid "Vala Panel Website"
 msgstr ""
 
-#: ../lib/application.vala:154
+#: ../lib/application.vala:156
 msgid "Replace this string by your names, one name per line."
 msgstr ""
 
@@ -146,68 +150,108 @@ msgstr ""
 msgid "Simple ALSA playback volume indicator."
 msgstr ""
 
-#: ../applets/batt/battery.vala:43 ../applets/batt/battery.vala:76
+#: ../applets/batt/upower-iface.vala:34
+msgid "Unknown"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:36
+msgid "Line Power"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:38
+msgid "Battery"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:40
+msgid "UPS"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:42
+msgid "Monitor"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:44
+msgid "Mouse"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:46
+msgid "Keyboard"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:48
+msgid "PDA"
+msgstr ""
+
+#: ../applets/batt/upower-iface.vala:50
+msgid "Phone"
+msgstr ""
+
+#: ../applets/batt/battery.vala:52 ../applets/batt/battery.vala:107
 msgid "Battery is discharging. %3.0lf%% remaining."
 msgstr ""
 
-#: ../applets/batt/battery.vala:44 ../applets/batt/battery.vala:77
+#: ../applets/batt/battery.vala:53 ../applets/batt/battery.vala:108
 msgid "%02lli:%02lli remaining to empty."
 msgstr ""
 
-#: ../applets/batt/battery.vala:50 ../applets/batt/battery.vala:81
+#: ../applets/batt/battery.vala:56 ../applets/batt/battery.vala:114
 msgid "Battery is charging. %3.0lf%% charged."
 msgstr ""
 
-#: ../applets/batt/battery.vala:51 ../applets/batt/battery.vala:82
+#: ../applets/batt/battery.vala:57 ../applets/batt/battery.vala:115
 msgid "%02lli:%02lli remaining to full."
 msgstr ""
 
-#: ../applets/batt/battery.vala:56 ../applets/batt/battery.vala:85
+#: ../applets/batt/battery.vala:60 ../applets/batt/battery.vala:120
 msgid "Battery is charged."
 msgstr ""
 
-#: ../applets/batt/battery.vala:57 ../applets/batt/battery.vala:62
-#: ../applets/batt/battery.vala:86 ../applets/batt/battery.vala:91
+#: ../applets/batt/battery.vala:61 ../applets/batt/battery.vala:64
+#: ../applets/batt/battery.vala:121 ../applets/batt/battery.vala:126
 msgid "Battery percentage: %3.0lf%%."
 msgstr ""
 
-#: ../applets/batt/battery.vala:107
+#: ../applets/batt/battery.vala:77
 msgid "Battery is low!"
 msgstr ""
 
-#: ../applets/batt/battery.vala:110
+#: ../applets/batt/battery.vala:80
 msgid "Battery is very low!"
 msgstr ""
 
-#: ../applets/batt/battery.vala:114
+#: ../applets/batt/battery.vala:84
 msgid "Battery is critical!"
 msgstr ""
 
-#: ../applets/batt/battery.vala:131 ../applets/batt/battery.vala:149
+#: ../applets/batt/battery.vala:268 ../applets/batt/battery.vala:286
 msgid "Vala Panel Battery Applet"
 msgstr ""
 
-#: ../applets/batt/battery.vala:133
+#: ../applets/batt/battery.vala:270
 msgid "Use notifications"
 msgstr ""
 
-#: ../applets/batt/battery.vala:134
+#: ../applets/batt/battery.vala:271
 msgid "Show percentage"
 msgstr ""
 
-#: ../applets/batt/battery.vala:135
+#: ../applets/batt/battery.vala:272
 msgid "Show time remaining"
 msgstr ""
 
-#: ../applets/batt/battery.vala:136
+#: ../applets/batt/battery.vala:273
 msgid "Power manager command"
 msgstr ""
 
-#: ../applets/batt/battery.vala:143
+#: ../applets/batt/battery.vala:274
+msgid "Display device path"
+msgstr ""
+
+#: ../applets/batt/battery.vala:281
 msgid "Battery Applet"
 msgstr ""
 
-#: ../applets/batt/battery.vala:150
+#: ../applets/batt/battery.vala:287
 msgid "Simple UPower based battery indicator."
 msgstr ""
 
@@ -240,39 +284,39 @@ msgstr ""
 msgid "or no location."
 msgstr ""
 
-#: ../applets/weather/weather.vala:186
+#: ../applets/weather/weather.vala:185
 msgid "Conditions: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:187
+#: ../applets/weather/weather.vala:186
 msgid "Temperature: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:188
+#: ../applets/weather/weather.vala:187
 msgid "Humidity: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:189
+#: ../applets/weather/weather.vala:188
 msgid "Wind: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:190
+#: ../applets/weather/weather.vala:189
 msgid "Sunrise: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:191
+#: ../applets/weather/weather.vala:190
 msgid "Sunset: %s"
 msgstr ""
 
-#: ../applets/weather/weather.vala:192
+#: ../applets/weather/weather.vala:191
 msgid "Refresh... (%s)"
 msgstr ""
 
-#: ../applets/weather/weather.vala:198
+#: ../applets/weather/weather.vala:197
 msgid "Pressure:"
 msgstr ""
 
-#: ../applets/weather/weather.vala:199
+#: ../applets/weather/weather.vala:198
 msgid "Wind:"
 msgstr ""
 
@@ -290,7 +334,7 @@ msgid ""
 "Down: %s"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:261
+#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:295
 msgid "Vala Panel Netload Applet"
 msgstr ""
 
@@ -302,95 +346,95 @@ msgstr ""
 msgid "Reload network interfaces"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:96
+#: ../applets/gtop/gtop.vala:111
 msgid "b"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:97 ../applets/gtop/gtop.vala:98
+#: ../applets/gtop/gtop.vala:112 ../applets/gtop/gtop.vala:113
 msgid "B"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:103
+#: ../applets/gtop/gtop.vala:120
 msgid "kb"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:104
+#: ../applets/gtop/gtop.vala:121
 msgid "kB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:105
+#: ../applets/gtop/gtop.vala:122
 msgid "KiB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:110
+#: ../applets/gtop/gtop.vala:129
 msgid "Mb"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:111
+#: ../applets/gtop/gtop.vala:130
 msgid "MB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:112
+#: ../applets/gtop/gtop.vala:131
 msgid "MiB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:117
+#: ../applets/gtop/gtop.vala:138
 msgid "Gb"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:118
+#: ../applets/gtop/gtop.vala:139
 msgid "GB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:119
+#: ../applets/gtop/gtop.vala:140
 msgid "GiB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:124
+#: ../applets/gtop/gtop.vala:147
 msgid "Tb"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:125
+#: ../applets/gtop/gtop.vala:148
 msgid "TB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:126
+#: ../applets/gtop/gtop.vala:149
 msgid "TiB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:131
+#: ../applets/gtop/gtop.vala:156
 msgid "Pb"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:132
+#: ../applets/gtop/gtop.vala:157
 msgid "PB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:133
+#: ../applets/gtop/gtop.vala:158
 msgid "PiB"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:225
+#: ../applets/gtop/gtop.vala:259
 msgid "All"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:237
+#: ../applets/gtop/gtop.vala:271
 msgid "Netload Applet"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:244
+#: ../applets/gtop/gtop.vala:278
 msgid "Interfaces"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:251
+#: ../applets/gtop/gtop.vala:285
 msgid "Down"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:255
+#: ../applets/gtop/gtop.vala:289
 msgid "Up"
 msgstr ""
 
-#: ../applets/gtop/gtop.vala:262
+#: ../applets/gtop/gtop.vala:296
 msgid "Simple LibGTop based network indicator."
 msgstr ""
 

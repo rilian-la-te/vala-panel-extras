@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lxpanel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-21 01:25+0600\n"
-"PO-Revision-Date: 2015-04-21 01:27+0600\n"
+"POT-Creation-Date: 2015-05-24 20:14+0600\n"
+"PO-Revision-Date: 2015-05-24 20:16+0600\n"
 "Last-Translator: Andriy Grytsenko <andrej@rep.kiev.ua>\n"
 "Language-Team: Russian <hsh@runtu.org>\n"
 "Language: ru\n"
@@ -48,23 +48,27 @@ msgstr "О_тмена"
 msgid "_OK"
 msgstr "_ОК"
 
-#: ../lib/application.vala:99
+#: ../lib/application.vala:11
+msgid "Print version and exit"
+msgstr "Показать версию и выйти"
+
+#: ../lib/application.vala:101
 msgid "%s - Version %s\n"
 msgstr "%s - Версия %s\n"
 
-#: ../lib/application.vala:149
+#: ../lib/application.vala:151
 msgid "Vala Panel Extras"
 msgstr "Расширения Vala Panel"
 
-#: ../lib/application.vala:150
+#: ../lib/application.vala:152
 msgid "Status Notifier Items for Vala Panel"
 msgstr "Апплеты StatusNotifier для Vala Panel"
 
-#: ../lib/application.vala:152
+#: ../lib/application.vala:154
 msgid "Vala Panel Website"
 msgstr "Сайт Vala Panel"
 
-#: ../lib/application.vala:154
+#: ../lib/application.vala:156
 msgid "Replace this string by your names, one name per line."
 msgstr "Athor <ria.freelander@gmail.com>"
 
@@ -148,68 +152,108 @@ msgstr "Апплет громкости"
 msgid "Simple ALSA playback volume indicator."
 msgstr "Простой индикатор громкости проигрывания ALSA."
 
-#: ../applets/batt/battery.vala:43 ../applets/batt/battery.vala:76
+#: ../applets/batt/upower-iface.vala:34
+msgid "Unknown"
+msgstr "Неизвестен"
+
+#: ../applets/batt/upower-iface.vala:36
+msgid "Line Power"
+msgstr "Линейный вход"
+
+#: ../applets/batt/upower-iface.vala:38
+msgid "Battery"
+msgstr "Батарея"
+
+#: ../applets/batt/upower-iface.vala:40
+msgid "UPS"
+msgstr "UPS"
+
+#: ../applets/batt/upower-iface.vala:42
+msgid "Monitor"
+msgstr "Монитор"
+
+#: ../applets/batt/upower-iface.vala:44
+msgid "Mouse"
+msgstr "Мышь"
+
+#: ../applets/batt/upower-iface.vala:46
+msgid "Keyboard"
+msgstr "Клавиатура"
+
+#: ../applets/batt/upower-iface.vala:48
+msgid "PDA"
+msgstr "КПК"
+
+#: ../applets/batt/upower-iface.vala:50
+msgid "Phone"
+msgstr "Телефон"
+
+#: ../applets/batt/battery.vala:52 ../applets/batt/battery.vala:107
 msgid "Battery is discharging. %3.0lf%% remaining."
 msgstr "Батарея разряжается.Осталось %3.0lf%%."
 
-#: ../applets/batt/battery.vala:44 ../applets/batt/battery.vala:77
+#: ../applets/batt/battery.vala:53 ../applets/batt/battery.vala:108
 msgid "%02lli:%02lli remaining to empty."
 msgstr "До полной разрядки осталось %02lli:%02lli."
 
-#: ../applets/batt/battery.vala:50 ../applets/batt/battery.vala:81
+#: ../applets/batt/battery.vala:56 ../applets/batt/battery.vala:114
 msgid "Battery is charging. %3.0lf%% charged."
 msgstr "Battery is charging. %3.0lf%% charged."
 
-#: ../applets/batt/battery.vala:51 ../applets/batt/battery.vala:82
+#: ../applets/batt/battery.vala:57 ../applets/batt/battery.vala:115
 msgid "%02lli:%02lli remaining to full."
 msgstr "До полной зарядки осталось %02lli:%02lli."
 
-#: ../applets/batt/battery.vala:56 ../applets/batt/battery.vala:85
+#: ../applets/batt/battery.vala:60 ../applets/batt/battery.vala:120
 msgid "Battery is charged."
 msgstr "Батарея заряжена"
 
-#: ../applets/batt/battery.vala:57 ../applets/batt/battery.vala:62
-#: ../applets/batt/battery.vala:86 ../applets/batt/battery.vala:91
+#: ../applets/batt/battery.vala:61 ../applets/batt/battery.vala:64
+#: ../applets/batt/battery.vala:121 ../applets/batt/battery.vala:126
 msgid "Battery percentage: %3.0lf%%."
 msgstr "Батарея заряжена на %3.0lf%%."
 
-#: ../applets/batt/battery.vala:107
+#: ../applets/batt/battery.vala:77
 msgid "Battery is low!"
 msgstr "Низкий заряд батареи!"
 
-#: ../applets/batt/battery.vala:110
+#: ../applets/batt/battery.vala:80
 msgid "Battery is very low!"
 msgstr "Очень низкий заряд батареи!"
 
-#: ../applets/batt/battery.vala:114
+#: ../applets/batt/battery.vala:84
 msgid "Battery is critical!"
 msgstr "Критически низкий заряд батареи!"
 
-#: ../applets/batt/battery.vala:131 ../applets/batt/battery.vala:149
+#: ../applets/batt/battery.vala:268 ../applets/batt/battery.vala:286
 msgid "Vala Panel Battery Applet"
 msgstr "Апллет батареи Vala Panel"
 
-#: ../applets/batt/battery.vala:133
+#: ../applets/batt/battery.vala:270
 msgid "Use notifications"
 msgstr "Использовать уведомления"
 
-#: ../applets/batt/battery.vala:134
+#: ../applets/batt/battery.vala:271
 msgid "Show percentage"
 msgstr "Показывать процент"
 
-#: ../applets/batt/battery.vala:135
+#: ../applets/batt/battery.vala:272
 msgid "Show time remaining"
 msgstr "Показывать оставшееся время"
 
-#: ../applets/batt/battery.vala:136
+#: ../applets/batt/battery.vala:273
 msgid "Power manager command"
 msgstr "Команда запуска параметров электропитания"
 
-#: ../applets/batt/battery.vala:143
+#: ../applets/batt/battery.vala:274
+msgid "Display device path"
+msgstr "Путь к показываемому устройству"
+
+#: ../applets/batt/battery.vala:281
 msgid "Battery Applet"
 msgstr "Апплет батареи"
 
-#: ../applets/batt/battery.vala:150
+#: ../applets/batt/battery.vala:287
 msgid "Simple UPower based battery indicator."
 msgstr "Простой апплет батареи, основанный на UPower."
 
@@ -242,39 +286,39 @@ msgstr "Нет соединения"
 msgid "or no location."
 msgstr "или не задана местность"
 
-#: ../applets/weather/weather.vala:186
+#: ../applets/weather/weather.vala:185
 msgid "Conditions: %s"
 msgstr "На улице: %s"
 
-#: ../applets/weather/weather.vala:187
+#: ../applets/weather/weather.vala:186
 msgid "Temperature: %s"
 msgstr "Температура: %s"
 
-#: ../applets/weather/weather.vala:188
+#: ../applets/weather/weather.vala:187
 msgid "Humidity: %s"
 msgstr "Влажность: %s"
 
-#: ../applets/weather/weather.vala:189
+#: ../applets/weather/weather.vala:188
 msgid "Wind: %s"
 msgstr "Ветер: %s"
 
-#: ../applets/weather/weather.vala:190
+#: ../applets/weather/weather.vala:189
 msgid "Sunrise: %s"
 msgstr "Восход: %s"
 
-#: ../applets/weather/weather.vala:191
+#: ../applets/weather/weather.vala:190
 msgid "Sunset: %s"
 msgstr "Закат: %s"
 
-#: ../applets/weather/weather.vala:192
+#: ../applets/weather/weather.vala:191
 msgid "Refresh... (%s)"
 msgstr "Обновить... (%s)"
 
-#: ../applets/weather/weather.vala:198
+#: ../applets/weather/weather.vala:197
 msgid "Pressure:"
 msgstr "Давление:"
 
-#: ../applets/weather/weather.vala:199
+#: ../applets/weather/weather.vala:198
 msgid "Wind:"
 msgstr "Ветер:"
 
@@ -294,7 +338,7 @@ msgstr ""
 "Отдача: %s\n"
 "Загрузка: %s"
 
-#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:261
+#: ../applets/gtop/gtop.vala:73 ../applets/gtop/gtop.vala:295
 msgid "Vala Panel Netload Applet"
 msgstr "Апплет загрузки сети Vala Panel"
 
@@ -306,95 +350,95 @@ msgstr "Выбрать сетевой интерфейс"
 msgid "Reload network interfaces"
 msgstr "Перезагрузить сетевой интерфейс"
 
-#: ../applets/gtop/gtop.vala:96
+#: ../applets/gtop/gtop.vala:111
 msgid "b"
 msgstr "б"
 
-#: ../applets/gtop/gtop.vala:97 ../applets/gtop/gtop.vala:98
+#: ../applets/gtop/gtop.vala:112 ../applets/gtop/gtop.vala:113
 msgid "B"
 msgstr "Б"
 
-#: ../applets/gtop/gtop.vala:103
+#: ../applets/gtop/gtop.vala:120
 msgid "kb"
 msgstr "Кбит"
 
-#: ../applets/gtop/gtop.vala:104
+#: ../applets/gtop/gtop.vala:121
 msgid "kB"
 msgstr "КБ"
 
-#: ../applets/gtop/gtop.vala:105
+#: ../applets/gtop/gtop.vala:122
 msgid "KiB"
 msgstr "КиБ"
 
-#: ../applets/gtop/gtop.vala:110
+#: ../applets/gtop/gtop.vala:129
 msgid "Mb"
 msgstr "Мбит"
 
-#: ../applets/gtop/gtop.vala:111
+#: ../applets/gtop/gtop.vala:130
 msgid "MB"
 msgstr "МБ"
 
-#: ../applets/gtop/gtop.vala:112
+#: ../applets/gtop/gtop.vala:131
 msgid "MiB"
 msgstr "МиБ"
 
-#: ../applets/gtop/gtop.vala:117
+#: ../applets/gtop/gtop.vala:138
 msgid "Gb"
 msgstr "Гбит"
 
-#: ../applets/gtop/gtop.vala:118
+#: ../applets/gtop/gtop.vala:139
 msgid "GB"
 msgstr "ГБ"
 
-#: ../applets/gtop/gtop.vala:119
+#: ../applets/gtop/gtop.vala:140
 msgid "GiB"
 msgstr "ГиБ"
 
-#: ../applets/gtop/gtop.vala:124
+#: ../applets/gtop/gtop.vala:147
 msgid "Tb"
 msgstr "Тбит"
 
-#: ../applets/gtop/gtop.vala:125
+#: ../applets/gtop/gtop.vala:148
 msgid "TB"
 msgstr "ТБ"
 
-#: ../applets/gtop/gtop.vala:126
+#: ../applets/gtop/gtop.vala:149
 msgid "TiB"
 msgstr "ТиБ"
 
-#: ../applets/gtop/gtop.vala:131
+#: ../applets/gtop/gtop.vala:156
 msgid "Pb"
 msgstr "Пбит"
 
-#: ../applets/gtop/gtop.vala:132
+#: ../applets/gtop/gtop.vala:157
 msgid "PB"
 msgstr "ПБ"
 
-#: ../applets/gtop/gtop.vala:133
+#: ../applets/gtop/gtop.vala:158
 msgid "PiB"
 msgstr "ПиБ"
 
-#: ../applets/gtop/gtop.vala:225
+#: ../applets/gtop/gtop.vala:259
 msgid "All"
 msgstr "Все"
 
-#: ../applets/gtop/gtop.vala:237
+#: ../applets/gtop/gtop.vala:271
 msgid "Netload Applet"
 msgstr "Апплет загрузки сети"
 
-#: ../applets/gtop/gtop.vala:244
+#: ../applets/gtop/gtop.vala:278
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
-#: ../applets/gtop/gtop.vala:251
+#: ../applets/gtop/gtop.vala:285
 msgid "Down"
 msgstr "Загрузка"
 
-#: ../applets/gtop/gtop.vala:255
+#: ../applets/gtop/gtop.vala:289
 msgid "Up"
 msgstr "Отдача"
 
-#: ../applets/gtop/gtop.vala:262
+#: ../applets/gtop/gtop.vala:296
 msgid "Simple LibGTop based network indicator."
 msgstr "Простой индикатор загрузки сети на libgtop."
 
@@ -654,9 +698,6 @@ msgstr "network-wired"
 
 #~ msgid "Available plugins"
 #~ msgstr "Доступные модули"
-
-#~ msgid "Print version and exit"
-#~ msgstr "Показать версию и выйти"
 
 #~ msgid "Use specified profile"
 #~ msgstr "Использовать специфичный профиль"
@@ -1673,9 +1714,6 @@ msgstr "network-wired"
 
 #~ msgid "Monitor network status"
 #~ msgstr "Мониторинг статуса сети"
-
-#~ msgid "Unknown"
-#~ msgstr "Неизвестен"
 
 #~ msgid "Connection Properties"
 #~ msgstr "Параметры соединения"
