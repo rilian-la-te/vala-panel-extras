@@ -304,8 +304,6 @@ public class BatteryIconExporter : ItemExporter
         } catch (GLib.Error e){stderr.printf("%s\n",e.message);}
     }
     private UPower.Device display_device;
-    private UPower.DeviceWarningLevel prev_level;
-    private UPower.DeviceState prev_state;
     private UPower.Base bas;
     private HashTable<ObjectPath,DeviceData?> devices_table;
 }
