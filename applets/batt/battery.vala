@@ -11,6 +11,18 @@ public static int main(string[] args)
     return app.run(args);
 }
 
+[Compact]
+private class DeviceData
+{
+    internal ServerItem item;
+    internal UPower.DeviceState prev_state;
+    internal UPower.DeviceWarningLevel prev_level;
+    public DeviceData(ServerItem item)
+    {
+        this.item = item;
+    }
+}
+
 [DBus (name = "org.kde.StatusNotifierItem")]
 public class BatteryIconExporter : ItemExporter
 {
@@ -164,24 +176,26 @@ public class BatteryIconExporter : ItemExporter
             var item = create_device_item(devs);
             if (item == null)
                 continue;
-            devices_table.insert(devs,item);
+            var data = new DeviceData(item);
+            devices_table.insert(devs,(owned)data);
             dbusmenu.prepend_item(item);
         }
         dbusmenu.layout_updated(layout_revision++,0);
     }
     private void device_removed_cb(ObjectPath device)
     {
-        var item = devices_table.lookup(device);
-        if (item == null)
+        unowned DeviceData data = devices_table.lookup(device);
+        if (data.item == null)
             return;
-        dbusmenu.remove_item(item.id);
+        dbusmenu.remove_item(data.item.id);
         dbusmenu.layout_updated(layout_revision++,0);
         devices_table.remove(device);
     }
     private void device_added_cb(ObjectPath devs)
     {
         var item = create_device_item(devs);
-        devices_table.insert(devs,item);
+        var data = new DeviceData(item);
+        devices_table.insert(devs,(owned)data);
         dbusmenu.prepend_item(item);
         dbusmenu.layout_updated(layout_revision++,0);
     }
@@ -200,19 +214,32 @@ public class BatteryIconExporter : ItemExporter
     }
     private void update_menu_properties()
     {
-        HashTableIter<ObjectPath,ServerItem> iter = HashTableIter<ObjectPath,ServerItem>(devices_table);
+        HashTableIter<ObjectPath,DeviceData?> iter = HashTableIter<ObjectPath,DeviceData?>(devices_table);
         unowned ObjectPath path;
-        unowned ServerItem item;
+        unowned DeviceData data;
         Variant[] items = {};
-        while(iter.next(out path, out item))
+        while(iter.next(out path, out data))
         {
             try {
+                unowned ServerItem item = data.item;
                 UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,path);
                 item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
                 item.set_variant_property("icon-name",new Variant.string(dev.icon_name));
                 item.set_variant_property("toggle-type",new Variant.string("radio"));
                 if (path == display_device_path)
                     item.set_variant_property("toogle-state",new Variant.int32(1));
+                if (data.prev_state != dev.state)
+                {
+                    data.prev_state = dev.state;
+                    if (use_notifications && app.is_registered)
+                        create_status_notification();
+                }
+                if (data.prev_level != dev.warning_level)
+                {
+                    data.prev_level = dev.warning_level;
+                    if (use_notifications && app.is_registered)
+                        create_warning_notification();
+                }
                 var builder = new VariantBuilder(new VariantType("(ia{sv})"));
                 builder.add("i",item.id);
                 builder.add_value(item.serialize_properties());
@@ -265,7 +292,7 @@ public class BatteryIconExporter : ItemExporter
             this.settings.bind(COMMAND, this, COMMAND, SettingsBindFlags.GET);
             this.settings.bind(PATH, this, PATH, SettingsBindFlags.GET);
             app.preferences = create_preferences_dialog;
-            devices_table = new HashTable<ObjectPath,ServerItem> (str_hash,str_equal);
+            devices_table = new HashTable<ObjectPath,DeviceData?> (str_hash,str_equal);
             try {
                 bas = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,UPOWER_PATH);
                 ObjectPath[] devices;
@@ -292,5 +319,5 @@ public class BatteryIconExporter : ItemExporter
     private UPower.DeviceWarningLevel prev_level;
     private UPower.DeviceState prev_state;
     private UPower.Base bas;
-    private HashTable<ObjectPath,ServerItem> devices_table;
+    private HashTable<ObjectPath,DeviceData?> devices_table;
 }
