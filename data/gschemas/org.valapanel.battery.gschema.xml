@@ -1,5 +1,8 @@
 <schemalist>
   <schema id="org.valapanel.battery" path="/org/valapanel/extras/battery/">
+    <key name="display-device-path" type="o">
+      <default>'/'</default>
+    </key>
     <key name="pm-command" type="s">
       <default>'gnome-control-center power'</default>
     </key>

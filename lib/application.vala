@@ -15,14 +15,10 @@ namespace StatusNotifier
         public delegate Gtk.Dialog CreatePreferencesDialog();
         private static const string NAME = "options";
         private static const string PATH = "/org/vala-panel/";
-        public ItemExporter icon
-        {get; construct;}
-        public unowned CreatePreferencesDialog preferences
-        {get; set;}
-        public Gtk.AboutDialog? about
-        {get; private set;}
-        public string profile
-        {get; internal set construct; default = "default";}
+        public ItemExporter icon {get; construct;}
+        public unowned CreatePreferencesDialog preferences {get; set;}
+        public Gtk.AboutDialog? about {get; private set;}
+        public string profile {get; internal set construct; default = "default";}
         WatcherIface watcher;
         uint watched_name;
         public App(string name, ItemExporter icon)
@@ -142,7 +138,7 @@ namespace StatusNotifier
                     try{src.copy(dest,FileCopyFlags.BACKUP,null,null);}
                     catch(Error e){warning("Cannot init config: %s\n",e.message);}
                 }
-                var config_backend = GLib.keyfile_settings_backend_new(user_file,PATH,NAME);
+                var config_backend = new GLib.KeyfileSettingsBackend(user_file,PATH,NAME);
                 icon.settings = new GLib.Settings.with_backend_and_path(application_id,config_backend,PATH);
                 started = true;
             }

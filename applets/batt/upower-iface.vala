@@ -25,7 +25,33 @@ namespace UPower
         MOUSE = 5,
         KEYBOARD = 6,
         PDA = 7,
-        PHONE = 8
+        PHONE = 8;
+        public string to_string()
+        {
+            switch(this)
+            {
+                case UNKNOWN:
+                    return _("Unknown");
+                case LINE_POWER:
+                    return _("Line Power");
+                case BATTERY:
+                    return _("Battery");
+                case UPS:
+                    return _("UPS");
+                case MONITOR:
+                    return _("Monitor");
+                case MOUSE:
+                    return _("Mouse");
+                case KEYBOARD:
+                    return _("Keyboard");
+                case PDA:
+                    return _("PDA");
+                case PHONE:
+                    return _("Phone");
+                default:
+                    assert_not_reached();
+            }
+        }
     }
     [CCode (type_signature = "u")]
     public enum DeviceState
