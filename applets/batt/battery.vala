@@ -146,7 +146,7 @@ public class BatteryIconExporter : ItemExporter
         var item = new ServerItem();
         item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
         item.set_variant_property("icon-name",new Variant.string(dev.icon_name));
-        item.set_variant_property("toggle-type",new Variant.string("checkmark"));
+        item.set_variant_property("toggle-type",new Variant.string("radio"));
         if (devs == display_device_path)
             item.set_variant_property("toogle-state",new Variant.int32(1));
         item.activated.connect(()=>{
@@ -210,7 +210,7 @@ public class BatteryIconExporter : ItemExporter
                 UPower.Device dev = Bus.get_proxy_sync(BusType.SYSTEM,UPOWER_NAME,path);
                 item.set_variant_property("label",new Variant.string("%s%s (%s) - %0.0lf%%".printf(dev.vendor,dev.model,dev.device_type.to_string(),dev.percentage)));
                 item.set_variant_property("icon-name",new Variant.string(dev.icon_name));
-                item.set_variant_property("toggle-type",new Variant.string("checkmark"));
+                item.set_variant_property("toggle-type",new Variant.string("radio"));
                 if (path == display_device_path)
                     item.set_variant_property("toogle-state",new Variant.int32(1));
                 var builder = new VariantBuilder(new VariantType("(ia{sv})"));
