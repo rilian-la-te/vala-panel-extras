@@ -38,7 +38,7 @@ public class BatteryIconExporter : ItemExporter
     public bool show_time_remaining {get; internal set;}
     public string pm_command {get; internal set;}
     public ObjectPath display_device_path {get; internal set;}
-    private void create_status_notification(UPower.Device dev = display_device)
+    private void create_status_notification(UPower.Device dev)
     {
         var not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
         not.app_icon = dev.icon_name[0:dev.icon_name.last_index_of("-symbolic")];
@@ -67,7 +67,7 @@ public class BatteryIconExporter : ItemExporter
         }
         not.send();
     }
-    private void create_warning_notification(UPower.Device dev = display_device)
+    private void create_warning_notification(UPower.Device dev)
     {
         var not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
         not.app_icon = dev.icon_name[0:dev.icon_name.last_index_of("-symbolic")];
@@ -126,18 +126,6 @@ public class BatteryIconExporter : ItemExporter
                 tooltip.title = _("Battery percentage: %3.0lf%%.").printf(display_device.percentage);
                 tooltip.description = "";
                 break;
-        }
-        if (prev_state != display_device.state)
-        {
-            prev_state = display_device.state;
-            if (use_notifications && app.is_registered)
-                create_status_notification();
-        }
-        if (prev_level != display_device.warning_level)
-        {
-            prev_level = display_device.warning_level;
-            if (use_notifications && app.is_registered)
-                create_warning_notification();
         }
         this.tool_tip = tooltip;
         new_tool_tip();
@@ -232,13 +220,13 @@ public class BatteryIconExporter : ItemExporter
                 {
                     data.prev_state = dev.state;
                     if (use_notifications && app.is_registered)
-                        create_status_notification();
+                        create_status_notification(dev);
                 }
                 if (data.prev_level != dev.warning_level)
                 {
                     data.prev_level = dev.warning_level;
                     if (use_notifications && app.is_registered)
-                        create_warning_notification();
+                        create_warning_notification(dev);
                 }
                 var builder = new VariantBuilder(new VariantType("(ia{sv})"));
                 builder.add("i",item.id);
