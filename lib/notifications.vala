@@ -46,7 +46,7 @@ namespace Notifier
     }
     public class Notification : Object
     {
-        private Daemon daemon;
+        private static Daemon daemon;
         private HashTable<string,Variant?> hints;
         private Quark dbus_id;
         private string[] actions;
@@ -100,12 +100,15 @@ namespace Notifier
             get {return (Priority)hints.lookup("urgency").get_byte();}
             set {hints.insert("urgency",new Variant.byte((uint8)value));}
         }
+        static construct
+        {
+            daemon = get_daemon();
+        }
         construct
         {
             hints = new HashTable<string, Variant?> (str_hash, str_equal);
             this.transient = true;
             this.actions = {};
-            daemon = get_daemon();
             daemon.action_invoked.connect((id,name)=>{
                 if (id == dbus_id)
                     action_invoked(name);

@@ -303,7 +303,7 @@ public class BatteryIconExporter : ItemExporter
                 settings.changed[PATH].connect(on_path_cb);
                 bas.device_added.connect(device_added_cb);
                 bas.device_removed.connect(device_removed_cb);
-                Timeout.add(500,update_function);
+                Timeout.add(300,update_function);
             } catch (Error e) {stderr.printf("%s\n",e.message); app.quit();}
         });
     }
