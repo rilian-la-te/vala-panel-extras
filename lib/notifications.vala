@@ -48,12 +48,12 @@ namespace Notifier
     {
         private static Daemon daemon;
         private HashTable<string,Variant?> hints;
-        private Quark dbus_id;
         private string[] actions;
         public signal void action_invoked(string action_name);
         public string id {
             set {dbus_id = Quark.from_string(value);}
         }
+        public Quark dbus_id {get; private set; default = 0;}
         public string app_name {get; private set; default = "";}
         public string app_icon {get; set; default = "";}
         public string title {get; set; default = "";}
@@ -126,6 +126,10 @@ namespace Notifier
         public Notification.temporary()
         {
             this.dbus_id = 0;
+        }
+        public Notification.with_dbus_id(int dbus_id)
+        {
+            this.dbus_id = dbus_id;
         }
         public void send()
         {
