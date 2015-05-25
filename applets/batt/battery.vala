@@ -50,7 +50,6 @@ public class BatteryIconExporter : ItemExporter
     public ObjectPath display_device_path {get; internal set;}
     private void create_status_notification(UPower.Device dev)
     {
-        var not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
         not.app_icon = dev.icon_name[0:dev.icon_name.last_index_of("-symbolic")];
         var hours_empty = dev.time_to_empty/3600;
         var minutes_empty = dev.time_to_empty/60 - hours_empty * 60;
@@ -79,7 +78,6 @@ public class BatteryIconExporter : ItemExporter
     }
     private void create_warning_notification(UPower.Device dev)
     {
-        var not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
         not.app_icon = dev.icon_name[0:dev.icon_name.last_index_of("-symbolic")];
         switch (dev.warning_level)
         {
@@ -277,6 +275,7 @@ public class BatteryIconExporter : ItemExporter
     }
     public BatteryIconExporter()
     {
+        not = new Notifier.Notification.with_app_id("battery-applet",app.application_id);
         this.id = "vala-panel-extras-battery";
         this.title = _("Battery Applet");
         this.category = Category.HARDWARE;
@@ -318,4 +317,5 @@ public class BatteryIconExporter : ItemExporter
     private UPower.Device display_device;
     private UPower.Base bas;
     private HashTable<ObjectPath,DeviceData?> devices_table;
+    private Notifier.Notification not;
 }
