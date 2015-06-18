@@ -400,7 +400,7 @@ public class VolumeIconExporter : ItemExporter
         dbusmenu.prepend_item(mute_item);
         scale_item = new ServerItem();
         scale_item.set_variant_property("label",new Variant.string(_("Volume Scale")));
-        scale_item.set_variant_property("type",new Variant.string("slider"));
+        scale_item.set_variant_property("type",new Variant.string("scale"));
         scale_item.set_variant_property("icon-name",new Variant.string("audio-volume-high-symbolic"));
         scale_item.set_variant_property("x-valapanel-min-value",new Variant.double(0));
         scale_item.set_variant_property("x-valapanel-max-value",new Variant.double(100));
