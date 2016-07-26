@@ -18,17 +18,17 @@ namespace Notifier
         public abstract string[] get_capabilites() throws Error;
         public abstract void get_server_information(out string name, out string vendor,
                                                     out string version, out string specv) throws Error;
-        public abstract Quark notify(string app_name,
-                                    Quark id,
-                                    string app_icon,
-                                    string title,
-                                    string body,
-                                    string[] actions,
-                                    HashTable<string, Variant?> hints,
-                                    int expire_timeout) throws Error;
-        public abstract Quark close_notification(Quark id) throws Error;
-        public abstract signal void action_invoked(Quark id, string action_name);
-        public abstract signal void notification_closed(Quark id, CloseReason reason);
+        public abstract uint32 notify(string app_name,
+                                      uint32 id,
+                                      string app_icon,
+                                      string title,
+                                      string body,
+                                      string[] actions,
+                                      HashTable<string, Variant?> hints,
+                                      int expire_timeout) throws Error;
+        public abstract uint32 close_notification(uint32 id) throws Error;
+        public abstract signal void action_invoked(uint32 id, string action_name);
+        public abstract signal void notification_closed(uint32 id, CloseReason reason);
     }
     public Daemon? get_daemon()
     {
