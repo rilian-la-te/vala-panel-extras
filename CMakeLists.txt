@@ -51,12 +51,12 @@ add_definitions(-w) # Disable gcc warnings
 find_package (PkgConfig)
 
 pkg_check_modules (CORE REQUIRED
-  gtk+-3.0>=3.12
-  glib-2.0>=2.40
-  gio-2.0>=2.40
-  gio-unix-2.0>=2.40
-  gthread-2.0>=2.40
-  gmodule-2.0>=2.40)
+  gtk+-3.0>=3.16
+  glib-2.0>=2.44
+  gio-2.0>=2.44
+  gio-unix-2.0>=2.44
+  gthread-2.0>=2.44
+  gmodule-2.0>=2.44)
 
 set(CORE_PACKAGES
   gtk+-3.0
