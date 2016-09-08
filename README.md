@@ -1,4 +1,3 @@
-Development is suspended for year (I am in the army now)
 ---
 Vala Panel Extras
 ---
