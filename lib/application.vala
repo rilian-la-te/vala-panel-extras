@@ -6,15 +6,15 @@ namespace StatusNotifier
 {
     public class App: GLib.Application
     {
-        protected static const OptionEntry[] options =
+        protected const OptionEntry[] options =
         {
             { "version", 'v', 0, OptionArg.NONE, null, N_("Print version and exit"), null },
             { null }
         };
         [CCode (has_target = true)]
         public delegate Gtk.Dialog CreatePreferencesDialog();
-        private static const string NAME = "options";
-        private static const string PATH = "/org/vala-panel/";
+        private const string NAME = "options";
+        private const string PATH = "/org/vala-panel/";
         public ItemExporter icon {get; construct;}
         public unowned CreatePreferencesDialog preferences {get; set;}
         public Gtk.AboutDialog? about {get; private set;}

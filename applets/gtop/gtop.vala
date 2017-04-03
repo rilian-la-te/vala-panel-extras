@@ -15,7 +15,7 @@ public static int main(string[] args)
 [DBus (name = "org.kde.StatusNotifierItem")]
 public class NetloadIconExporter : ItemExporter
 {
-    private static const string IFACE = "network-interface";
+    private const string IFACE = "network-interface";
     public string network_interface {get; internal set;}
     public bool reload {get; internal set;}
     private uint64 bytes_in_old;

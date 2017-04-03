@@ -16,10 +16,10 @@ namespace Weather
     [DBus (name = "org.kde.StatusNotifierItem")]
     public class WeatherIconExporter : ItemExporter
     {
-        internal static const string LOCATIONS = "locations";
-        internal static const string CURRENT_LOC = "current-location";
-        internal static const string UPDATE = "update-interval";
-        internal static const string SHOW_LABEL = "show-temperature";
+        internal const string LOCATIONS = "locations";
+        internal const string CURRENT_LOC = "current-location";
+        internal const string UPDATE = "update-interval";
+        internal const string SHOW_LABEL = "show-temperature";
         private uint update_source;
         internal GWeather.Location[] locations {get; set;}
         internal bool show_temperature {get; set;}
