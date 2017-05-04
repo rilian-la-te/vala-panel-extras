@@ -15,9 +15,9 @@ public static int main(string[] args)
 [DBus (name = "org.kde.StatusNotifierItem")]
 public class VolumeIconExporter : ItemExporter
 {
-    private static const string KEY_CHANNEL = "channel-id";
-    private static const string KEY_CARD_ID = "card-id";
-    private static const string KEY_MIXER = "mixer";
+    private const string KEY_CHANNEL = "channel-id";
+    private const string KEY_CARD_ID = "card-id";
+    private const string KEY_MIXER = "mixer";
     bool asound_find_element(string ename)
     {
         for (

@@ -36,13 +36,13 @@ private class DeviceData
 [DBus (name = "org.kde.StatusNotifierItem")]
 public class BatteryIconExporter : ItemExporter
 {
-    private static const string UPOWER_PATH = "/org/freedesktop/UPower";
-    internal static const string UPOWER_NAME = "org.freedesktop.UPower";
-    private static const string NOTIFY = "use-notifications";
-    private static const string PERCENT = "show-percentage";
-    private static const string TIME = "show-time-remaining";
-    private static const string COMMAND = "pm-command";
-    private static const string PATH = "display-device-path";
+    private const string UPOWER_PATH = "/org/freedesktop/UPower";
+    internal const string UPOWER_NAME = "org.freedesktop.UPower";
+    private const string NOTIFY = "use-notifications";
+    private const string PERCENT = "show-percentage";
+    private const string TIME = "show-time-remaining";
+    private const string COMMAND = "pm-command";
+    private const string PATH = "display-device-path";
     public bool use_notifications {get; internal set;}
     public bool show_percentage {get; internal set;}
     public bool show_time_remaining {get; internal set;}

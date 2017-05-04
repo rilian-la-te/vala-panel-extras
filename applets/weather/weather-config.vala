@@ -66,7 +66,11 @@ namespace Weather
             TreeIter sel_iter;
             if(location_selection.get_selected(null, out sel_iter))
             {
+#if VALA_0_36
+                location_list.remove(ref sel_iter);
+#else
                 location_list.remove(sel_iter);
+#endif
                 location_settings_updated();
             }
         }

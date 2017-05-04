@@ -214,7 +214,11 @@ namespace XkbPlugin
             TreeIter  tree_iter_sel;
             if(selection_current.get_selected(null,out tree_iter_sel))
             {
+#if VALA_0_36
+                list_current.remove(ref tree_iter_sel);
+#else
                 list_current.remove(tree_iter_sel);
+#endif
                 update_layouts_from_widget();
             }
         }

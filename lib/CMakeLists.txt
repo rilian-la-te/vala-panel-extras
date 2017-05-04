@@ -1,5 +1,5 @@
 INCLUDE(GResource)
-vala_precompile(VALA_C internal
+set(CORE_VALA_FILES
     watcheriface.vala
     snitemproxy.vala
     menuserializer.vala
@@ -7,6 +7,9 @@ vala_precompile(VALA_C internal
     configurator.vala
     notifications.vala
     ${CMAKE_BINARY_DIR}/vapi/config.vala
+    )
+vala_precompile(VALA_C internal
+    ${CORE_VALA_FILES}
 PACKAGES
     ${CORE_PACKAGES}
     gio-addons-2.0
@@ -37,7 +40,7 @@ add_library (internal STATIC
     ${LIB_FILES}
     ${GLIB_RESOURCES_LIB}
 )
-
+add_custom_target(vala-files-lib SOURCES ${CORE_VALA_FILES})
 target_link_libraries (internal ${LIBS})
 
 set_target_properties (internal PROPERTIES
