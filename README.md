@@ -32,8 +32,10 @@ This is StatusNotifierItems for using in Vala Panel (but can be used any DE in l
 
 *Weather:*
  * libgweather (>= 3.12.0)
+ 
 *ALSA:*
  * libasound 
+ 
 *XKB:*
  * libxkbcommon (>=0.5.0)
  * xkb-xcb
