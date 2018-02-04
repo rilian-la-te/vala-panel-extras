@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Battery Indicator
-TryExec=vala-panel-extras-batt
+TryExec=vala-panel-extras-battery
 Icon=battery
