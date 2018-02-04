@@ -468,8 +468,8 @@ public class VolumeIconExporter : ItemExporter
         Gtk.Requisition requisition = Gtk.Requisition();
         requisition.width = activate_window.get_allocated_width ();
         requisition.height = activate_window.get_allocated_height ();
-        var monitor_num = activate_window.get_screen().get_monitor_at_point (x, y);
-        var monitor = activate_window.get_screen().get_monitor_workarea (monitor_num);
+        var monitor_object = activate_window.get_display().get_monitor_at_point (x, y);
+        var monitor = monitor_object.get_workarea ();
         if (y + requisition.height > monitor.y + monitor.height)
             y = (monitor.y + monitor.height) - requisition.height;
         if (y < monitor.y)
