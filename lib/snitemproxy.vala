@@ -54,12 +54,12 @@ namespace StatusNotifier
         /* Base properties */
         public Category category {get; protected set;}
         public string id {get; protected set;}
-        public Status status {get; protected set;}
+        public Status status {get; protected set; default = Status.ACTIVE;}
         public string title {get; protected set;}
         public int window_id {get; protected set;}
         /* Menu properties */
         public ObjectPath menu {get; protected set;}
-        public bool items_in_menu {get; protected set;}
+        public bool items_in_menu {get; protected set; default = true;}
         /* Icon properties */
         public string icon_theme_path {get; protected set; default = "";}
         public string icon_name {get; protected set; default = "";}
