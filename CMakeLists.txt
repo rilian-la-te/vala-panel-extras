@@ -50,13 +50,16 @@ add_definitions(-w) # Disable gcc warnings
 
 find_package (PkgConfig)
 
-pkg_check_modules (CORE REQUIRED
-  gtk+-3.0>=3.16
-  glib-2.0>=2.44
-  gio-2.0>=2.44
-  gio-unix-2.0>=2.44
-  gthread-2.0>=2.44
-  gmodule-2.0>=2.44)
+find_package(GLib REQUIRED COMPONENTS goblect gio gio-unix gmodule gthread VERSION 2.50)
+find_package(GTK3 REQUIRED VERSION 3.22)
+
+pkg_check_modules (CORE REQUIRED QUIET
+  gtk+-3.0>=3.22
+  glib-2.0>=2.50
+  gio-2.0>=2.50
+  gio-unix-2.0>=2.50
+  gthread-2.0>=2.50
+  gmodule-2.0>=2.50)
 
 set(CORE_PACKAGES
   gtk+-3.0
