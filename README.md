@@ -4,7 +4,7 @@ Vala Panel Extras
 
 This is StatusNotifierItems for using in Vala Panel (but can be used any DE in list below). Supported DE is:
  * XFCE (via xfce4-sntray-plugin or xfce4-snw-plugin)
- * Mate (via xfce4-sntray-plugin or xfce4-snw-plugin)
+ * Mate (via xfce4-sntray-plugin or xfce4-snw-plugin or native via notification-area)
  * ValaPanel (SNTray)
  * KDE (native)
  * Gnome (via gnome-shell-extension-appindicator)
