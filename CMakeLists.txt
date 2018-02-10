@@ -1,5 +1,5 @@
-cmake_minimum_required (VERSION 2.8)
-cmake_policy (VERSION 2.8)
+cmake_minimum_required (VERSION 3.3)
+cmake_policy (VERSION 3.3)
 project (vala-panel-extras C)
 enable_testing ()
 include(GNUInstallDirs)
@@ -40,18 +40,16 @@ configure_file (${CMAKE_SOURCE_DIR}/vapi/config.vala.in ${CMAKE_BINARY_DIR}/vapi
 add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 
 # Vala
-find_package (Vala REQUIRED)
-include (ValaVersion)
-ensure_vala_version ("0.24" MINIMUM)
+find_package (Vala 0.24 REQUIRED)
 include (ValaPrecompile)
 
 add_definitions(-DVALA_VERSION="${VALA_SHORTVER}")
 add_definitions(-w) # Disable gcc warnings
 
 find_package (PkgConfig)
-
-find_package(GLib REQUIRED COMPONENTS goblect gio gio-unix gmodule gthread VERSION 2.50)
-find_package(GTK3 REQUIRED VERSION 3.22)
+find_package(GLIB2 2.50 REQUIRED COMPONENTS GOBJECT GIO GIO_UNIX GMODULE GTHREAD CODEGEN MKENUMS GENMARSHAL COMPILE_SCHEMAS COMPILE_RESOURCES)
+include(GLibProgramHandlers)
+find_package(GTK 3.22 REQUIRED COMPONENTS GDK X11 WAYLAND)
 
 pkg_check_modules (CORE REQUIRED QUIET
   gtk+-3.0>=3.22

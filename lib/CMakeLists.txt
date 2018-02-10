@@ -1,4 +1,3 @@
-INCLUDE(GResource)
 set(CORE_VALA_FILES
     watcheriface.vala
     snitemproxy.vala

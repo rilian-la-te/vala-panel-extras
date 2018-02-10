@@ -1,4 +1,3 @@
-include(GSettings)
 if (ENABLE_ALSA)
     add_schema("org.valapanel.volume.gschema.xml")
 endif()
