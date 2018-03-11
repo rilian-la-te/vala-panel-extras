@@ -28,11 +28,6 @@ add_definitions(-DG_SETTINGS_ENABLE_BACKEND)
 # Core Library
 #####
 
-# Build library for plugins and application
-set (LIBS ${CORE_LIBRARIES} -lm)
-set (LIB_PATHS ${CORE_LIBRARY_DIRS})
-link_directories (${LIB_PATHS})
-
 set (LIB_FILES ${VALA_C})
 
 add_library (internal STATIC
@@ -40,8 +35,6 @@ add_library (internal STATIC
     ${GLIB_RESOURCES_LIB}
 )
 add_custom_target(vala-files-lib SOURCES ${CORE_VALA_FILES})
-target_link_libraries (internal ${LIBS})
-
 set_target_properties (internal PROPERTIES
     VERSION 0.0
     SOVERSION 0)

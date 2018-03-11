@@ -14,7 +14,7 @@ OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/lib
     --vapidir=${CMAKE_BINARY_DIR}/vapi
-    --target-glib=2.40
+    --target-glib=2.50
     --gresources=${CMAKE_CURRENT_SOURCE_DIR}/${PLUGIN_NAME}.gresource.xml
     --thread
 )
@@ -26,19 +26,14 @@ glib_compile_resources(RESOURCES
         ${PLUGIN_NAME}.gresource.xml
 )
 # Build library for plugin
-set (LIBS ${CORE_LIBRARIES} ${LIBXML_LIBRARIES} -lm)
-set (LIB_PATHS ${CORE_LIBRARY_DIRS} ${LIBXML_LIBRARY_DIRS})
-set (LIB_CFLAGS ${CORE_CFLAGS} ${LIBXML_CFLAGS})
-add_definitions(-DGWEATHER_I_KNOW_THIS_IS_UNSTABLE)
-include_directories(${LIBXML_INCLUDE_DIRS})
-link_directories (${LIB_PATHS})
 
 add_executable (vala-panel-extras-${PLUGIN_NAME}
     ${VALA_C}
     ${RESOURCES}
 )
 
-target_link_libraries (vala-panel-extras-${PLUGIN_NAME} ${LIBS} internal)
+target_link_libraries (vala-panel-extras-${PLUGIN_NAME} PkgConfig::GWEATHER internal m)
+target_compile_definitions(vala-panel-extras-${PLUGIN_NAME} PRIVATE -DGWEATHER_I_KNOW_THIS_IS_UNSTABLE)
 add_custom_target(vala-files-${PLUGIN_NAME} SOURCES ${VALA_FILES})
 # Install plugin stuffs
 install(TARGETS vala-panel-extras-${PLUGIN_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})

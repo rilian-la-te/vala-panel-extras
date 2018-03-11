@@ -1,5 +1,5 @@
-cmake_minimum_required (VERSION 3.3)
-cmake_policy (VERSION 3.3)
+cmake_minimum_required (VERSION 3.6 FATAL_ERROR)
+cmake_policy (VERSION 3.6)
 project (vala-panel-extras C)
 enable_testing ()
 include(GNUInstallDirs)
@@ -51,14 +51,6 @@ find_package(GLIB2 2.50 REQUIRED COMPONENTS GOBJECT GIO GIO_UNIX GMODULE GTHREAD
 include(GLibProgramHandlers)
 find_package(GTK 3.22 REQUIRED COMPONENTS GDK X11 WAYLAND)
 
-pkg_check_modules (CORE REQUIRED QUIET
-  gtk+-3.0>=3.22
-  glib-2.0>=2.50
-  gio-2.0>=2.50
-  gio-unix-2.0>=2.50
-  gthread-2.0>=2.50
-  gmodule-2.0>=2.50)
-
 set(CORE_PACKAGES
   gtk+-3.0
   glib-2.0
@@ -66,13 +58,8 @@ set(CORE_PACKAGES
   gio-unix-2.0
   gmodule-2.0)
 
-set(PACKGAGE_CFLAGS ${CORE_CFLAGS})
-set(PACKAGE_LINK_DIRS ${CORE_LIBRARY_DIRS})
-set(PACKAGE_LIBRARIES ${CORE_LIBRARIES})
-
-add_definitions (${CORE_CFLAGS})
-link_libraries (${CORE_LIBRARIES})
-link_directories (${CORE_LIBRARY_DIRS})
+#Link libraries for all targets
+link_libraries (GLIB2::GLIB GLIB2::GIO_UNIX GTK3::GDK GTK3::GTK m)
 
 
 # Some include paths
