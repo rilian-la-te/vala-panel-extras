@@ -8,6 +8,11 @@ if (ENABLE_ALSA)
 endif()
 
 if (ENABLE_ALSA)
+    pkg_check_modules(GSOUND gsound)
+    if(GSOUND_FOUND)
+        set(GSOUND_DEFINE -D GSOUND)
+        set(GSOUND_PACKAGE "gsound")
+    endif()
     add_subdirectory(volume)
 endif()
 

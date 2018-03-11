@@ -8,6 +8,7 @@ PACKAGES
     ${CORE_PACKAGES}
     internal
     alsa
+    ${GSOUND_PACKAGE}
 OPTIONS
     --vapidir=${CMAKE_SOURCE_DIR}/vapi
     --vapidir=${CMAKE_BINARY_DIR}/lib
@@ -15,13 +16,14 @@ OPTIONS
     --target-glib=2.40
     --gresources=${CMAKE_CURRENT_SOURCE_DIR}/${PLUGIN_NAME}.gresource.xml
     --thread
+    ${GSOUND_DEFINE}
 )
 #####
 # Plugin Library
 #####
 
 # Build library for plugin
-set (LIBS ${CORE_LIBRARIES} ${ALSA_LIBRARIES} -lm)
+set (LIBS ${CORE_LIBRARIES} ${ALSA_LIBRARIES} ${GSOUND_LIBRARIES} -lm)
 set (LIB_PATHS ${CORE_LIBRARY_DIRS})
 link_directories (${LIB_PATHS})
 

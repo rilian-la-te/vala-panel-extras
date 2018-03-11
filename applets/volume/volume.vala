@@ -215,7 +215,11 @@ public class VolumeIconExporter : ItemExporter
             notification.val = (int) level;
             notification.app_icon = lookup_current_icon((long) level);
             notification.title = tool_tip.title;
+#if GSOUND
+            gsound_play_test();
+#else
             notification.sound_name = "audio-volume-change";
+#endif
             notification.send();
         }
     }
@@ -228,6 +232,18 @@ public class VolumeIconExporter : ItemExporter
         tooltip.title = _("ALSA is not connected");
         tooltip.description = "";
         this.tool_tip = tooltip;
+    }
+    void gsound_play_test()
+    {
+#if GSOUND
+        try
+        {
+            var context = new GSound.Context();
+            context.init();
+            context.play_simple(null,
+                GSound.Attribute.EVENT_ID, "audio-volume-change");
+        } catch (GLib.Error e) {stderr.printf("%s\n",e.message);}
+#endif
     }
     /* Do a full redraw of the display. */
     void update_current_icon(long level)
