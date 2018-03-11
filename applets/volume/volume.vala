@@ -2,6 +2,7 @@ using StatusNotifier;
 using DBusMenu;
 using GLib;
 using Alsa;
+using Canberra;
 
 public static int main(string[] args)
 {
@@ -134,7 +135,7 @@ public class VolumeIconExporter : ItemExporter
             try
             {
                 channels[i].shutdown(false);
-            } catch (Error e){}
+            } catch (GLib.Error e){}
         }
         channels = {};
         watches = {};
@@ -183,6 +184,15 @@ public class VolumeIconExporter : ItemExporter
         {
             master_element.set_playback_volume(SimpleChannelId.FRONT_LEFT, volume);
             master_element.set_playback_volume(SimpleChannelId.FRONT_RIGHT, volume);
+
+#if CANBERRA
+            if (sound_change == null)
+                Context.create(out sound_change);
+            else {
+                sound_change.play (0, PROP_EVENT_ID, "audio-volume-change",
+                    PROP_EVENT_DESCRIPTION, "audio-volume-change");
+            }
+#endif
         }
     }
     string lookup_current_icon(long level)
@@ -215,11 +225,7 @@ public class VolumeIconExporter : ItemExporter
             notification.val = (int) level;
             notification.app_icon = lookup_current_icon((long) level);
             notification.title = tool_tip.title;
-#if GSOUND
-            gsound_play_test();
-#else
             notification.sound_name = "audio-volume-change";
-#endif
             notification.send();
         }
     }
@@ -232,18 +238,6 @@ public class VolumeIconExporter : ItemExporter
         tooltip.title = _("ALSA is not connected");
         tooltip.description = "";
         this.tool_tip = tooltip;
-    }
-    void gsound_play_test()
-    {
-#if GSOUND
-        try
-        {
-            var context = new GSound.Context();
-            context.init();
-            context.play_simple(null,
-                GSound.Attribute.EVENT_ID, "audio-volume-change");
-        } catch (GLib.Error e) {stderr.printf("%s\n",e.message);}
-#endif
     }
     /* Do a full redraw of the display. */
     void update_current_icon(long level)
@@ -532,4 +526,7 @@ public class VolumeIconExporter : ItemExporter
     ServerItem scale_item;
     ServerItem mixer_item;
     Notifier.Notification notification;
+#if CANBERRA
+    Context sound_change;
+#endif
 }
