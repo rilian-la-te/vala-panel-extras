@@ -225,7 +225,9 @@ public class VolumeIconExporter : ItemExporter
             notification.val = (int) level;
             notification.app_icon = lookup_current_icon((long) level);
             notification.title = tool_tip.title;
+#if !CANBERRA
             notification.sound_name = "audio-volume-change";
+#endif
             notification.send();
         }
     }
