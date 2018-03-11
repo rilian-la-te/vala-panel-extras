@@ -465,7 +465,7 @@ public class VolumeIconExporter : ItemExporter
             return;
         }
         activate_window.realize();
-        Gtk.Requisition requisition = Gtk.Requisition();
+        Gtk.Requisition requisition = {0,0};
         requisition.width = activate_window.get_allocated_width ();
         requisition.height = activate_window.get_allocated_height ();
         var monitor_object = activate_window.get_display().get_monitor_at_point (x, y);
