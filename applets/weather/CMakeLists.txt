@@ -17,6 +17,7 @@ OPTIONS
     --target-glib=2.50
     --gresources=${CMAKE_CURRENT_SOURCE_DIR}/${PLUGIN_NAME}.gresource.xml
     --thread
+    ${WEATHER_DEFINE}
 )
 #####
 # Plugin Library

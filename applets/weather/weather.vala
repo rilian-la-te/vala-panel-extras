@@ -53,7 +53,11 @@ namespace Weather
                 settings.changed.connect(on_settings_changed);
                 settings.bind(SHOW_LABEL,this,SHOW_LABEL,SettingsBindFlags.GET);
                 app.preferences = create_preferences_dialog;
+        #if GWEATHER_3_28
+                info = new GWeather.Info(null);
+        #else
                 info = new GWeather.Info(null,GWeather.ForecastType.LIST);
+        #endif
                 info.enabled_providers = GWeather.Provider.ALL;
                 info.updated.connect(info_updated);
                 var gnome_settings = new GLib.Settings("org.gnome.GWeather");
