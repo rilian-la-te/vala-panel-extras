@@ -16,7 +16,7 @@ namespace StatusNotifier
 		public abstract int protocol_version
 		{get;}
 		/* Public methods */
-		public abstract void register_status_notifier_item(string service) throws IOError;
-		public abstract void register_status_notifier_host(string service) throws IOError;
+		public abstract void register_status_notifier_item(string service) throws Error;
+		public abstract void register_status_notifier_host(string service) throws Error;
 	}
 }
