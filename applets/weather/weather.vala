@@ -249,7 +249,7 @@ namespace Weather
             var removed = new Variant.array(new VariantType("(ias)"),items);
             dbusmenu.items_properties_updated(properties,removed);
         }
-        public void dbusmenu_attributes_location_updated()
+        public void dbusmenu_attributes_location_updated() throws Error
         {
             /*Return all properties instead of requested*/
             Variant[] items = {};
