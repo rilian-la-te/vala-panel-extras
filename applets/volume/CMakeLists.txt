@@ -26,8 +26,13 @@ add_executable (vala-panel-extras-${PLUGIN_NAME}
     ${VALA_C}
     ${RESOURCES}
 )
+if(ENABLE_LIBCANBERRA)
+    set(CANBERRA_LIB PkgConfig::CANBERRA)
+else()
+    set(CANBERRA_LIB)
+endif()
 
-target_link_libraries (vala-panel-extras-${PLUGIN_NAME} PkgConfig::ALSA PkgConfig::CANBERRA internal)
+target_link_libraries (vala-panel-extras-${PLUGIN_NAME} PkgConfig::ALSA ${CANBERRA_LIB} internal)
 add_custom_target(vala-files-${PLUGIN_NAME} SOURCES ${VALA_FILES})
 # Install plugin stuffs
 install(TARGETS vala-panel-extras-${PLUGIN_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
