@@ -77,14 +77,13 @@ namespace Configurator
                     (entry as Label).set_markup (markup);
                     break;
                 case GenericConfigType.EXTERNAL:
-                    if (w is Widget)
-                        dlg_vbox.pack_start(w, false, false, 2);
-                    else
+                    if (!(w is Widget))
                         critical("value for GenericConfigType.EXTERNAL is not a Gtk.Widget");
                     break;
             }
             if( entry != null)
             {
+                entry.show();
                 if(( type == GenericConfigType.BOOL ) || ( type == GenericConfigType.TRIM ))
                     dlg_vbox.pack_start(entry, false, false, 2);
                 else
@@ -92,6 +91,7 @@ namespace Configurator
                     Box hbox = new Box(Orientation.HORIZONTAL, 2 );
                     hbox.pack_start(label, false, false, 2 );
                     hbox.pack_start(entry, true, true, 2 );
+                    hbox.show();
                     dlg_vbox.pack_start(hbox, false, false, 2 );
                     if ((type == GenericConfigType.FILE_ENTRY) || (type == GenericConfigType.DIRECTORY_ENTRY))
                     {
@@ -122,7 +122,7 @@ namespace Configurator
             dlg.hide();
         });
         dlg.border_width = 8;
-        dlg_vbox.show_all();
+        dlg_vbox.show();
         return dlg;
     }
     public static Dialog generic_config_dlg(string title, GLib.Settings settings, ...)

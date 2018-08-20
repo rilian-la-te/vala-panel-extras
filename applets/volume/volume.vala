@@ -361,7 +361,8 @@ public class VolumeIconExporter : ItemExporter
             volume_scale.set_value(val.clamp(0, 100));
             return false;
         });
-        box.show_all();
+        volume_scale.show();
+        box.show();
     }
     void launch_mixer_command()
     {

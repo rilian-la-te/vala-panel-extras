@@ -38,9 +38,11 @@ namespace Weather
             var button = new Gtk.Button();
             button.image = new Image.from_icon_name("list-add-symbolic",IconSize.BUTTON);
             button.clicked.connect(on_add_location);
+            button.image.show();
+            button.show();
             box.add(button);
             popover.add(box);
-            box.show_all();
+            box.show();
             location_search_button.set_popover(popover);
             remove_button.sensitive = icon.locations.length > 1;
             this.plugin = icon;
