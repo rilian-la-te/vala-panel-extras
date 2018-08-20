@@ -3,6 +3,7 @@ cmake_policy (VERSION 3.6)
 project (vala-panel-extras C)
 enable_testing ()
 include(GNUInstallDirs)
+include(FeatureSummary)
 list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share/vala-panel")
 set (PKGDATADIR "${DATADIR}")
@@ -79,6 +80,8 @@ ADD_SUBDIRECTORY(po)
 ADD_SUBDIRECTORY(lib)
 ADD_SUBDIRECTORY(applets)
 ADD_SUBDIRECTORY(data)
+
+feature_summary(WHAT ALL)
 
 #Additional install
 #install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/vala-panel.desktop DESTINATION share/applications)
