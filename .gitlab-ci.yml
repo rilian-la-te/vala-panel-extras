@@ -1,0 +1,27 @@
+
+stages:
+  - build
+before_script:
+  - mkdir -p _ccache
+  - export CCACHE_BASEDIR=${PWD}
+  - export CCACHE_DIR=${PWD}/_ccache
+
+cache:
+  paths:
+    - _ccache/
+
+build:
+  image: pritunl/archlinux
+  stage: build
+  script:
+   - pacman -S --noconfirm gtk3 vala cmake git base-devel ninja libxkbcommon-x11 libxcb alsa-lib libcanberra libgweather libx11 libgtop
+   - git clone https://gitlab.com/vala-panel-project/cmake-vala.git
+   - cd cmake-vala && cmake . -DCMAKE_INSTALL_PREFIX=/usr -GNinja && ninja install && cd .. && rm -rf cmake-vala
+   - mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=/usr -GNinja
+   - ninja
+   - ninja install
+   - ninja dist
+  artifacts:
+    paths:
+    - "build/vala-panel*.tar.xz"
+    expire_in: 1 week
