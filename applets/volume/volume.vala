@@ -2,7 +2,9 @@ using StatusNotifier;
 using DBusMenu;
 using GLib;
 using Alsa;
+#if CANBERRA
 using Canberra;
+#endif
 
 public static int main(string[] args)
 {
